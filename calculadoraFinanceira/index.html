@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>SevenLux</title>
+</head>
+<body>
+    <div class="container-conteudo">
+        <h2>Calculadora Financeira</h2>
+        <h4>Descubra quanto a luminosidade influência nas vendas do seu supermercado com os sensores da SevenLux!</h4>
+
+        <i>Digite os valores abaixo de acordo com o setor</i> <br> <br>
+        Nome do setor: <input type="text" id="iptNome" class="input-box" placeholder="digite aqui..."> <br> <br>
+        Nome do produto: <input type="text" id="iptProd" class="input-box" placeholder="digite aqui..."> <br> <br>
+        Quantidade de vendas: <input type="text" id="iptQntd" class="input-box" placeholder="digite aqui..."> <br> <br>
+        Valor dos produtos: <input type="text" id="iptValor" class="input-box" placeholder="digite aqui..."> <br> <br>
+
+        <button onclick="simular()">Simular Resultados</button>
+
+        <div id="divTxt"></div>
+    </div>  
+</body>
+</html>
+
+<script>
+    function simular() {
+        var qntd = Number(iptQntd.value);
+        var valor = Number(iptValor.value);
+
+        var valorBaseMes = valor * qntd
+        var valorLuxMes = valorBaseMes * 1.06;
+
+        var valorSemesBase = valorBaseMes * 6;
+        var valorSemesLux = valorLuxMes * 6;
+        var valorAnoBase = valorBaseMes * 12; 
+        var valorAnoLux = valorLuxMes * 12;
+
+        divTxt.innerHTML = divTxt.innerHTML = `Olá!<br><br>
+        Estudos apontam que mercados com uma melhor luminosidade tem 6% de vendax a mais por setor. <br> <br>
+
+        O setor ${iptNome.value} quando vende ${iptProd.value} com luminosidade não adequada, 
+        tem um retorno de cerca de R$ ${valorBaseMes} por mês. <br> <br>
+
+        Já em condicões de boa luminosidade, o valor pode chegar em R$ ${valorLuxMes} por mês. <br> <br>
+<b>💰 Lucro estimado:<br>
+🔸 No semestre: R$ ${ valorSemesLux - valorSemesBase}<br>
+🔸 No ano: R$ ${valorAnoLux - valorAnoBase}<br>
+</b>`
+}
+    
+</script>
