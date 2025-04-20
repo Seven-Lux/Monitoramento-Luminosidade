@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="box">
+    <div class="box container-form">
+        <h2 class="form-titles">Login</h2> <br>
+
+        <b class="form-titles">CNPJ</b> 
+        <input id="iptCnpj" class="input-box"> <br> <br> 
+        <span id="msgCnpj"></span> 
+
+        <b>Senha</b> 
+        <input id="iptPwd" class="input-box"> <br> <br>
+        <span id="msgPwd"></span> 
+        
+        
+        <button onclick="cadastrar()" class="input-box">Cadastrar</button><br>
+        
+        <i>Não possúi conta?</i> 
+        <a href="cadastro.html"><u>Fazer cadastro</u></a>
+    </div>
+    </div>
+</body>
+</html>
+<script>
+var permCadastro = true
+
+
+function cadastrar() {
+    var pwd = iptPwd.value
+    var cnpj = iptCnpj.value
+    
+    if(pwd != "seven8956$" || cnpj != "33094501173451"){
+        alert("login inválido") 
+    }
+    
+    else{
+        alert("login feito com sucesso!")
+    }
+}
+</script>
