@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="style.css">
+    <title> DASHBOARD SEVENLUX </title>
+</head>
+
+<body class="body_dashboard">
+
+    <label for="">
+
+    </label>
+
+    <div class="perfil">
+        <div class="usuario">
+            <img
+                src="https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.pngwing.com%2Fpt%2Fsearch%3Fq%3Dusu%25C3%25A1rio&psig=AOvVaw2Thahc6awSaL5VamRdwD1q&ust=1745350775934000&source=images&cd=vfe&opi=89978449&ved=0CBUQjRxqFwoTCNCW67zw6YwDFQAAAAAdAAAAABAE">
+        </div>
+    </div>
+
+    <div class="alerts">
+        <div class="alerta al-1">
+            <h2>Alerta</h2>
+            <h4>Lux: 1200</h4>
+            <h4>Corredor: 05</h4>
+        </div>
+
+        <div class="alerta al-2">
+            <h2>Alerta</h2>
+            <h4>Lux: 950</h4>
+            <h4>Corredor: 09,10</h4>
+        </div>
+
+        <div class="alerta al-3">
+            <h2>Alerta</h2>
+            <h4>Mínimo: 500</h4>
+            <h4>Máximo: 800</h4>
+            <h4>Corredor: 05,09,10</h4>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="grafico1">
+            <canvas id="myChart"></canvas>
+        </div>
+
+        <div class="grafico2">
+            <canvas id="myChart2"></canvas>
+        </div>
+    </div>
+
+</body>
+
+<script>
+    const ctx = document.getElementById('myChart');
+    const ctx2 = document.getElementById('myChart2');
+
+    new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: ['6H', '7H', '8H', '9H', '10H'],
+            datasets: [{
+                label: 'Luminosidade',
+
+                data: [400, 420, 600, 800, 1000, 1200],
+                borderColor: '#000000',
+                backgroundColor: '#000000',
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+
+    new Chart(ctx2, {
+        type: 'bar',
+        data: {
+            labels: ['1', '2', '3', '4', '5', '6', '7'],
+            datasets: [{
+                label: 'Luminosidade',
+
+                data: [450, 820, 400, 450, 800, 1100, 780],
+                borderColor: '#000000',
+                backgroundColor: '#000000',
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+</script>
+
+</html>

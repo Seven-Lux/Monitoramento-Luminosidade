@@ -1,37 +1,40 @@
 <!DOCTYPE html>
 <html lang="pt">
+
 <head>
     <meta charset="UTF-8">
     <title>Cadastro</title>
     <link rel="stylesheet" href="style.css">
 </head>
-<body>
+
+<body class="cadastro_login">
     <div class="box">
-    <div class="box container-form">
-        <h2 class="form-titles">Cadastro</h2> <br>
+        <div class="box container-form">
+            <h2 class="form-titles">Cadastro</h2> <br>
 
-        <b class="form-titles">Email</b> 
-        <input id="iptEmail" class="input-box" placeholder="Ex: 123@gmail.com" oninput="verifyEmail()"> <br> <br>
-        <span id="msgEmail"></span> 
+            <b class="form-titles">Email</b>
+            <input id="iptEmail" class="input-box" placeholder="Ex: 123@gmail.com" oninput="verifyEmail()"> <br> <br>
+            <span id="msgEmail"></span>
 
-        <b>Senha</b> 
-        <input id="iptPwd" class="input-box" oninput="verifyPwd()"> <br> <br>
-        <span id="msgPwd"></span> 
-        
-        <b class="form-titles">CNPJ</b> 
-        <input id="iptCnpj" class="input-box" oninput="verifyCnpj()"> <br> <br> 
-        <span id="msgCnpj"></span> 
-        
-        <b class="form-titles">Nome fantasia</b>
-        <input class="input-box"> <br> <br>
-        <button onclick="cadastrar()" class="input-box">Cadastrar</button><br>
-        
-        <i>Já possui uma conta?</i> 
-        <a href="login.html"><u>Fazer login</u></a>
-        
-    </div>
+            <b>Senha</b>
+            <input id="iptPwd" class="input-box" oninput="verifyPwd()"> <br> <br>
+            <span id="msgPwd"></span>
+
+            <b class="form-titles">CNPJ</b>
+            <input id="iptCnpj" class="input-box" oninput="verifyCnpj()"> <br> <br>
+            <span id="msgCnpj"></span>
+
+            <b class="form-titles">Nome fantasia</b>
+            <input class="input-box"> <br> <br>
+            <button onclick="cadastrar()" class="input-box">Cadastrar</button><br>
+
+            <i>Já possui uma conta?</i>
+            <a href="login.html"><u>Fazer login</u></a>
+
+        </div>
     </div>
 </body>
+
 </html>
 <script>
     var permCadastro = true
@@ -40,22 +43,22 @@
         var email = iptEmail.value
 
         if (email.includes("@gmail.com")) {
-            if(email.indexOf("@gmail.com") == 0){
+            if (email.indexOf("@gmail.com") == 0) {
                 msgEmail.style.color = 'red'
                 msgEmail.innerHTML = "Email inválido"
                 permCadastro = false
 
-            } 
-            else{
+            }
+            else {
                 msgEmail.style.color = 'green'
                 msgEmail.innerHTML = "Email válido"
                 permCadastro = true
             }
         }
-        else{
-             msgEmail.style.color = 'red'
-                msgEmail.innerHTML = "Email inválido"
-                permCadastro = false
+        else {
+            msgEmail.style.color = 'red'
+            msgEmail.innerHTML = "Email inválido"
+            permCadastro = false
         }
     }
 
@@ -66,7 +69,7 @@
             msgPwd.innerHTML = "Senha com 8 caracteres"
             permCadastro = false
         }
-        else{
+        else {
             msgPwd.style.color = 'green'
             msgPwd.innerHTML = "Senha com 8 caracteres"
             permCadastro = true
@@ -80,7 +83,7 @@
             msgCnpj.innerHTML = "CNPJ válido"
             permCadastro = true
         }
-        else{
+        else {
             msgCnpj.style.color = 'red'
             msgCnpj.innerHTML = "CNPJ inválido"
             permCadastro = false

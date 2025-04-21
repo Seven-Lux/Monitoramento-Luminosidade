@@ -1,10 +1,10 @@
-.box{
+.box {
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.container-form{
+.container-form {
     flex-direction: column;
     background-color: rgb(0, 0, 0);
     height: 450px;
@@ -14,21 +14,92 @@
     padding: 20px;
 }
 
-.form-titles{
+.form-titles {
     display: flex;
 }
 
-.input-box{
+.input-box {
     width: 200px;
     border: solid 1px black;
     border-radius: 10px;
 }
 
-body{
-    background-color:darkgrey;
+.cadastro_login {
+    background-color: darkgrey;
 }
 
-*{
+* {
     margin: 0;
     padding: 0;
+}
+
+
+/* TELA DA DASHBOARD*/
+
+.body_dashboard {
+
+    background-color: #FFFF41;
+}
+
+/* .perfil {
+    height: 100vh;
+    width: 200px;
+    background-color: black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    top: 0;
+    left: 0;
+} */
+
+.perfil {
+    height: 100%;
+    width: 100%;
+}
+
+.usuario {
+    align-items: center;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    width: 180px;
+    background-color: black;
+}
+
+.alerts {
+    color: white;
+    text-align: center;
+    border-radius: 10px;
+    display: flex;
+    padding: 15px;
+    width: 100%;
+    gap: 50px;
+}
+
+.alerta {
+    background-color: black;
+    border-radius: 10px;
+    height: 180px;
+    width: 200px;
+}
+
+.container {
+    display: flex;
+    margin-top: 7%;
+    gap: 20px;
+}
+
+.grafico1 {
+    height: 45vh;
+    width: 45vw;
+    border-radius: 2%;
+    background-color: white;
+}
+
+.grafico2 {
+    height: 45vh;
+    width: 45vw;
+    border-radius: 2%;
+    background-color: white;
 }
