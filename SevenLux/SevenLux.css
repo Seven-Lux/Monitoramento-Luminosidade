@@ -1,0 +1,164 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #FFEB3B;
+    color: #333;
+}
+
+.cabecalho {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 40px;
+}
+
+/*.logo {
+    height: 350px;
+}
+*/
+.menu {
+    display: flex;
+    gap: 40px; 
+}
+
+.menu span,
+.menu .botao-contato {
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 22px;
+}
+
+.menu span {
+    text-decoration: underline;
+}
+
+.menu .botao-contato {
+    background-color: black;
+    color: white;
+    padding: 15px 30px;
+    border-radius: 20px;
+    transition: background-color 0.3s;
+}
+
+.menu .botao-contato:hover {
+    background-color: #333;
+}
+
+.pagina {
+    display: flex;
+    justify-content: space-between;
+    margin: 10px 40px;
+}
+
+.conteudo {
+    padding: 40px;
+    max-width: 600px;
+    margin-left: 20px;
+}
+
+.conteudo h1 {
+    font-size: 50px;
+    margin-bottom: 20px;
+}
+
+.descricao {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.conteudo button {
+    background-color: transparent;
+    color: black;
+    padding: 12px 24px;
+    border: 2px solid black;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.conteudo button:hover {
+    background-color: black;
+    color: white;
+}
+
+/* login e cadastro*/
+.acessos {
+    display: flex;
+    gap: 20px;
+    margin-left: 40px;
+}
+
+.caixa {
+    background-color: black;
+    color: white;
+    padding: 30px;
+    border-radius: 20px;
+    text-align: center;
+    width: 300px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.caixa button {
+    margin-top: 15px;
+    background-color: white;
+    color: black;
+    padding: 12px 24px;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.caixa button:hover {
+    background-color: #ddd;
+}
+
+/* (missão, visão, valores) */
+.info {
+    background-color: white;
+    padding: 60px 40px;
+    display: flex;
+    justify-content: space-around;
+    text-align: center;
+    flex-wrap: wrap;
+    margin-top: 40px;
+}
+
+.bloco {
+    background-color: black;
+    color: white;
+    border-radius: 20px;
+    padding: 30px;
+    margin: 10px;
+    width: 280px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.bloco h2 {
+    margin: 10px 0;
+    font-size: 20px;
+}
+
+.bloco p {
+    font-size: 14px;
+}
+
+.detalhe-listrado {
+    height: 100%;
+    background: linear-gradient(45deg, white 25%, transparent 25%, transparent 50%, white 50%, white 75%, transparent 75%, transparent);
+    background-size: 10px 10px;
+    width: 20px;
+    position: fixed;
+    top: 0;
+    right: 0;
+}
+
+.icone {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: white;
+    padding: 10px;
+    margin-bottom: 15px;
+    object-fit: contain;
+}
