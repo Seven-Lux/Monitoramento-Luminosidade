@@ -47,12 +47,21 @@
     
 }
 
-.button-box{
+.txt-box{
     display: flex;
     align-self: center;
     text-align: center;
     flex-direction: column;
   }
+
+.design{
+    background-color: yellow;
+    width: 200px;
+    border: solid 1px black;
+    border-radius: 5px;
+    height: 20px;
+    width: 200px;
+}
 
 * {
     margin: 0;
