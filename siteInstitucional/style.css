@@ -1,3 +1,5 @@
+/* Tela de cadastro e login*/
+
 .cadastro-login{
     display: flex;
     flex-direction: row;
@@ -19,20 +21,21 @@
     width: 550px;
     padding: 20px;
     margin-left: 30px;
-    margin-top: 30px;
+    margin-top: 15px;
     color: black;
 }
 
 .box-one {
-    justify-content: space-evenly;
     display: flex;
+    justify-content: space-evenly;
 
 }
 
 .box-two{
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-end;
+    align-items: flex-start;
 }
 
 .input-box {

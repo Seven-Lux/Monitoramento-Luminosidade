@@ -5,25 +5,30 @@
     <title>Login</title>
     <link rel="stylesheet" href="style.css">
 </head>
-<body>
-    <div class="box">
-    <div class="box container-form">
-        <h2 class="form-titles">Login</h2> <br>
-
-        <b class="form-titles">CNPJ</b> 
-        <input id="iptCnpj" class="input-box"> <br> <br> 
-        <span id="msgCnpj"></span> 
-
-        <b>Senha</b> 
-        <input id="iptPwd" class="input-box"> <br> <br>
-        <span id="msgPwd"></span> 
-        
-        
-        <button onclick="cadastrar()" class="input-box">Cadastrar</button><br>
-        
-        <i>Não possúi conta?</i> 
-        <a href="cadastro.html"><u>Fazer cadastro</u></a>
+<body class="cadastro-login">
+    <div class="left-box"> 
+        <img src="imagens/sevenluxLogo.png" alt="" width="500px">
     </div>
+      
+    <div class="right-box">
+        <div class="right-box box-one">    
+            <h2 class="button-box ">Login</h2> <br>
+            <p>Email</p> 
+            <input id="iptEmail" class="input-box" placeholder="Ex: 123@gmail.com" oninput="verifyEmail()">  
+            <span id="msgEmail" class="msg-alert"></span>
+    
+            <p>Senha</p>
+            <input id="iptPwd" class="input-box" oninput="verifyPwd()"> 
+            <span id="msgPwd" class="msg-alert"></span>
+    
+            
+            <span class="button-box"> 
+                <button onclick="cadastrar()" class="input-box"><h3>Logar</h3></button> <br>
+                <i class="button-box ">Não tem uma conta?</i>
+                <a href="cadastro.html"><u>Fazer cadastro</u></a>
+            </span>
+
+           </div>   
     </div>
 </body>
 </html>
@@ -33,9 +38,9 @@ var permCadastro = true
 
 function cadastrar() {
     var pwd = iptPwd.value
-    var cnpj = iptCnpj.value
+    var email = iptEmail.value
     
-    if(pwd != "seven8956$" || cnpj != "33094501173451"){
+    if(pwd != "seven8956$" || email != "sevenLux@gmail.com"){
         alert("login inválido") 
     }
     
@@ -45,33 +50,3 @@ function cadastrar() {
 }
 </script>
 
-<p>CNPJ</p>
-            <input id="iptCnpj" class="input-box" oninput="verifyCnpj()"> 
-            <span id="msgCnpj" class="msg-alert"></span>
-    
-            <p>Nome fantasia</p>
-            <input class="input-box"> 
-            <span class="button-box"> 
-                <button onclick="cadastrar()" class="input-box">Cadastrar</button> <br>
-                <i class="button-box ">Já possui uma conta?</i>
-                <a href="login.html"><u>Fazer login</u></a>
-            </span>
-           </div>
-
-           <div class="right-box box-two">    
-            <p>Email</p> 
-            <input id="iptEmail" class="input-box" placeholder="Ex: 123@gmail.com" oninput="verifyEmail()">
-            <span id="msgEmail" class="msg-alert"></span>
-    
-            <p>Senha</p>
-            <input id="iptPwd" class="input-box" oninput="verifyPwd()"> 
-            <span id="msgPwd" class="msg-alert"></span>
-    
-            <p>CNPJ</p>
-            <input id="iptCnpj" class="input-box" oninput="verifyCnpj()"> 
-            <span id="msgCnpj" class="msg-alert"></span>
-    
-            <p>Nome fantasia</p>
-            <input class="input-box">   
-            
-           </div>
