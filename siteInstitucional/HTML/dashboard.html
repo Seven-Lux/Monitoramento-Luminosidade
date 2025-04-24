@@ -9,40 +9,25 @@
     <title>Dashboards</title>
 </head>
 
-<body style="background-color: rgb(255, 252, 62);">
+<body>
     <div class="container-geral">
         <div class="usuario">
-            <img src="img/img_usuario-removebg-preview.png" alt="icone do usuario">
+            <img src="../imagens/user.svg" alt="icone do usuario">
             <h2>Nome do usuario</h2>
         </div>
 
-        <div class="pai">
-            <div class="alerta al-1">
-                <h2>Alerta</h2>
-                <h4>Lux: 1200</h4>
-                <h4>Corredor: 05</h4>
+        <div class="container-column">
+            <div class="container-kpi">
+                <div class="box-kpi">
+                    <h1>Exemplo 1</h1>
+                </div>
             </div>
-            <div class="alerta al-2">
-                <h2>Alerta</h2>
-                <h4>Lux: 950</h4>
-                <h4>Corredor: 09,10</h4>
-            </div>
-            <div class="alerta al-3">
-                <h2>Alerta</h2>
-                <h4>Mínimo: 500</h4>
-                <h4>Máximo: 800</h4>
-                <h4>Corredor: 05,09,10</h4>
+            <div class="container-dashboard">
+                <canvas id="myChart" class="gra1"></canvas>
+                <canvas id="myChart2" class="gra2"></canvas>
             </div>
         </div>
-        <div class="container">
-            <div class="grafico gra1">
-                <canvas id="myChart"></canvas>
-            </div>
-
-            <div class="grafico gra2">
-                <canvas id="myChart2"></canvas>
-            </div>
-        </div>
+        
     </div>
 </body>
 
@@ -58,8 +43,8 @@
                 label: 'Luminosidade',
 
                 data: [400, 420, 600, 800, 1000, 1200],
-                borderColor: '#000000',
-                backgroundColor: '#000000',
+                borderColor: '#efb135',
+                backgroundColor: '#efb135',
                 borderWidth: 1
             }]
         },
@@ -81,8 +66,8 @@
                 label: 'Luminosidade',
 
                 data: [450, 820, 400, 450, 800, 1100, 780],
-                borderColor: '#000000',
-                backgroundColor: '#000000',
+                borderColor: '#efb135',
+                backgroundColor: '#efb135',
                 borderWidth: 1
             }]
         },
