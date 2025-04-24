@@ -1,0 +1,24 @@
+body {
+    background: #ebf145;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.logo-calculadora {
+    width: 1%;
+    height: 1%;
+}
+
+.container-conteudo {
+    align-items: center;
+    justify-items: center;
+    height: 400px;
+    width: 950px;
+    border-radius: 5px;
+    border: solid 3px rgba(255, 255, 0, 0.363);
+    background-color: rgb(255, 255, 255);
+    overflow: scroll;
+}

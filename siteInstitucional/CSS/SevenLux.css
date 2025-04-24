@@ -1,7 +1,7 @@
 .body-container {
     margin: 0;
     font-family: Arial, sans-serif;
-    background-image: linear-gradient(90deg,gold, #efb135);
+    background-image: linear-gradient(90deg, gold, #efb135);
     color: #333;
 }
 
@@ -11,15 +11,22 @@
     align-items: center;
     padding: 15px 40px;
 }
-a{
+
+a {
     text-decoration: inherit;
     color: white;
+}
+
+.logo-siteinstitucional {
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
 }
 
 .menu {
     display: flex;
     justify-content: center;
-    gap: 40px; 
+    gap: 40px;
 }
 
 .menu .botoes-topo {
