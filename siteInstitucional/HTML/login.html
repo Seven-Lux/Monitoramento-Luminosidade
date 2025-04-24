@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <title>Cadastro</title>
+    <link rel="stylesheet" href="../CSS/cadastroLogin.css">
+</head>
+<body class="container-row">
+    <div class="container-left">
+        <img src="../imagens/sevenluxLogo.png" alt="" width="350px" height="350px">        
+    </div>
+    <div class="container-column">
+        
+        <div class="container-column container-center">
+            <h1>Login</h1> 
+        </div> 
+        
+     <div class="container-row"></div>
+        
+        <div class="container-row">
+        
+            <div class="ipt-container first"> 
+                <p>Email</p> 
+                <input class="mail-ipt" type="password" placeholder="Digite aqui"">
+            </div> 
+        
+            <div class="ipt-container second">
+                <p>Senha</p>
+                <input class="pwd-ipt"type="password"> <br> 
+            </div>
+        
+        </div>
+        
+        <div class="container-column container-center">
+            <button><b><a class="txt-button" href="dashboard.html">Entrar</a></b></button> <br>
+            <i>Não Possui uma conta?</i> 
+            <a class="txt-a"href="cadastro.html"><i>Fazer cadastro</i></a>
+        </div>
+        
+    </div>
+    
+</body>
+</html>
+<script>
+var permCadastro = true
+
+
+function cadastrar() {
+    var pwd = iptPwd.value
+    var email = iptEmail.value
+    
+    if(pwd != "seven8956$" || email != "sevenLux@gmail.com"){
+        alert("login inválido") 
+    }
+    
+    else{
+        alert("login feito com sucesso!")
+    }
+}
+</script>
+
