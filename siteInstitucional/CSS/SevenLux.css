@@ -13,29 +13,28 @@
 }
 a{
     text-decoration: inherit;
-    color: black;
+    color: white;
 }
-/*.logo {
-    height: 350px;
-}
-*/
+
 .menu {
     display: flex;
+    justify-content: center;
     gap: 40px; 
 }
 
-.menu span,
-.menu .botao-contato {
+.menu .botoes-topo {
     font-weight: bold;
     cursor: pointer;
     font-size: 22px;
+    color: white;
+
 }
 
 .menu span {
     text-decoration: underline;
 }
 
-.menu .botao-contato {
+.menu .botoes-topo {
     background-color: black;
     color: white;
     padding: 15px 30px;
@@ -43,7 +42,8 @@ a{
     transition: background-color 0.3s;
 }
 
-.menu .botao-contato:hover {
+.menu .botoes-topo:hover {
+    color: white;
     background-color: #333;
 }
 
