@@ -2,17 +2,17 @@
     display: flex;
     flex-direction: row;
   }
-  
+
   
   .container-left{
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 700px;
-    width: 650px;
+    height: 655px;
+    width: 700px;
     background-image: linear-gradient(90deg,gold, #efb135);
-    margin-right: 60px;
+    margin-right: 120px;
     border-right: solid 4px black;
   }
   
@@ -41,12 +41,12 @@
     align-self: center;
     justify-self: center;
     text-align: center;
-    margin-top: 60px;
+    margin-top: 20px;
     margin-bottom: 40px;
   }
   
   input{
-    border: solid 1px black;
+    border: solid 2px black;
     border-radius: 10px;
     height: 35px;
     background-color: white;
@@ -81,39 +81,39 @@
   }
   
   .pwd-ipt{
-    background-image:url("lock.png");
+    background-image:url("../imagens/lock.png");
   }
   
   .user-ipt{
-    background-image:url("user.svg");
+    background-image:url("../imagens/user.svg");
   }
   
   .emp-ipt{
-    background-image:url("store.png");
+    background-image:url("../imagens/store.png");
   }
   
   .mail-ipt{
-    background-image:url("mail.png");
+    background-image:url("../imagens/mail.png");
   }
   
   .city-ipt{
-    background-image:url("city.png");
+    background-image:url("../imagens/city.png");
   }
   
   .cep-ipt{
-    background-image:url("cep.svg");
+    background-image:url("../imagens/cep.svg");
   }
   
   .cnpj-ipt{
-    background-image:url("doc.svg");
+    background-image:url("../imagens/doc.svg");
   }
   
   .rua-ipt{
-    background-image:url("street.png");
+    background-image:url("../imagens/street.png");
   }
   
   .num-ipt{
-    background-image:url("num.png");
+    background-image:url("../imagens/num.png");
   }
   
   
