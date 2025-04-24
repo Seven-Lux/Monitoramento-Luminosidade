@@ -13,7 +13,9 @@
     width: 700px;
     background-image: linear-gradient(90deg,gold, #efb135);
     margin-right: 120px;
-    border-right: solid 4px black;
+    border-top-right-radius: 220px 220px;
+    border-bottom-right-radius: 220px 220px;
+    border-right: solid 2px black;
   }
   
   .container-column{
@@ -70,7 +72,7 @@
   }
   
   .txt-a{
-    color: gold;
+    color: #efb135;
     text-decoration: inherit;
   }
   
