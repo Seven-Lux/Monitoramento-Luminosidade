@@ -18,7 +18,9 @@
 
   .container-dashboard{
     display: flex;
+    justify-content: flex-start;
     flex-direction: row;
+    padding-top: 60px;
   }
 
    
@@ -54,10 +56,22 @@
   }
   
   .container-kpi{
-    height: 400px;
-    width: 400px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-around;
+    height: 350px;
+    width: 1200px;
+    border-bottom: solid 2px black;
+    padding-bottom: 80px;
   }
-  
+  .box-kpi{
+    display: flex;
+    justify-content: space-around;
+    height: 180px;
+    width: 180px;
+    border: solid 4px #efb135;
+    border-radius: 20px;
+  }
   canvas {
     background-color: white;
     border-radius: 10px;
