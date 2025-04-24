@@ -1,143 +1,75 @@
-/* Tela de cadastro e login*/
-
-.cadastro-login{
+.container-geral {
     display: flex;
-    flex-direction: row;
-}
-
-.left-box {
-    background: linear-gradient(to right, yellow 0%, yellow 30%,white 0%, white 60% );
-    height: 680px;
-    width: 680px;
-    border-right: solid black 1px ;
-
-}
-
-.right-box {
-    display: flex;
-    align-items: flex-start;
     flex-direction: column;
-    height: 550px;
-    width: 550px;
+    height: 100vh;
     padding: 20px;
-    margin-left: 30px;
-    margin-top: 15px;
-    color: black;
-}
-
-.box-one {
-    display: flex;
-    justify-content: space-evenly;
-
-}
-
-.box-two{
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    align-items: flex-start;
-}
-
-.input-box {
-    width: 200px;
-    border: solid 1px black;
-    border-radius: 5px;
-    height: 20px;
-    width: 200px;
-    
-}
-
-.txt-box{
-    display: flex;
-    align-self: center;
-    text-align: center;
-    flex-direction: column;
   }
-
-.design{
-    background-color: yellow;
-    width: 200px;
-    border: solid 1px black;
-    border-radius: 5px;
-    height: 20px;
-    width: 200px;
-}
-
-* {
-    margin: 0;
-    padding: 0;
-    font-family: Arial, sans-serif;
-}
-
-
-
-
-/* TELA DA DASHBOARD*/
-
-.body_dashboard {
-
-    background-color: #FFFF41;
-}
-
-/* .perfil {
-    height: 100vh;
-    width: 200px;
-    background-color: black;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    top: 0;
-    left: 0;
-} */
-
-.perfil {
-    height: 100%;
-    width: 100%;
-}
-
-.usuario {
+ 
+.usuario{
+    color: white;
     align-items: center;
     text-align: center;
     display: flex;
     flex-direction: column;
     height: 100vh;
-    width: 180px;
-    background-color: black;
+    width: 195px;
+    background-color: rgb(0, 0, 0);
+    position: fixed;
+    left: 0;
+    top: 0;
 }
-
-.alerts {
+.pai{
     color: white;
     text-align: center;
-    border-radius: 10px;
+    border-radius: 10px ;
     display: flex;
+    justify-content: space-between;
+    margin-left: 180px;
     padding: 15px;
-    width: 100%;
-    gap: 50px;
+}
+.grafico {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 20px;
 }
 
-.alerta {
+.alerta{
     background-color: black;
     border-radius: 10px;
-    height: 180px;
-    width: 200px;
+    width: 310px;
+    height: 190px;
+}
+
+img{
+    height: 120px;
+    width: 120px;
 }
 
 .container {
     display: flex;
-    margin-top: 7%;
-    gap: 20px;
-}
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-evenly;
+    box-sizing: border-box;
+    margin-left: 130px;
+  }
+  
 
-.grafico1 {
-    height: 45vh;
-    width: 45vw;
-    border-radius: 2%;
+  canvas {
     background-color: white;
-}
+    border-radius: 10px;
+    padding: 10px;
+    width: 900px;
+    height: 300px;
+  }
 
-.grafico2 {
-    height: 45vh;
-    width: 45vw;
-    border-radius: 2%;
-    background-color: white;
-}
+  .gra1, .gra2{
+    width: 500px;
+    height: 500px;
+    margin-left: 80px;
+  }
+
+
+
+
