@@ -91,7 +91,7 @@
 
         <div class="container-column container-center">
             <button>
-                <h3><a class="txt-button" href="login.html">Cadastrar</a></h3>
+                <h3><a class="txt-button" onclick="cadastrar()" href="login.html">Cadastrar</a></h3>
             </button> <br>
             <i>Já possui uma conta?</i>
             <a class="txt-a" href="login.html"><i> <u>Fazer login</u></i></a>
@@ -106,7 +106,7 @@
 </html>
 
 <script>
-    var permCadastro = true
+    var permCadastro = true;
 
     function verifyEmail() {
         var email = iptEmail.value
@@ -160,6 +160,11 @@
     }
 
     function cadastrar() {
+
+        verifyCnpj();
+        verifyEmail();
+        verifyPwd();
+        verifyCnpj
         permCadastro ? alert("Cadastro realizado com sucesso!") : alert("Cadastro inválido")
     }
 </script>

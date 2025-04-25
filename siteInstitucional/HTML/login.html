@@ -1,61 +1,80 @@
 <!DOCTYPE html>
 <html lang="pt">
+
 <head>
     <meta charset="UTF-8">
     <title>Login</title>
     <link rel="stylesheet" href="../CSS/cadastroLogin.css">
 </head>
+
 <body class="container-row">
     <div class="container-left">
-        <img src="../imagens/sevenluxLogo.png" alt="" width="350px" height="350px">        
+        <img src="../imagens/sevenluxLogo.png" alt="" width="350px" height="350px">
     </div>
     <div class="container-column">
-        
+
         <div class="container-column container-center">
-            <h1>Login</h1> 
-        </div> 
-        
-     <div class="container-row"></div>
-        
+            <h1>Login</h1>
+        </div>
+
+        <div class="container-row"></div>
+
         <div class="container-row">
-        
-            <div class="ipt-container first"> 
-                <p>Email</p> 
-                <input class="mail-ipt" placeholder="Digite aqui">
-            </div> 
-        
+
+            <div class="ipt-container first">
+                <p>Email</p>
+                <input class="mail-ipt" placeholder="Digite aqui" id="iptEmail">
+            </div>
+
             <div class="ipt-container second">
                 <p>Senha</p>
-                <input class="pwd-ipt"type="password"> <br> 
+                <input class="pwd-ipt" type="password" id="iptPwd"> <br>
             </div>
-        
+
         </div>
-        
+
         <div class="container-column container-center">
-            <button><h3><a class="txt-button" href="dashboard.html">Entrar</a></h3></button> <br>
-            <i>Não Possui uma conta?</i> 
-            <a class="txt-a"href="cadastro.html"><i> <u> Fazer cadastro </u></i></a>
+            <button>
+                <h3><a class="txt-button" onclick="entrar()">Entrar</a></h3>
+            </button> <br>
+            <i>Não Possui uma conta?</i>
+            <a class="txt-a" href="cadastro.html"><i> <u> Fazer cadastro </u></i></a>
         </div>
-        
+
     </div>
-    
+
 </body>
+
 </html>
 <script>
-var permCadastro = true
+    var permCadastro = true
 
 
-function cadastrar() {
-    var pwd = iptPwd.value
-    var email = iptEmail.value
-    
-    if(pwd != "seven8956$" || email != "sevenLux@gmail.com"){
-        alert("login inválido") 
+    function entrar() {
+        var pwd = iptPwd.value;
+        var email = iptEmail.value;
+
+        if (pwd == '' || email == '') {
+            alert('Preencha corretamente os campos abaixo!')
+        } else {
+            if (pwd != "seven8910" && email != "sevenLux@gmail.com") {
+                alert('Email e Senha são invalidos!')
+            } else {
+            if (pwd != "seven8910") {
+                    alert("Senha inválida");
+                }
+                if (email != "sevenLux@gmail.com") {
+                    alert('Email de login invalido!');
+                }
+                if (email == 'sevenLux@gmail.com' && pwd == 'seven8910') {
+                    alert("login feito com sucesso!");
+                    console.log('mudar tela')
+                    window.location.href = "dashboard.html";
+                } 
+            }
+        }
+        iptPwd.value = '';
+        iptEmail.value = '';
     }
-    
-    else{
-        alert("login feito com sucesso!")
-    }
-}
+
 </script>
-
