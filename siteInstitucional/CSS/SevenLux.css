@@ -131,6 +131,8 @@ a {
     justify-content: space-around;
     text-align: center;
     flex-wrap: wrap;
+    width: 93%;
+    border-radius: 20px;
     margin-top: 40px;
 }
 
@@ -171,4 +173,19 @@ a {
     padding: 10px;
     margin-bottom: 15px;
     object-fit: contain;
+}
+
+.roda-pe-contato {
+    background-color: black;
+    color: white;
+    border-radius: 20px;
+    padding: 30px;
+    margin: 10px;
+    width: 94%;
+    text-align: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
 }
