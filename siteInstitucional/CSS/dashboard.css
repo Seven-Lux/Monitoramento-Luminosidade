@@ -24,7 +24,7 @@ body{
   }
 
   .container-dashboard{
-    display: flex;
+    display: flex;  
     justify-content: flex-start;
     flex-direction: column;
     padding-bottom: 15px;

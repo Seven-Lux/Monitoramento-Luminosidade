@@ -14,9 +14,6 @@
 
         <h1>Calculadora Financeira</h1>
 
-        <div class="logo-calculadora">
-            <img src="../imagens/sevenluxLogo.png">
-        </div>
 
         <h4>Descubra quanto a luminosidade influência nas vendas do seu supermercado com os sensores da SevenLux!</h4>
 
@@ -57,13 +54,13 @@
         } else {
 
             divTxt.innerHTML = divTxt.innerHTML = `Olá!<br><br>
-        Estudos apontam que mercados com uma melhor luminosidade tem 6% de vendax a mais por setor. <br> <br>
+        Estudos apontam que mercados com uma melhor luminosidade tem 6% de vendas a mais por setor. <br> <br>
 
         O setor ${iptNome.value} quando vende ${iptProd.value} com luminosidade não adequada, 
         tem um retorno de cerca de R$ ${valorBaseMes.toFixed(2)} por mês. <br> <br>
 
         Já em condicões de boa luminosidade, o valor pode chegar em R$ ${valorLuxMes.toFixed(2)} por mês. <br> <br>
-        <b>💰 Lucro estimado:<br>
+        <b>💰 Lucro estimado <br>
 🔸      No semestre: R$ ${(valorSemesLux - valorSemesBase).toFixed(2)}<br>
 🔸      No ano: R$ ${(valorAnoLux - valorAnoBase).toFixed(2)}<br>
         </b>`
