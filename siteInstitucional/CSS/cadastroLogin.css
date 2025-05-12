@@ -1,127 +1,181 @@
-.container-row{
-    display: flex;
-    flex-direction: row;
-  }
+.container-row {
+  display: flex;
+  flex-direction: row;
+}
 
-  
-  .container-left{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 655px;
-    width: 700px;
-    background-image: linear-gradient(90deg,gold, #efb135);
-    margin-right: 120px;
-    border-top-right-radius: 200px 200px;
-    border-bottom-right-radius: 200px 200px;
-    border-right: solid 2px black;
-  }
-  
-  .container-column{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-  }
-  
-  
-  
-  .ipt-container{
-    display: flex;
-    flex-direction: column;
-    border-radius: 10px;
-    
-  }
-  
-  
-  .second{
-    margin-left: 100px;
-  }
-  
-  .container-center{
-    display: flex;
-    align-self: center;
-    justify-self: center;
-    text-align: center;
-    margin-top: 20px;
-    margin-bottom: 40px;
-  }
-  
-  input{
-    border: solid 2px black;
-    border-radius: 5px;
-    height: 35px;
-    color:black ;
-    background-color: white;
-    opacity: 0.5;
-    background-repeat: no-repeat;
-    background-size: 22px 22px;
-    background-position: right;
-  }
-  
-  button{
-    border: hidden;
-    background-image: linear-gradient(90deg, #efb135, gold);
-    border-radius: 9px;
-    height: 45px;
-    color: black;
-  }
-  
-  .txt-button{
-    color: black;
-    text-decoration: inherit;
-  }
-  
-  .txt-a{
-    color: #efb135;
-    text-decoration: inherit;
-  }
-  
-  .i-msg{
-    font-size: 10px;
-    margin-top: 10px;
-    margin-left: 5px;
-  }
-  
-  .pwd-ipt{
-    background-image:url("../imagens/lock.png");
-  }
-  
-  .user-ipt{
-    background-image:url("../imagens/user.svg");
-  }
-  
-  .emp-ipt{
-    background-image:url("../imagens/store.png");
-  }
-  
-  .email-ipt{
-    background-image:url("../imagens/mail.png");
-  }
-  
-  .city-ipt{
-    background-image:url("../imagens/city.png");
-  }
-  
-  .cep-ipt{
-    background-image:url("../imagens/cep.svg");
-  }
-  
-  .cnpj-ipt{
-    background-image:url("../imagens/doc.svg");
-  }
-  
-  .rua-ipt{
-    background-image:url("../imagens/street.png");
-  }
-  
-  .num-ipt{
-    background-image:url("../imagens/num.png");
-  }
-  
-  
-  *{
-    margin: 0;
-    padding: 0;
-    font-family: Arial, Helvetica, sans-serif;
-  }
+
+.container-left {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  width: 700px;
+  background-image: linear-gradient(90deg, gold, #efb135);
+  margin-right: 120px;
+  border-top-right-radius: 200px 200px;
+  border-bottom-right-radius: 200px 200px;
+  border-right: solid 2px black;
+  margin-bottom: 0;
+}
+
+.container-column {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
+
+}
+
+
+
+.ipt-container {
+  display: flex;
+  flex-direction: column;
+  border-radius: 10px;
+  flex-direction: column;
+  padding: 5px;
+}
+
+
+.second {
+  margin-left: 75px;
+}
+
+.container-center {
+  display: flex;
+  align-self: center;
+  justify-self: center;
+  text-align: center;
+}
+
+input {
+  border: solid 2px black;
+  border-radius: 5px;
+  height: 35px;
+  background-color: white;
+  background-repeat: no-repeat;
+  background-size: 25px 25px;
+  background-position: right;
+  padding-left: 7px;
+  padding-right: 30px;
+  color: rgb(0, 0, 0);
+}
+
+button {
+  border: hidden;
+  background-image: linear-gradient(90deg, #efb135, gold);
+  border-radius: 9px;
+  height: 45px;
+  color: black;
+}
+
+.txt-button {
+  color: black;
+  text-decoration: inherit;
+}
+
+.txt-a {
+  color: #efb135;
+  text-decoration: inherit;
+}
+
+.i-msg {
+  font-size: 10px;
+  margin-top: 10px;
+  margin-left: 5px;
+}
+
+.pwd-ipt {
+  background-image: url("../imagens/lock.png");
+  background-position: 170px center;
+}
+
+.pwd-ipt-login {
+  background-image: url("../imagens/lock.png");
+  background-position: 215px center;
+}
+
+.user-ipt {
+  background-image: url("../imagens/user.svg");
+  background-position: 170px center;
+}
+
+.emp-ipt {
+  background-image: url("../imagens/store.png");
+  background-position: 170px center;
+}
+
+.email-ipt {
+  background-image: url("../imagens/mail.png");
+  background-position: 170px center;
+}
+
+.email-ipt-login {
+  background-image: url("../imagens/mail.png");
+  background-position: 215px center;
+}
+
+.city-ipt {
+  background-image: url("../imagens/city.png");
+  background-position: 170px center;
+}
+
+.cep-ipt {
+  background-image: url("../imagens/cep.svg");
+  background-position: 170px center;
+}
+
+.cnpj-ipt {
+  background-image: url("../imagens/doc.svg");
+  background-position: 170px center;
+}
+
+.rua-ipt {
+  background-image: url("../imagens/street.png");
+  background-position: 170px center;
+}
+
+.num-ipt {
+  background-image: url("../imagens/num.png");
+  background-position: 170px center;
+}
+
+
+* {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.container-login {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  justify-content: center;
+  margin-left: 150px;
+
+}
+
+.container-column-login {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 190px;
+  justify-content: space-between;
+  height: 1000px;
+}
+
+.container-login input {
+  width: 207px;
+}
+
+button {
+  width: 110px;
+}
+
+.txt-button {
+  color: black;
+  text-decoration: inherit;
+}
