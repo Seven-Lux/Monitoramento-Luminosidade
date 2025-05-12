@@ -43,6 +43,10 @@ h2{
     align-items: center;
     justify-content: center;
     flex-direction: row;
+    height: 90vh;
+    border-radius: 20px;
+    margin-top: 20px;
+    margin-bottom: 35px;
 }
 
 .menu {
@@ -71,12 +75,16 @@ h2{
     display: flex;
     justify-content: space-between;
     margin: 10px 40px;
+    background-image: linear-gradient(to left,gold, #efb135, gold, #efb135);
+    border-radius: 20px;
+    margin-top: 50px;
 }
 
 .conteudo {
     padding: 40px;
     max-width: 600px;
     margin-left: 20px;
+    background-color: white;
 }
 
 .conteudo h1 {
@@ -88,6 +96,7 @@ h2{
 .descricao {
     font-size: 24px;
     margin-bottom: 20px;
+    font-weight: 7;
 }
 
 .info p{
@@ -152,8 +161,8 @@ h2{
 }
 
 .bloco {
-    background-color: black;
-    color: white;
+    background-image: linear-gradient(to left,gold, #efb135);
+    color: black;
     border-radius: 20px;
     padding: 30px;
     margin: 10px;
@@ -185,7 +194,7 @@ h2{
     background-color: black;
     color: white;
     padding: 30px;
-    width: 94%;
+    width: %;
     text-align: center;
     display: flex;
     flex-direction: row;
@@ -209,11 +218,9 @@ h2{
     background-image: linear-gradient(100deg,gold, #efb135);
     padding: 12px 24px;
     font-size: 16px;
-   
-}
-.divTxt{
     margin-top: 30px;
     margin-bottom: 60px;
+   
 }
 .input-row{
     display: flex;
@@ -241,4 +248,14 @@ h2{
     padding-left: 10px;
     padding-bottom: 10px;
     font-weight: 500;
+}
+
+.box-yellow{
+    height: 10px;
+    width: 200px;
+    background-color: #efb135;
+    display: flex;
+    align-self: flex-start;
+    justify-self: flex-start;
+    border-radius: 20px;
 }
