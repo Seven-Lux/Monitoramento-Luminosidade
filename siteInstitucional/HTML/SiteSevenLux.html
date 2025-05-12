@@ -75,6 +75,28 @@
         </div>
 
     </div>
+
+     <div class="container-conteudo">
+        <div></div>
+        <h1>Calculadora Financeira</h1>
+
+        <h4>Descubra quanto a luminosidade influência nas vendas do seu supermercado com os sensores da SevenLux!</h4>
+
+        <i>Digite os <b>valores mensais</b> abaixo de acordo com o setor</i> <br> <br>
+        <div class="input-row"> <input type="text" id="iptNome" class="input-box" placeholder="Digite aqui..."> 
+       <input type="text" id="iptProd" class="input-box" placeholder="Digite aqui..."> </div>
+        <br><br>
+
+        <div class="input-row"><input type="number" id="iptQntd" class="input-box" placeholder="Digite aqui..."> 
+       <input type="number" id="iptValor" class="input-box" placeholder="Digite aqui..."> 
+</div><br><br>
+        
+        <button onclick="simular()"> SIMULAR RESULTADOS </button>
+
+        <br><br>
+
+        <div id="divTxt"></div>
+    </div>
     <div class="roda-pe-contato">
         <img src="../imagens/ChatGPT Image 25 de abr. de 2025, 19_04_10.png" class="icone">
         <p> <b> Contate - nos: 5557-8877</b></p>
@@ -83,5 +105,38 @@
         <p> <b> Email: sevenlux@gmil.com</b></p>
     </div>
 </body>
+<script>
+    function simular() {
+        var qntd = Number(iptQntd.value);
+        var valor = Number(iptValor.value);
 
+        // Variaveis para calculos 
+        var valorBaseMes = valor * qntd
+        var valorLuxMes = valorBaseMes * 1.06;
+
+        var valorSemesBase = valorBaseMes * 6;
+        var valorSemesLux = valorLuxMes * 6;
+        var valorAnoBase = valorBaseMes * 12;
+        var valorAnoLux = valorLuxMes * 12;
+        divTxt.innerHTML = '';
+
+        if (qntd == '' || qntd == 'e' || valor == '' || valor === 'e') {
+            divTxt.innerHTML = 'Preencha os campos corretamente!⚠️';
+        } else {
+
+            divTxt.innerHTML = divTxt.innerHTML = `Olá!<br><br>
+        Estudos apontam que mercados com uma melhor luminosidade tem 6% de vendax a mais por setor. <br> <br>
+
+        O setor ${iptNome.value} quando vende ${iptProd.value} com luminosidade não adequada, 
+        tem um retorno de cerca de R$ ${valorBaseMes.toFixed(2)} por mês. <br> <br>
+
+        Já em condicões de boa luminosidade, o valor pode chegar em R$ ${valorLuxMes.toFixed(2)} por mês. <br> <br>
+        <b>💰 Lucro estimado:<br>
+🔸      No semestre: R$ ${(valorSemesLux - valorSemesBase).toFixed(2)}<br>
+🔸      No ano: R$ ${(valorAnoLux - valorAnoBase).toFixed(2)}<br>
+        </b>`
+        }
+    }
+
+</script>
 </html>

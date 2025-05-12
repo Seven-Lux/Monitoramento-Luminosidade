@@ -206,3 +206,16 @@ h2{
     align-items: center;
     gap: 30px;
 }
+
+.container-conteudo{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.input-row{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    width: 80vh;
+}

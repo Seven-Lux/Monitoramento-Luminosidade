@@ -15,37 +15,3 @@
 
 </html>
 
-<script>
-    function simular() {
-        var qntd = Number(iptQntd.value);
-        var valor = Number(iptValor.value);
-
-        // Variaveis para calculos 
-        var valorBaseMes = valor * qntd
-        var valorLuxMes = valorBaseMes * 1.06;
-
-        var valorSemesBase = valorBaseMes * 6;
-        var valorSemesLux = valorLuxMes * 6;
-        var valorAnoBase = valorBaseMes * 12;
-        var valorAnoLux = valorLuxMes * 12;
-        divTxt.innerHTML = '';
-
-        if (qntd == '' || qntd == 'e' || valor == '' || valor === 'e') {
-            divTxt.innerHTML = 'Preencha os campos corretamente!⚠️';
-        } else {
-
-            divTxt.innerHTML = divTxt.innerHTML = `Olá!<br><br>
-        Estudos apontam que mercados com uma melhor luminosidade tem 6% de vendax a mais por setor. <br> <br>
-
-        O setor ${iptNome.value} quando vende ${iptProd.value} com luminosidade não adequada, 
-        tem um retorno de cerca de R$ ${valorBaseMes.toFixed(2)} por mês. <br> <br>
-
-        Já em condicões de boa luminosidade, o valor pode chegar em R$ ${valorLuxMes.toFixed(2)} por mês. <br> <br>
-        <b>💰 Lucro estimado:<br>
-🔸      No semestre: R$ ${(valorSemesLux - valorSemesBase).toFixed(2)}<br>
-🔸      No ano: R$ ${(valorAnoLux - valorAnoBase).toFixed(2)}<br>
-        </b>`
-        }
-    }
-
-</script>
