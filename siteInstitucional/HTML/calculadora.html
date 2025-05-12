@@ -10,64 +10,8 @@
 
 <body>
 
-    <div class="container-conteudo">
-
-        <h1>Calculadora Financeira</h1>
-
-        <div class="logo-calculadora">
-            <img src="../imagens/sevenluxLogo.png">
-        </div>
-
-        <h4>Descubra quanto a luminosidade influência nas vendas do seu supermercado com os sensores da SevenLux!</h4>
-
-        <i>Digite os <b>valores mensais</b> abaixo de acordo com o setor</i> <br> <br>
-
-        Nome do setor: <input type="text" id="iptNome" class="input-box" placeholder="Digite aqui..."> <br><br>
-        Nome do produto: <input type="text" id="iptProd" class="input-box" placeholder="Digite aqui..."> <br><br>
-        Quantidade de vendas: <input type="number" id="iptQntd" class="input-box" placeholder="Digite aqui..."> <br><br>
-        Valor dos produtos: <input type="number" id="iptValor" class="input-box" placeholder="Digite aqui..."> <br><br>
-
-        <button onclick="simular()"> SIMULAR RESULTADOS </button>
-
-        <br><br>
-
-        <div id="divTxt"></div>
-    </div>
+   
 </body>
 
 </html>
 
-<script>
-    function simular() {
-        var qntd = Number(iptQntd.value);
-        var valor = Number(iptValor.value);
-
-        // Variaveis para calculos 
-        var valorBaseMes = valor * qntd
-        var valorLuxMes = valorBaseMes * 1.06;
-
-        var valorSemesBase = valorBaseMes * 6;
-        var valorSemesLux = valorLuxMes * 6;
-        var valorAnoBase = valorBaseMes * 12;
-        var valorAnoLux = valorLuxMes * 12;
-        divTxt.innerHTML = '';
-
-        if (qntd == '' || qntd == 'e' || valor == '' || valor === 'e') {
-            divTxt.innerHTML = 'Preencha os campos corretamente!⚠️';
-        } else {
-
-            divTxt.innerHTML = divTxt.innerHTML = `Olá!<br><br>
-        Estudos apontam que mercados com uma melhor luminosidade tem 6% de vendax a mais por setor. <br> <br>
-
-        O setor ${iptNome.value} quando vende ${iptProd.value} com luminosidade não adequada, 
-        tem um retorno de cerca de R$ ${valorBaseMes.toFixed(2)} por mês. <br> <br>
-
-        Já em condicões de boa luminosidade, o valor pode chegar em R$ ${valorLuxMes.toFixed(2)} por mês. <br> <br>
-        <b>💰 Lucro estimado:<br>
-🔸      No semestre: R$ ${(valorSemesLux - valorSemesBase).toFixed(2)}<br>
-🔸      No ano: R$ ${(valorAnoLux - valorAnoBase).toFixed(2)}<br>
-        </b>`
-        }
-    }
-
-</script>

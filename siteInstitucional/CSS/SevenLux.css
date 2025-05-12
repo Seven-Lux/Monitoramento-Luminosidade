@@ -1,26 +1,52 @@
 .body-container {
     margin: 0;
     font-family: Arial, sans-serif;
-    background-image: linear-gradient(90deg, gold, #efb135);
+    background-color: white;
     color: #333;
 }
 
 .cabecalho {
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-end;
     align-items: center;
     padding: 15px 40px;
+    width: 89%;
 }
 
-a {
+.cabecalho a{
     text-decoration: inherit;
-    color: white;
+    color: black;
 }
+
+h3{
+    font-weight: 500;
+}
+
+h2{
+    font-weight: 700;
+}
+
+
+.pagina a{
+    text-decoration: inherit;
+    color: black;
+    transition: background-color 0.3s;
+    border: none;
+}
+
+.pagina a:hover{
+    color: black;
+}
+
 
 .logo-siteinstitucional {
     align-items: center;
     justify-content: center;
     flex-direction: row;
+    height: 90vh;
+    border-radius: 20px;
+    margin-top: 20px;
+    margin-bottom: 35px;
 }
 
 .menu {
@@ -29,12 +55,9 @@ a {
     gap: 40px;
 }
 
-.menu .botoes-topo {
-    font-weight: bold;
-    cursor: pointer;
-    font-size: 22px;
-    color: white;
-
+.pagina .botoes-topo{
+    border-radius:20px ;
+    background-image: linear-gradient(100deg,gold, #efb135);
 }
 
 .menu span {
@@ -42,42 +65,45 @@ a {
 }
 
 .menu .botoes-topo {
-    background-color: black;
     color: white;
     padding: 15px 30px;
     border-radius: 20px;
     transition: background-color 0.3s;
 }
 
-.menu .botoes-topo:hover {
-    color: white;
-    background-color: #333;
-}
-
 .pagina {
     display: flex;
     justify-content: space-between;
     margin: 10px 40px;
+    background-image: linear-gradient(to left,gold, #efb135, gold, #efb135);
+    border-radius: 20px;
+    margin-top: 50px;
 }
 
 .conteudo {
     padding: 40px;
     max-width: 600px;
     margin-left: 20px;
+    background-color: white;
 }
 
 .conteudo h1 {
     font-size: 50px;
     margin-bottom: 20px;
+    font-weight: 900;
 }
 
 .descricao {
     font-size: 24px;
     margin-bottom: 20px;
+    font-weight: 7;
+}
+
+.info p{
+    text-align: justify;
 }
 
 .conteudo button {
-    background-color: transparent;
     color: black;
     padding: 12px 24px;
     border: 2px solid black;
@@ -131,14 +157,12 @@ a {
     justify-content: space-around;
     text-align: center;
     flex-wrap: wrap;
-    width: 93%;
-    border-radius: 20px;
-    margin-top: 40px;
+    width: 94%;
 }
 
 .bloco {
-    background-color: black;
-    color: white;
+    background-image: linear-gradient(to left,gold, #efb135);
+    color: black;
     border-radius: 20px;
     padding: 30px;
     margin: 10px;
@@ -155,15 +179,6 @@ a {
     font-size: 14px;
 }
 
-.detalhe-listrado {
-    height: 100%;
-    background: linear-gradient(45deg, white 25%, transparent 25%, transparent 50%, white 50%, white 75%, transparent 75%, transparent);
-    background-size: 10px 10px;
-    width: 20px;
-    position: fixed;
-    top: 0;
-    right: 0;
-}
 
 .icone {
     width: 60px;
@@ -178,14 +193,69 @@ a {
 .roda-pe-contato {
     background-color: black;
     color: white;
-    border-radius: 20px;
     padding: 30px;
-    margin: 10px;
-    width: 94%;
+    width: %;
     text-align: center;
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
     gap: 30px;
+}
+
+.container-conteudo{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.container-conteudo button{
+    border-radius: 20px;
+    height: 46px;
+    width: 253.6px;
+    color:black;
+    border: solid black 2px;
+    background-image: linear-gradient(100deg,gold, #efb135);
+    padding: 12px 24px;
+    font-size: 16px;
+    margin-top: 30px;
+    margin-bottom: 60px;
+   
+}
+.input-row{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    width: 80vh;
+}
+
+.input-box{
+    border: solid 2px black;
+    border-radius: 20px;
+    height: 35px;
+    color:black;
+    padding-left: 15px;
+    padding-right: 15px;
+
+}
+
+.box-column{
+    display: flex;
+    flex-direction: column;
+}
+
+.box-column label{
+    padding-left: 10px;
+    padding-bottom: 10px;
+    font-weight: 500;
+}
+
+.box-yellow{
+    height: 10px;
+    width: 200px;
+    background-color: #efb135;
+    display: flex;
+    align-self: flex-start;
+    justify-self: flex-start;
+    border-radius: 20px;
 }
