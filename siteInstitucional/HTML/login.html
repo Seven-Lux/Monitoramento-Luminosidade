@@ -8,37 +8,32 @@
 </head>
 
 <body class="container-row">
+
     <div class="container-left">
         <img src="../imagens/sevenluxLogo.png" alt="" width="350px" height="350px">
     </div>
-    <div class="container-column">
 
-        <div class="container-column container-center">
-            <h1>Login</h1>
+
+    <div class="container-login">
+
+        <h1>Login</h1>
+
+        <div class="ipt-container">
+            <p>Email</p>
+            <input class="email-ipt-login" placeholder="Digite aqui..." id="iptEmail">
         </div>
 
-        <div class="container-row"></div>
-
-        <div class="container-row">
-
-            <div class="ipt-container first">
-                <p>Email</p>
-                <input class="mail-ipt" placeholder="Digite aqui" id="iptEmail">
-            </div>
-
-            <div class="ipt-container second">
-                <p>Senha</p>
-                <input class="pwd-ipt" type="password" id="iptPwd"> <br>
-            </div>
-
+        <div class="ipt-container">
+            <p>Senha</p>
+            <input class="pwd-ipt-login" type="password" placeholder="******" id="iptPwd"> <br>
         </div>
 
         <div class="container-column container-center">
             <button>
-                <h3><a class="txt-button" onclick="entrar()">Entrar</a></h3>
+                <h3><a class="txt-button" onclick="entrar()" href="login.html"> Entrar </a></h3>
             </button> <br>
             <i>Não Possui uma conta?</i>
-            <a class="txt-a" href="cadastro.html"><i> <u> Fazer cadastro </u></i></a>
+            <a class="txt-a" href="cadastro.html"><i> <u>Fazer Cadastro</u></i></a>
         </div>
 
     </div>
@@ -60,7 +55,7 @@
             if (pwd != "seven8910" && email != "sevenLux@gmail.com") {
                 alert('Email e Senha são invalidos!')
             } else {
-            if (pwd != "seven8910") {
+                if (pwd != "seven8910") {
                     alert("Senha inválida");
                 }
                 if (email != "sevenLux@gmail.com") {
@@ -70,7 +65,7 @@
                     alert("login feito com sucesso!");
                     console.log('mudar tela')
                     window.location.href = "dashboard.html";
-                } 
+                }
             }
         }
         iptPwd.value = '';
