@@ -17,7 +17,7 @@
           
             <a href="calculadora.html"><h3>Simulador Financeiro</h3></a>
           
-
+              <a href="login.html"> <h3>Cadastro</h3>  </a>
             <a href="login.html"> <h3>Login</h3>  </a>
         </div>
     </div>
@@ -77,25 +77,41 @@
     </div>
 
      <div class="container-conteudo">
-        <div></div>
         <h1>Calculadora Financeira</h1>
 
         <h4>Descubra quanto a luminosidade influência nas vendas do seu supermercado com os sensores da SevenLux!</h4>
 
         <i>Digite os <b>valores mensais</b> abaixo de acordo com o setor</i> <br> <br>
-        <div class="input-row"> <input type="text" id="iptNome" class="input-box" placeholder="Digite aqui..."> 
-       <input type="text" id="iptProd" class="input-box" placeholder="Digite aqui..."> </div>
+        <div class="input-row"> 
+            <div class="box-column">
+                <label for="iptQntd">Setor</label>
+                <input type="text" id="iptNome" class="input-box" placeholder="Digite aqui..."> 
+            </div>
+
+            <div class="box-column">
+            <label for="iptQntd">Nome do produto</label>
+            <input type="text" id="iptProd" class="input-box" placeholder="Digite aqui..."> 
+            </div>
+        </div>
         <br><br>
 
-        <div class="input-row"><input type="number" id="iptQntd" class="input-box" placeholder="Digite aqui..."> 
-       <input type="number" id="iptValor" class="input-box" placeholder="Digite aqui..."> 
-</div><br><br>
+        <div class="input-row">
+        <div class="box-column">
+            <label for="iptQntd">Preço (por unidade ou kg)</label>
+            <input type="number" id="iptQntd" class="input-box" placeholder="Digite aqui..."> 
+        </div>
+        <div class="box-column">
+            <label for="iptQntd">Quantidade vendida</label>
+            <input type="number" id="iptValor" class="input-box" placeholder="Digite aqui..."> 
+        </div>
         
-        <button onclick="simular()"> SIMULAR RESULTADOS </button>
+        </div><br><br>
+        
+        <button onclick="simular()"><b>Simular resultados</b></button>
 
         <br><br>
 
-        <div id="divTxt"></div>
+        <div id="divTxt" class="divTxt"></div>
     </div>
     <div class="roda-pe-contato">
         <img src="../imagens/ChatGPT Image 25 de abr. de 2025, 19_04_10.png" class="icone">
@@ -125,7 +141,7 @@
         } else {
 
             divTxt.innerHTML = divTxt.innerHTML = `Olá!<br><br>
-        Estudos apontam que mercados com uma melhor luminosidade tem 6% de vendax a mais por setor. <br> <br>
+        Estudos apontam que mercados com uma melhor luminosidade tem 6% de vendas a mais por setor. <br> <br>
 
         O setor ${iptNome.value} quando vende ${iptProd.value} com luminosidade não adequada, 
         tem um retorno de cerca de R$ ${valorBaseMes.toFixed(2)} por mês. <br> <br>
