@@ -14,36 +14,36 @@
         <div class="usuario">
             <div class="user-box">
                 <img class="img-user" src="../imagens/user.svg" alt="">
-                
-            <h6 class="name" style="font-size: large;">Nome do usuário</h6>            
-            <div class="opt-row">   
-                <img class="opt-img"src="../imagens/bars.svg" alt="">             
-                 <h6 style="font-size: small;">Dashboards</h6>
+
+                <h6 class="name" style="font-size: large;">Nome do usuário</h6>
+                <div class="opt-row">
+                    <img class="opt-img" src="../imagens/bars.svg" alt="">
+                    <h6 style="font-size: small;">Dashboards</h6>
+                </div>
+
+                <div class="opt-row">
+                    <img class="opt-img" src="../imagens/funcs.svg" alt="">
+                    <h6 style="font-size: small;">Funcionários </h6>
+                </div>
+
+                <div class="opt-row"><img class="opt-img" src="../imagens/store.png" alt="">
+                    <h6 class="setor-icon" style="font-size: small;">Setores</h6>
+                </div>
+                <div class="opt-row">
+                    <img class="opt-img" src="../imagens/config.svg" alt="">
+                    <h6 style="font-size: small;">Configuracoes</h6>
+                </div>
+                <div class="opt-row">
+                    <img class="opt-img" src="../imagens/logOut.svg" alt="">
+                    <h6 style="font-size: small;">Sair</h6>
+                </div>
+
             </div>
-            
-             <div class="opt-row">
-                 <img class="opt-img"src="../imagens/funcs.svg" alt="">
-                 <h6 style="font-size: small;">Funcionários </h6>
-             </div>
-             
-             <div class="opt-row"><img class="opt-img"src="../imagens/store.png" alt="">
-                 <h6 class="setor-icon" style="font-size: small;">Setores</h6>
-             </div>
-             <div class="opt-row">
-               <img class="opt-img"src="../imagens/config.svg" alt="">
-                  <h6 style="font-size: small;">Configuracoes</h6>
-            </div>
-             <div class="opt-row">
-                 <img class="opt-img"src="../imagens/logOut.svg" alt="">
-                  <h6 style="font-size: small;">Sair</h6>
-            </div>            
-            
-            </div>
-            
-            
-            
+
+
+
             <img class="img-logo" src="../imagens/sevenluxLogo.png" alt="">
-            
+
         </div>
 
         <div class="container-column">
@@ -57,69 +57,80 @@
                     <h5 class="kpi-title" style="font-size: medium;">Tempo na faixa ideal durante a semana (%)</h5>
                     <h1>40%</h1>
                 </div>
-                <div class="box-kpi"> 
- 
-                        <h5 class="kpi-title" style="font-size: medium;" >Desvio padrão da luminância </h5>
-                        <h1>60 Lux</h1>
-                    
+                <div class="box-kpi">
+
+                    <h5 class="kpi-title" style="font-size: medium;">Desvio padrão da luminância </h5>
+                    <h1>60 Lux</h1>
+
                 </div>
-                <div class="box-alert">
-                    <h3 class="box-title">Alertas Recentes</h3> <br>
+
+                <!--<div class="box-alert">
+                    <h3 class="box-title">Alertas Recentes</h3>
                     <div class="msg-alert">
-                        <img src="../imagens/warning.png" alt="" class="img-alert"width="30px" height="30px">
-                        <div class="msg-column" >  
-                            <h6>Sensor Padaria 1B Pico de luminosidade </h6>
-                        <h6>Data: 27/04/2025 <br>Pico Registrado 900 lux</h6>
-                        
-                        
+                        <img src="../imagens/warning.png" alt="" class="img-alert" width="30px" height="30px">
+                        <div class="msg-column">
+                            <h4>Sensor Padaria 1B Pico de luminosidade </h4>
+                            <h4>Data: 27/04/2025 <br>Pico Registrado 900 lux</h4>
+
+
                         </div>
-                        <img src="../imagens/warning.png" alt="" class="img-alert"width="30px" height="30px">
-                        <div class="msg-column">  
-                            <h6>Sensor Hortifruti 2D</h6> <h6>Sensor inativo</h6>
-                        <h6>Data: 26/04/2025</h6>
-                        
+                        <img src="../imagens/warning.png" alt="" class="img-alert" width="30px" height="30px">
+                        <div class="msg-column">
+                            <h4>Sensor Hortifruti 2D</h4>
+                            <h4>Sensor inativo</h4>
+                            <h4>Data: 26/04/2025</h4>
+
+                        </div>
+                    </div>
+                </div>-->
+            </div>
+
+            <div class="dash-row">
+                <div class="container-dashboard">
+                    <canvas id="myChart2" class="gra1"></canvas>
+                    <canvas id="myChart" class="gra2"></canvas>
+
+                </div>
+                <div class="box-sensor">
+                    <h3 class="box-title">Selecionar área</h3>
+                    <div class="msg-column-area">
+                        <div class="opt-row-area">
+                            <span class="area color1"></span>
+                            <h5>Mercado Geral</h5>
+                        </div>
+                        <div class="opt-row-area">
+                            <span class="area color2"></span>
+                            <h5>Sensor 00123 Hortifruti A5</h5>
+                        </div>
+
+                        <div class="opt-row-area">
+                            <span class="area color3"></span>
+                            <h5>Sensor 00456 Mercearia B2 </h5>
+                        </div>
+
+                        <div class="opt-row-area">
+                            <span class="area color4"></span>
+                            <h5 class="setor-icon">Sensor 00789 Açougue C1</h5>
+                        </div>
+                        <div class="opt-row-area">
+                            <span class="area color5"></span>
+                            <h5>Sensor 00234 Padaria D3</h5>
+                        </div>
+
+                        <div class="box-kpii ">
+
+                            <h2 class="kpi-title" style="font-size: medium;">Faixa ideal de lux </h2>
+                            <h3>Mínimo: 400 Máximo:700</h3>
+
+
                         </div>
                     </div>
                 </div>
+
             </div>
-            <div class="dash-row">
-                <div class="container-dashboard">
-                <canvas id="myChart2" class="gra1"></canvas>
-                <canvas id="myChart" class="gra2"></canvas>
-                
-            </div>
-            <div class="box-sensor">
-                <h3 class="box-title">Selecionar área</h3>
-                <div class="msg-column-area">
-                    <div class="opt-row-area">  
-                        <span class="area color1"></span>
-                 <h5>Mercado Geral</h5>
-            </div>
-                    <div class="opt-row-area">  
-                        <span class="area color2"></span>
-                 <h5>Sensor 00123 Hortifruti A5</h5>
-            </div>
-            
-             <div class="opt-row-area">
-                 <span class="area color3"></span>
-                 <h5>Sensor 00456 Mercearia B2 </h5>
-             </div>
-             
-             <div class="opt-row-area">
-                 <span class="area color4"></span>
-                 <h5 class="setor-icon">Sensor 00789 Açougue C1</h5>
-             </div>
-             <div class="opt-row-area">
-                  <span class="area color5"></span>
-                  <h5>Sensor 00234 Padaria D3</h5>         
-                </div>
-            </div>
-            </div>
-            
+
         </div>
-        
-    </div>
-    
+
 </body>
 
 <script>
@@ -143,37 +154,37 @@
             responsive: true,
             maintainAspectRatio: false,
             plugins: {
-            title: {
-                display: true,
-                text: 'Valores de luminância ao longo das horas do dia',
-                padding: {
-                    top: 5,
-                    bottom: 5
-                },
-                font: {
-                    size: 16,
-                    weight: 1000, 
-                    family: "'Arial','Helvetica', sans-serif"
+                title: {
+                    display: true,
+                    text: 'Valores de luminância ao longo das horas do dia',
+                    padding: {
+                        top: 5,
+                        bottom: 5
+                    },
+                    font: {
+                        size: 16,
+                        weight: 1000,
+                        family: "'Arial','Helvetica', sans-serif"
+                    }
+                }
+            },
+            scales: {
+                y: {
+                    title: {
+                        display: true,
+                        text: 'Luminância (Lux)',
+                        font: {
+                            size: 12
+                        }
+                    },
+                    ticks: {
+                        autoSkip: true,
+                        maxTicksLimit: 10,
+                        stepSize: 10
+                    },
+                    beginAtZero: true
                 }
             }
-        },
-            scales: {
-                y: {    
-                   title: {
-                display: true,
-                text: 'Luminância (Lux)',
-                font: {
-                    size: 12
-                }
-            },   
-            ticks:  {
-                autoSkip: true,
-                maxTicksLimit: 10,            
-                stepSize: 10
-            },                                    
-                   beginAtZero: true
-                }                    
-            }                    
         }
     });
 
@@ -194,29 +205,29 @@
             responsive: true,
             maintainAspectRatio: false,
             plugins: {
-            title: {
-                display: true,
-                text: 'Valores de luminância ao longo dos dias da semana',
-                padding: {
-                    top: 5,
-                    bottom: 5
-                },
-                font: {
-                    size: 16,
-                    weight: 1000,
-                    family: "'Arial','Helvetica', sans-serif"
+                title: {
+                    display: true,
+                    text: 'Valores de luminância ao longo dos dias da semana',
+                    padding: {
+                        top: 5,
+                        bottom: 5
+                    },
+                    font: {
+                        size: 16,
+                        weight: 1000,
+                        family: "'Arial','Helvetica', sans-serif"
+                    }
                 }
-            }
-        },
+            },
             scales: {
                 y: {
-                title: {
-                display: true,
-                text: 'Luminância (Lux)',
-                font: {
-                    size: 12
-                }
-            }, 
+                    title: {
+                        display: true,
+                        text: 'Luminância (Lux)',
+                        font: {
+                            size: 12
+                        }
+                    },
                     beginAtZero: true
                 }
             }

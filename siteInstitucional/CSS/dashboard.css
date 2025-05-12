@@ -2,6 +2,7 @@
 .container-geral {
   display: flex;
   flex-direction: row;
+
   
   }
   
@@ -9,13 +10,14 @@ body{
     background-color: #e9ecef;   
 }
 
+
 .usuario{
     display: flex;
     flex-direction: column;
     color: black;
     align-items: center;    
     justify-content: space-between;
-    height: 703px;
+    height: 100vh;
     width: 30vh;
     background-image: linear-gradient(100deg,gold, #efb135);
     border-top-right-radius: 50px 50px;
@@ -27,16 +29,18 @@ body{
     display: flex;
     justify-content: flex-start;
     flex-direction: column;
+    margin-bottom: 45px;
     padding-bottom: 15px;
-    height: 200px;
-    width: 750px;
+    height: 38vh;
+    width: 50vw;
   }
   
 
 
 .container-column {
-    width: 100%;
-    height: 100vh;
+    width: 99%;
+    height: 90vh;
+    margin-top: 10px;
 }
 .img-user{
     height: 90px;
@@ -60,20 +64,24 @@ body{
   
   .container-kpi{
     display: flex;
-    align-items: flex-end;
+    
     justify-content: space-around;
-    height: auto;
-    width: 100%;
+    width: 65%;
     box-sizing: border-box;
     padding: 10px;
+  
   }
+
+  
   .box-kpi{
     font-size: large;
     display: flex;
     justify-content: space-evenly;
     flex-direction: column;
-    height: 140px;
-    width: 140px;
+    justify-content: flex-start;
+    align-items: flex-start;
+    height: 70px;
+    width: 195px;
     border-radius: 20px;
     background-color: white;
     padding: 10px;
@@ -82,12 +90,29 @@ body{
   border-bottom: 6px solid transparent;
   border-top: 3px solid transparent;
   }
+
+    .box-kpii{
+    font-size: large;
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: column;
+    height: 100px;
+    width: 260px;
+    margin-top: 100px;
+    border-radius: 20px;
+    background-color: white;
+    padding: 2vh;
+  border-top: 6px solid black;
+  border-bottom: 6px solid black;
+ 
+  }
   
 
   .gra1, .gra2{
     background-color: white;
-    width: 180vh;
-    margin-top: 15px;
+    width: 100vh;
+    
+    margin-bottom: 15px;
     border-radius: 20px;
     color: black;
     padding: 10px;
@@ -103,10 +128,12 @@ body{
     border-right: solid 2px black;
     border-radius: 8px;
     padding-right: 2px;
-    width: 130px;    
+    width: 140px;    
     height: 50px;
    
   }
+
+ 
   
 .opt-img{
     margin: 2px;
@@ -116,20 +143,20 @@ body{
 }
 
 .dash-row{
-    display: flex;
+     display: flex;
     flex-direction: row;
     align-items: flex-start;
-    justify-content: space-evenly;
+    justify-content: space-around;
     height: auto;
-    width: 100%;
+    width: 99%;
+    height: 80%;
   
    
 }
 .box-alert{
     display: flex;
-    font-size: large;
     flex-direction: column;
-    width: 300px;
+    width: 360px;
     height: 150px;
     background-color: white;
     border-radius: 20px;
@@ -141,13 +168,13 @@ body{
 }
 
 .box-sensor{
-    height: 350px;
-    width: 280px;
+    height: 240px;
+    width: 270px;
     background-color: white;
     border-radius: 20px;
     margin-top: 2vh;
     margin-left: 50px;
-    padding: 3vh;
+    padding: 2vh;
     
 }
 
@@ -164,9 +191,9 @@ body{
     border-right: solid 1px black;
     padding: 5px;
     border-radius:8px;
-    font-size: 18px;
-    height: 90px;
-    width: 100px;
+    font-size: 16px;
+    width: 200px;
+    height: 100px;
 }
 
 .msg-column-area{
@@ -176,7 +203,7 @@ body{
 }
 .title{
    margin-left: 20px;
-   margin-top: 20px;
+  
 }
 
 .name{
