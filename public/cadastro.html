@@ -12,56 +12,52 @@
     <img src="assets/sevenluxLogo.png" alt="" width="350px" height="350px">
   </div>
 
-   <div class="container-column">
-
-    <h1>Cadastro</h1>
-
-    <div class="container-row">
+  <div class="container-column">
 
 
+    <br>
+    <div class="container-row-cadastro">
+
+      <h1>Cadastro</h1>
+      
+      <br>
+
+      
+      <div class="ipt-container first">
+        <p>Token de Acesso</p>
+        <input class="user-ipt"> <br>
+      </div>
 
       <div class="ipt-container first">
         <p>Nome de Usuário</p>
         <input class="user-ipt"> <br>
       </div>
 
-      <div class="ipt-container second">
+      <div class="ipt-container first">
         <p>Email</p>
         <input class="email-ipt"> <br>
       </div>
-    </div>
-    
-
-    <div class="container-row">
-       <p>Cargo</p>
-        <input class="cargo-ipt"> <br>
-      </div>
- 
-
-
-
-    <div class="container-row">
 
       <div class="ipt-container first">
         <p>Senha</p>
         <input class="pwd-ipt" type="password">
       </div>
 
-      <div class="ipt-container second">
+      <div class="ipt-container first">
         <p>Confirmar senha</p>
         <input class="pwd-ipt" type="password"> <br>
       </div>
 
     </div>
 
-    <div class="container-column container-center">
+    <div class="container-column container-center botao-cadastro">
       <button>
         <h3><a class="txt-button" onclick="cadastrar()" href="login.html">Cadastrar</a></h3>
       </button> <br>
       <i>Já possui uma conta?</i>
       <a class="txt-a" href="login.html"><i> <u>Fazer login</u></i></a>
     </div>
-   </div>
+  </div>
   </div>
 
 
@@ -77,13 +73,12 @@
 
     //Recupere o valor da nova input pelo nome do id
     // Agora vá para o método fetch logo abaixo
-    var nomeUsu = user-ipt.value;
-    var emailUsu = email-ipt.value;
-    var senhaUsu = pwd-ipt.value;
-    var cargoUsu = cargo-ipt.value;
+    var nomeUsu = user - ipt.value;
+    var emailUsu = email - ipt.value;
+    var senhaUsu = pwd - ipt.value;
     var confirmacaoSenhaUsu = confirmacao_senha_input.value;
-    var codigoVar = pwd-ipt-confirmar.value;
-    var idEmpresaVincular
+    var codigoVar = pwd - ipt - confirmar.value;
+    // var idEmpresaVincular =  
 
     // Verificando se há algum campo em branco
     if (
@@ -93,14 +88,16 @@
       confirmacaoSenhaUsu == "" ||
       codigoVar == ""
     ) {
-      cardErro.style.display = "block";
-      mensagem_erro.innerHTML =
-        "(Mensagem de erro para todos os campos em branco)";
+      alert('Preencha todos os campos corretamente!');
 
-      finalizarAguardar();
-      return false;
-    } else {
-      setInterval(sumirMensagem, 5000);
+      //   cardErro.style.display = "block";
+      //   mensagem_erro.innerHTML =
+      //     "(Mensagem de erro para todos os campos em branco)";
+
+      //   finalizarAguardar();
+      //   return false;
+      // } else {
+      //   setInterval(sumirMensagem, 5000);
     }
 
     // Verificando se o código de ativação é de alguma empresa cadastrada
@@ -135,17 +132,17 @@
         console.log("resposta: ", resposta);
 
         if (resposta.ok) {
-          cardErro.style.display = "block";
+          // cardErro.style.display = "block";
 
-          mensagem_erro.innerHTML =
-            "Cadastro realizado com sucesso! Redirecionando para tela de Login...";
+          // mensagem_erro.innerHTML =
+          //   "Cadastro realizado com sucesso! Redirecionando para tela de Login...";
 
           setTimeout(() => {
             window.location = "login.html";
           }, "2000");
 
-          limparFormulario();
-          finalizarAguardar();
+          //   limparFormulario();
+          //   finalizarAguardar();
         } else {
           throw "Houve um erro ao tentar realizar o cadastro!";
         }

@@ -33,7 +33,6 @@ references empresa(idEmpresa),
 constraint pkComposta
 	primary key (idFuncionario, fkEndereco, fkEmpresa),
 nome varchar(45) not null,
-cargo varchar(45)not null,
 email varchar(45) not null,
 senha varchar(45) not null
 );
@@ -42,8 +41,8 @@ create table if not exists corredor (
 idCorredor int primary key  auto_increment,
 nome varchar(45) not null,
 numero varchar(45) not null,
-fkEndereco int not null,
 fkEmpresa int not null,
+fkEndereco int not null,
 constraint fkEnderecoEmpr foreign key(fkEndereco)
 references endereco(idEndereco),
 constraint fkEmpresaC foreign key (fkEmpresa)
