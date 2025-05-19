@@ -12,7 +12,7 @@
     <img src="assets/sevenluxLogo.png" alt="" width="350px" height="350px">
   </div>
 
-  <div class="container-column">
+   <div class="container-column">
 
     <h1>Cadastro</h1>
 
@@ -29,10 +29,14 @@
         <p>Email</p>
         <input class="email-ipt"> <br>
       </div>
-
     </div>
+    
 
-    <div class="container-row"></div>
+    <div class="container-row">
+       <p>Cargo</p>
+        <input class="cargo-ipt"> <br>
+      </div>
+ 
 
 
 
@@ -57,7 +61,7 @@
       <i>Já possui uma conta?</i>
       <a class="txt-a" href="login.html"><i> <u>Fazer login</u></i></a>
     </div>
-
+   </div>
   </div>
 
 
@@ -73,19 +77,20 @@
 
     //Recupere o valor da nova input pelo nome do id
     // Agora vá para o método fetch logo abaixo
-    var nomeVar = nome_input.value;
-    var emailVar = email_input.value;
-    var senhaVar = senha_input.value;
-    var confirmacaoSenhaVar = confirmacao_senha_input.value;
-    var codigoVar = codigo_input.value;
+    var nomeUsu = user-ipt.value;
+    var emailUsu = email-ipt.value;
+    var senhaUsu = pwd-ipt.value;
+    var cargoUsu = cargo-ipt.value;
+    var confirmacaoSenhaUsu = confirmacao_senha_input.value;
+    var codigoVar = pwd-ipt-confirmar.value;
     var idEmpresaVincular
 
     // Verificando se há algum campo em branco
     if (
-      nomeVar == "" ||
-      emailVar == "" ||
-      senhaVar == "" ||
-      confirmacaoSenhaVar == "" ||
+      nomeUsu == "" ||
+      emailUsu == "" ||
+      senhaUsu == "" ||
+      confirmacaoSenhaUsu == "" ||
       codigoVar == ""
     ) {
       cardErro.style.display = "block";
@@ -120,9 +125,9 @@
       body: JSON.stringify({
         // crie um atributo que recebe o valor recuperado aqui
         // Agora vá para o arquivo routes/usuario.js
-        nomeServer: nomeVar,
-        emailServer: emailVar,
-        senhaServer: senhaVar,
+        nomeServer: nomeUsu,
+        emailServer: emailUsu,
+        senhaServer: senhaUsu,
         idEmpresaVincularServer: idEmpresaVincular
       }),
     })
