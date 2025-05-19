@@ -88,13 +88,13 @@ constraint fkSensor foreign key (fkSensor)
  ('Assaí Atacadista', '06057223000171', 'HI983R', 5),
  ('Supermercado Nagumo Anel Viário','07705530000184', 'BR14N7', 6);
  
- insert into funcionario(nome, cargo, email, senha, telefone, fkEndereco, fkEmpresa)values
- ('Kleber Mendonça', 'Analista financeiro', 'Kleber.mendonca@gmail.com', 'Abc#123', '11987654321', 1,1),
- ('João Silva', 'Recursos Humanos', 'joao.silva@gmail.com','batatinha', '11978456123', 2, 2),
- ('Renata de Souza', 'Analista financeiro', 'renata.souza@gmail.com','uburu@100','11912345678', 3, 3),
- ('Melissa Angelical', 'Recursos Humanos', 'melissa.angelical@gmail.com','sprint02','11965432187', 4,4),
- ('Alexandre Costa', 'Analista de t.i.', 'alexandre.costa@gmail.com', 'beterraba','11978456325', 5,5),
- ('Richard Gomes', 'Analista de t.i.', 'richard.gomes@gmail.com','senha','11932145678', 6, 6);
+ insert into funcionario(nome, cargo, email, senha, fkEndereco, fkEmpresa)values
+ ('Kleber Mendonça', 'Analista financeiro', 'Kleber.mendonca@gmail.com', 'Abc#123', 1,1),
+ ('João Silva', 'Recursos Humanos', 'joao.silva@gmail.com','batatinha', 2, 2),
+ ('Renata de Souza', 'Analista financeiro', 'renata.souza@gmail.com','uburu@100', 3, 3),
+ ('Melissa Angelical', 'Recursos Humanos', 'melissa.angelical@gmail.com','sprint02', 4,4),
+ ('Alexandre Costa', 'Analista de t.i.', 'alexandre.costa@gmail.com', 'beterraba', 5,5),
+ ('Richard Gomes', 'Analista de t.i.', 'richard.gomes@gmail.com','senha', 6, 6);
  
  insert into corredor(nome, numero, fkEndereco, fkEmpresa) values
 ('Alimentos Não Perecíveis', 'A1', 1, 1),
