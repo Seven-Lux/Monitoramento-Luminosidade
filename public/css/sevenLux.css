@@ -10,7 +10,7 @@
     justify-content: flex-end;
     align-items: center;
     padding: 15px 40px;
-    width: 89%;
+    width: 85%;
 }
 
 .cabecalho a{
@@ -207,6 +207,7 @@ h2{
     display: flex;
     align-items: center;
     flex-direction: column;
+    width: 100%;
 }
 
 .container-conteudo button{
@@ -258,4 +259,29 @@ h2{
     align-self: flex-start;
     justify-self: flex-start;
     border-radius: 20px;
+}
+
+.yellow-align{
+    width: 180vh;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.colaboradores{
+    display: flex;
+    flex-direction: column;
+    align-self: flex-start;
+}
+
+.container-conteudo a{
+    text-decoration: inherit;
+    color: black;
+}
+
+.resultado-content{
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 50;
 }

@@ -11,17 +11,26 @@
     <div class="cabecalho">
         <div class="box-yellow"></div>
         <div class="menu">
-          <a href="calculadora.html"><h3>Página inicial</h3></a>
-            <a href="calculadora.html"><h3>Simulador Financeiro</h3> 
+            <a href="calculadora.html">
+                <h3>Página inicial</h3>
+            </a>
+            <a href="calculadora.html">
+                <h3>Simulador Financeiro</h3>
             </a>
 
-            <a href="calculadora.html"><h3>Contato</h3></a>
-          
-            <a href="calculadora.html"><h3>Simulador Financeiro</h3></a>
-          
-            <a href="login.html"> <h3>Cadastro</h3>  </a>
-            <a href="login.html"> <h3>Login</h3>  <div class="box-yellow"></div>  </a>
-           
+            <a href="calculadora.html">
+                <h3>Contato</h3>
+            </a>
+
+
+            <a href="login.html">
+                <h3>Cadastro</h3>
+            </a>
+            <a href="login.html">
+                <h3>Login</h3>
+                <div class="box-yellow"></div>
+            </a>
+
         </div>
     </div>
 
@@ -36,10 +45,10 @@
             <button class="botoes-topo "> <a href="cadastro.html"> Faça Parte Do Nosso Time </a> </button>
         </div>
 
-        
+
 
         <div class="logo-siteinstitucional">
-            <img src="assets/sevenluxLogo.png"> 
+            <img src="assets/sevenluxLogo.png">
         </div>
 
         <div class="acessos">
@@ -80,56 +89,68 @@
 
     </div>
 
-     <div class="container-conteudo">
-        <h1>Calculadora Financeira</h1>
-
+    <div class="container-conteudo">
+        <h1>Calculadora Financeira <div class="box-yellow"></div>
+        </h1>
         <h4>Descubra quanto a luminosidade influência nas vendas do seu supermercado com os sensores da SevenLux!</h4>
 
         <i>Digite os <b>valores mensais</b> abaixo de acordo com o setor</i> <br> <br>
-        <div class="input-row"> 
+        <div class="input-row">
             <div class="box-column">
                 <label for="iptQntd">Setor</label>
-                <input type="text" id="iptNome" class="input-box" placeholder="Digite aqui..."> 
+                <input type="text" id="iptNome" class="input-box" placeholder="Digite aqui...">
             </div>
 
             <div class="box-column">
-            <label for="iptQntd">Nome do produto</label>
-            <input type="text" id="iptProd" class="input-box" placeholder="Digite aqui..."> 
+                <label for="iptQntd">Nome do produto</label>
+                <input type="text" id="iptProd" class="input-box" placeholder="Digite aqui...">
             </div>
         </div>
         <br><br>
 
         <div class="input-row">
-        <div class="box-column">
-            <label for="iptQntd">Preço (por unidade ou kg)</label>
-            <input type="number" id="iptQntd" class="input-box" placeholder="Digite aqui..."> 
+            <div class="box-column">
+                <label for="iptQntd">Preço (por unidade ou kg)</label>
+                <input type="number" id="iptQntd" class="input-box" placeholder="Digite aqui...">
+            </div>
+            <div class="box-column">
+                <label for="iptQntd">Quantidade vendida</label>
+                <input type="number" id="iptValor" class="input-box" placeholder="Digite aqui...">
+            </div>
+
         </div>
-        <div class="box-column">
-            <label for="iptQntd">Quantidade vendida</label>
-            <input type="number" id="iptValor" class="input-box" placeholder="Digite aqui..."> 
-        </div>
-        
-        </div><br><br>
-        
+        <br>
+        <br>
         <div id="divTxt" class="divTxt"></div>
         <button onclick="simular()"><b>Simular resultados</b></button>
-
+            <div id="txtResultado"  class="resultado-content">
+                <div class="divTxt"></div>
+                <button><a href="cadastro.html"><b>Faça parte!</b></a></button>
+            </div>
+        <div class="yellow-align">
+            <div class="box-yellow"></div>
+            <div class="box-yellow"></div>
+        </div>
         <br><br>
 
     </div>
     <div class="roda-pe-contato">
-        <img src="../imagens/ChatGPT Image 25 de abr. de 2025, 19_04_10.png" class="icone">
+        <img src="../public/assets/ChatGPT Image 25 de abr. de 2025, 19_04_10.png" class="icone">
         <p> <b> Contate - nos: 5557-8877</b></p>
 
-        <img src="../imagens/ChatGPT Image 25 de abr. de 2025, 19_11_10.png" class="icone">
+        <img src="../public/assets/ChatGPT Image 25 de abr. de 2025, 19_11_10.png" class="icone">
         <p> <b> Email: sevenlux@gmil.com</b></p>
+        <div class="colaboradores">
+            <h3>colaboradores</h3>
+        </div>
     </div>
 </body>
 <script>
+    var alertaCustomizado = document.getElementById("txtResultado")
     function simular() {
         var qntd = Number(iptQntd.value);
         var valor = Number(iptValor.value);
-
+        alertaCustomizado.style.display = "flex";
         // Variaveis para calculos 
         var valorBaseMes = valor * qntd
         var valorLuxMes = valorBaseMes * 1.06;
@@ -138,13 +159,14 @@
         var valorSemesLux = valorLuxMes * 6;
         var valorAnoBase = valorBaseMes * 12;
         var valorAnoLux = valorLuxMes * 12;
+        txt
         divTxt.innerHTML = '';
 
-        if (qntd == '' || qntd == 'e' || valor == '' || valor === 'e') {
+        if (qntd == '' || valor == 'e' || valor == '' || valor === 'e') {
             divTxt.innerHTML = 'Preencha os campos corretamente! ⚠️';
         } else {
 
-            divTxt.innerHTML = divTxt.innerHTML = `Olá!<br><br>
+            divTxt.innerHTML = `Olá!<br><br>
         Estudos apontam que mercados com uma melhor luminosidade tem 6% de vendas a mais por setor. <br> <br>
 
         O setor ${iptNome.value} quando vende ${iptProd.value} com luminosidade não adequada, 
@@ -159,4 +181,5 @@
     }
 
 </script>
+
 </html>
