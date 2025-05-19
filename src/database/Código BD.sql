@@ -1,64 +1,75 @@
-create database sevenLux;
+create database if not exists sevenLux;
 use sevenLux;
 
-create table endereco(
+create table if not exists endereco(
 idEndereco int primary key auto_increment,
-cep char ( 8),
-logradouro varchar (45),
-numero int,
-cidade varchar (45),
-estado char (2));
+cep char (8) not null,
+logradouro varchar (45) not null,
+numero int not null,
+cidade varchar (45) not null,
+estado char (2) not null
+);
 
-create table empresa(
-idEmpresa int primary key  auto_increment,
-nomeFantasia varchar(45),
-CNPJ char (14),
-fkEndereco int,
+create table if not exists empresa(
+idEmpresa int not null auto_increment,
+fkEndereco int not null,
 constraint fkEndereco foreign key(fkEndereco)
-references endereco(idEndereco));
+	references endereco(idEndereco),
+constraint pkComposta
+	primary key (idEmpresa, fkEndereco),
+nomeFantasia varchar(45) not null,
+CNPJ char(14) not null,
+tokenAcesso char(6) not null unique
+);
 
-create table funcionario(
-idFuncionario int primary key  auto_increment,
-nome varchar (45),
-cargo varchar (45),
-email varchar (45),
-senha varchar (45),
-telefone char (11),
+create table if not exists funcionario(
+idFuncionario int auto_increment,
 fkEndereco int,
 fkEmpresa int,
 constraint fkEnderecoEmp foreign key(fkEndereco)
 references endereco(idEndereco),
 constraint fkEmpresa foreign key (fkEmpresa)
-references empresa(idEmpresa));
+references empresa(idEmpresa),
+constraint pkComposta
+	primary key (idFuncionario, fkEndereco, fkEmpresa),
+nome varchar(45) not null,
+cargo varchar(45)not null,
+email varchar(45) not null,
+senha varchar(45) not null
+);
 
-create table corredor (
+create table if not exists corredor (
 idCorredor int primary key  auto_increment,
-nome varchar(45),
-numero varchar(45),
-fkEndereco int,
-fkEmpresa int,
+nome varchar(45) not null,
+numero varchar(45) not null,
+fkEndereco int not null,
+fkEmpresa int not null,
 constraint fkEnderecoEmpr foreign key(fkEndereco)
 references endereco(idEndereco),
 constraint fkEmpresaC foreign key (fkEmpresa)
-references empresa(idEmpresa));
+references empresa(idEmpresa)
+);
 
 
-create table sensor(
+create table if not exists sensor(
 IdSensor int primary key  auto_increment,
-nome varchar(45),
-statusSensor varchar(45),
-fkCorredor int,
-Constraint fkCorredor foreign key (fkCorredor) 
-references corredor (idCorredor));
+nome varchar(45) not null,
+statusSensor varchar(45) not null,
+dtInstalacao DATE not null,
+fkCorredor int not null,
+constraint fkCorredor foreign key (fkCorredor) 
+references corredor (idCorredor)
+);
 
 
-Create table dados(
+Create table if not exists dados(
 idDados int primary key  auto_increment, 
-luminancia decimal(7,2),
-dtHora TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-fkSensor int,
-Constraint fkSensor foreign key (fkSensor)
- references sensor (idSensor));
+luminancia decimal(7,2) not null,
+dtHora timestamp not null default current_timestamp,
+fkSensor int not null not null,
+constraint fkSensor foreign key (fkSensor)
+ references sensor (idSensor)
+ );
 
 
  insert into endereco(cep,logradouro, numero,cidade, estado) values
@@ -69,21 +80,21 @@ Constraint fkSensor foreign key (fkSensor)
  ('40070200', 'Rua do Salete', 30, 'Salvador', 'BA'),
  ('07024170', 'Av. Pres. Humberto de Alencar Castelo Branco', 3413, 'Guarulhos', 'SP' );
 
- insert into empresa(nomeFantasia, CNPJ, fkEndereco)values
- ('Supermercado Rossi', '09525900000712', 1),
- ('Extra Mercado','47508411000163', 2),
- ('Carrefour Express Paulista', '45543915023041', 3),
- ('Carrefour Hipermercado', '45543915000181', 4),
- ('Assaí Atacadista', '06057223000171', 5),
- ('Supermercado Nagumo Anel Viário','07705530000184', 6);
+ insert into empresa(nomeFantasia, CNPJ, tokenAcesso, fkEndereco)values
+ ('Supermercado Rossi', '09525900000712', 'B19100', 1),
+ ('Extra Mercado','47508411000163', 'L2609G',  2),
+ ('Carrefour Express Paulista', '45543915023041', 'I1206B', 3),
+ ('Carrefour Hipermercado', '45543915000181', 'J2608H', 4),
+ ('Assaí Atacadista', '06057223000171', 'HI983R', 5),
+ ('Supermercado Nagumo Anel Viário','07705530000184', 'BR14N7', 6);
  
- insert into funcionario(nome, cargo, email, senha, telefone, fkEndereco, fkEmpresa)values
- ('Kleber Mendonça', 'Analista financeiro', 'Kleber.mendonca@gmail.com', 'Abc#123', '11987654321', 1,1),
- ('João Silva', 'Recursos Humanos', 'joao.silva@gmail.com','batatinha', '11978456123', 2, 2),
- ('Renata de Souza', 'Analista financeiro', 'renata.souza@gmail.com','uburu@100','11912345678', 3, 3),
- ('Melissa Angelical', 'Recursos Humanos', 'melissa.angelical@gmail.com','sprint02','11965432187', 4,4),
- ('Alexandre Costa', 'Analista de t.i.', 'alexandre.costa@gmail.com', 'beterraba','11978456325', 5,5),
- ('Richard Gomes', 'Analista de t.i.', 'richard.gomes@gmail.com','senha','11932145678', 6, 6);
+ insert into funcionario(nome, cargo, email, senha, fkEndereco, fkEmpresa)values
+ ('Kleber Mendonça', 'Analista financeiro', 'Kleber.mendonca@gmail.com', 'Abc#123', 1,1),
+ ('João Silva', 'Recursos Humanos', 'joao.silva@gmail.com','batatinha', 2, 2),
+ ('Renata de Souza', 'Analista financeiro', 'renata.souza@gmail.com','uburu@100', 3, 3),
+ ('Melissa Angelical', 'Recursos Humanos', 'melissa.angelical@gmail.com','sprint02', 4,4),
+ ('Alexandre Costa', 'Analista de t.i.', 'alexandre.costa@gmail.com', 'beterraba', 5,5),
+ ('Richard Gomes', 'Analista de t.i.', 'richard.gomes@gmail.com','senha', 6, 6);
  
  insert into corredor(nome, numero, fkEndereco, fkEmpresa) values
 ('Alimentos Não Perecíveis', 'A1', 1, 1),
@@ -154,146 +165,83 @@ Constraint fkSensor foreign key (fkSensor)
 ('Congelados', 'K6', 6, 6);
 select *from corredor;
 
-insert into sensor(nome,statusSensor, fkCorredor) values
-('LDR', 'Ativo', 1),
-('LDR', 'Ativo', 2),
-('LDR', 'Ativo', 3),
-('LDR', 'Inativo', 4),
-('LDR', 'Ativo', 5),
-('LDR', 'Ativo', 6),
-('LDR', 'Ativo', 7),
-('LDR', 'Manutenção', 8),
-('LDR', 'Ativo', 9),
-('LDR', 'Ativo', 10),
-('LDR', 'Ativo', 11),
-('LDR', 'Ativo', 12),
-('LDR', 'Inativo', 13),
-('LDR', 'Ativo', 14),
-('LDR', 'Ativo', 15),
-('LDR', 'Ativo', 16),
-('LDR', 'Ativo', 17),
-('LDR', 'Ativo', 18),
-('LDR', 'Ativo', 19),
-('LDR', 'Ativo', 20),
-('LDR', 'Ativo', 21),
-('LDR', 'Ativo', 22),
-('LDR', 'Manutenção', 23),
-('LDR', 'Ativo', 24),
-('LDR', 'Ativo', 25),
-('LDR', 'Ativo', 26),
-('LDR', 'Ativo', 27),
-('LDR', 'Ativo', 28),
-('LDR', 'Ativo', 29),
-('LDR', 'Ativo', 30),
-('LDR', 'Inativo', 31),
-('LDR', 'Ativo', 32),
-('LDR', 'Ativo', 33),
-('LDR', 'Ativo', 34),
-('LDR', 'Ativo', 35),
-('LDR', 'Ativo', 36),
-('LDR', 'Ativo', 37),
-('LDR', 'Ativo', 38),
-('LDR', 'Ativo', 39),
-('LDR', 'Ativo', 40),
-('LDR', 'Manutenção', 41),
-('LDR', 'Ativo', 42),
-('LDR', 'Ativo', 43),
-('LDR', 'Ativo', 44),
-('LDR', 'Ativo', 45),
-('LDR', 'Ativo', 46),
-('LDR', 'Ativo', 47),
-('LDR', 'Ativo', 48),
-('LDR', 'Ativo', 49),
-('LDR', 'Ativo', 50),
-('LDR', 'Ativo', 51),
-('LDR', 'Ativo', 52),
-('LDR', 'Inativo', 53),
-('LDR', 'Ativo', 54),
-('LDR', 'Ativo', 55),
-('LDR', 'Ativo', 56),
-('LDR', 'Ativo', 57),
-('LDR', 'Ativo', 58),
-('LDR', 'Ativo', 59),
-('LDR', 'Ativo', 60),
-('LDR', 'Ativo', 61),
-('LDR', 'Ativo', 62),
-('LDR', 'Inativo', 63),
-('LDR', 'Ativo', 64),
-('LDR', 'Ativo', 65),
-('LDR', 'Ativo', 66);
+insert into sensor(nome, statusSensor, fkCorredor, dtInstalacao) values
+('LDR', 'Ativo', 1, '2025-05-23'),
+('LDR', 'Ativo', 2, '2025-07-28'),
+('LDR', 'Ativo', 3, '2025-09-23'),
+('LDR', 'Inativo', 4, '2025-03-22'),
+('LDR', 'Ativo', 5, '2025-09-17'),
+('LDR', 'Ativo', 6, '2025-08-10'),
+('LDR', 'Ativo', 7, '2025-09-12'),
+('LDR', 'Manutenção', 8, '2025-10-23'),
+('LDR', 'Ativo', 9, '2025-09-02'),
+('LDR', 'Ativo', 10, '2025-07-20'),
+('LDR', 'Ativo', 11, '2025-03-02'),
+('LDR', 'Ativo', 12, '2025-09-11'),
+('LDR', 'Inativo', 13, '2025-09-07'),
+('LDR', 'Ativo', 14, '2025-04-14'),
+('LDR', 'Ativo', 15, '2025-11-24'),
+('LDR', 'Ativo', 16, '2025-06-27'),
+('LDR', 'Ativo', 17, '2025-01-28'),
+('LDR', 'Ativo', 18, '2025-06-12'),
+('LDR', 'Ativo', 19, '2025-10-16'),
+('LDR', 'Ativo', 20, '2025-03-15'),
+('LDR', 'Ativo', 21, '2025-03-07'),
+('LDR', 'Ativo', 22, '2025-03-25'),
+('LDR', 'Inativo', 23, '2025-02-11'),
+('LDR', 'Ativo', 24, '2025-09-18'),
+('LDR', 'Ativo', 25, '2025-07-22'),
+('LDR', 'Ativo', 26, '2025-05-27'),
+('LDR', 'Ativo', 27, '2025-11-08'),
+('LDR', 'Ativo', 28, '2025-02-16'),
+('LDR', 'Ativo', 29, '2025-06-21'),
+('LDR', 'Ativo', 30, '2025-10-21'),
+('LDR', 'Inativo', 31, '2025-04-29'),
+('LDR', 'Ativo', 32, '2025-04-19'),
+('LDR', 'Ativo', 33, '2025-08-28'),
+('LDR', 'Ativo', 34, '2025-08-08'),
+('LDR', 'Ativo', 35, '2025-09-04'),
+('LDR', 'Ativo', 36, '2025-04-30'),
+('LDR', 'Ativo', 37, '2025-04-08'),
+('LDR', 'Ativo', 38, '2025-07-28'),
+('LDR', 'Ativo', 39, '2025-02-21'),
+('LDR', 'Ativo', 40, '2025-11-13'),
+('LDR', 'Manutenção', 41, '2025-02-25'),
+('LDR', 'Ativo', 42, '2025-08-21'),
+('LDR', 'Ativo', 43, '2025-05-01'),
+('LDR', 'Ativo', 44, '2025-08-11'),
+('LDR', 'Ativo', 45, '2025-01-22'),
+('LDR', 'Ativo', 46, '2025-03-21'),
+('LDR', 'Ativo', 47, '2025-05-07'),
+('LDR', 'Ativo', 48, '2025-05-26'),
+('LDR', 'Ativo', 49, '2025-01-04'),
+('LDR', 'Ativo', 50, '2025-12-30'),
+('LDR', 'Ativo', 51, '2025-06-28'),
+('LDR', 'Ativo', 52, '2025-10-29'),
+('LDR', 'Inativo', 53, '2025-10-19'),
+('LDR', 'Ativo', 54, '2025-07-24'),
+('LDR', 'Ativo', 55, '2025-12-18'),
+('LDR', 'Ativo', 56, '2025-01-21'),
+('LDR', 'Ativo', 57, '2025-08-02'),
+('LDR', 'Ativo', 58, '2025-06-15'),
+('LDR', 'Ativo', 59, '2025-11-20'),
+('LDR', 'Ativo', 60, '2025-04-17'),
+('LDR', 'Ativo', 61, '2025-02-18'),
+('LDR', 'Ativo', 62, '2025-11-21'),
+('LDR', 'Inativo', 63, '2025-03-24'),
+('LDR', 'Ativo', 64, '2025-06-30'),
+('LDR', 'Ativo', 65, '2025-09-11'),
+('LDR', 'Ativo', 66, '2025-03-07');
 
-insert into dados(luminancia, fkSensor) values
-(481.00, 1),
-(491.26, 2),
-(631.75, 3),
-(787.70, 4),
-(400.85, 5),
-(484.33, 6),
-(867.23, 7),
-(428.16, 8),
-(373.60, 9),
-(347.93, 10),
-(472.22, 11),
-(482.44, 12),
-(492.66, 13),
-(636.45, 14),
-(785.12, 15),
-(402.34, 16),
-(485.71, 17),
-(872.11, 18),
-(429.55, 19),
-(375.84, 20),
-(350.42, 21),
-(474.01, 22),
-(484.07, 23),
-(494.22, 24),
-(637.83, 25),
-(783.33, 26),
-(403.17, 27),
-(487.65, 28),
-(869.45, 29),
-(430.87, 30),
-(376.91, 31),
-(351.65, 32),
-(475.88, 33),
-(485.32, 34),
-(495.51, 35),
-(640.00, 36),
-(780.90, 37),
-(404.88, 38),
-(489.23, 39),
-(871.77, 40),
-(432.12, 41),
-(378.32, 42),
-(353.24, 43),
-(477.45, 44),
-(486.91, 45),
-(497.42, 46),
-(641.35, 47),
-(782.11, 48),
-(405.66, 49),
-(490.80, 50),
-(870.00, 51),
-(433.67, 52),
-(379.75, 53),
-(354.77, 54),
-(478.66, 55),
-(488.45, 56),
-(498.65, 57),
-(643.01, 58),
-(781.55, 59),
-(407.11, 60),
-(492.12, 61),
-(868.42, 62),
-(434.92, 63),
-(381.04, 64),
-(356.29, 65),
-(480.12, 66);
-
+-- insert feito para a visualização de dados das tabelas
+insert into dados (luminancia, fkSensor) values
+(850.75, 1),
+(620.33, 2),
+(430.10, 3);
 
 select 
 e.nomeFantasia as Empresa,
-en.cep as Cep,
+en.cep as CEP,
 f.nome as 'Nome do Funcionario',
 f.email as Email,
 c.nome as 'Nome do Corredor',
@@ -326,13 +274,14 @@ e.nomeFantasia as Empresa,
 f.email as Email,
 f.telefone as Telefone,
 c.nome as NomeCorredor,
+s.nome as Sensor,
 d.luminancia as Luminancia
 from empresa e
-join funcionario f on f.fkEmpresa = e.idEmpresa
-join corredor c on c.fkEmpresa = e.idEmpresa
-join sensor s on s.fkCorredor = c.idCorredor
-join dados d on d.fkSensor = s.idSensor
-where e.nomeFantasia like '%carrefour%';
+left join funcionario f on f.fkEmpresa = e.idEmpresa
+left join corredor c on c.fkEmpresa = e.idEmpresa
+left join sensor s on s.fkCorredor = c.idCorredor
+left join dados d on d.fkSensor = s.idSensor
+where e.nomeFantasia like '%Paulista%';
 
 select  
 e.nomeFantasia as Empresa,
@@ -345,8 +294,7 @@ join funcionario f on f.fkEmpresa = e.idEmpresa
 join corredor c on c.fkEmpresa = e.idEmpresa
 join sensor s on s.fkCorredor = c.idCorredor
 join dados d on d.fkSensor = s.idSensor
-where e.nomeFantasia like '%nagumo%' 
-or    e.nomeFantasia LIKE '%rossi%';
+where e.nomeFantasia LIKE '%rossi%';
 
 select 
 e.nomeFantasia as Empresa,
@@ -361,7 +309,3 @@ join sensor s on s.fkCorredor = c.idCorredor
 join dados d on d.fkSensor = s.idSensor
 where d.luminancia > 800
 order by d.luminancia;
-
-
-
-
