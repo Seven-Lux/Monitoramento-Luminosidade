@@ -282,6 +282,21 @@ h2{
 .resultado-content{
     display: none;
     position: fixed;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     top: 0;
     left: 50;
+    background-color: white;
+    width: 50%;
+    height: 75%;
+    padding: 20px;
+    border-radius: 20px;
+    box-shadow: 10px 10px 5px 5px rgba(0, 0, 0, 0.3);
+}
+
+.resultado-content img{
+    display: flex;
+    align-self: flex-end;
+    
 }

@@ -97,12 +97,12 @@
         <i>Digite os <b>valores mensais</b> abaixo de acordo com o setor</i> <br> <br>
         <div class="input-row">
             <div class="box-column">
-                <label for="iptQntd">Setor</label>
+                <label for="iptNome">Setor</label>
                 <input type="text" id="iptNome" class="input-box" placeholder="Digite aqui...">
             </div>
 
             <div class="box-column">
-                <label for="iptQntd">Nome do produto</label>
+                <label for="iptProd">Nome do produto</label>
                 <input type="text" id="iptProd" class="input-box" placeholder="Digite aqui...">
             </div>
         </div>
@@ -110,7 +110,7 @@
 
         <div class="input-row">
             <div class="box-column">
-                <label for="iptQntd">Preço (por unidade ou kg)</label>
+                <label for="iptValor">Preço (por unidade ou kg)</label>
                 <input type="number" id="iptQntd" class="input-box" placeholder="Digite aqui...">
             </div>
             <div class="box-column">
@@ -121,10 +121,10 @@
         </div>
         <br>
         <br>
-        <div id="divTxt" class="divTxt"></div>
         <button onclick="simular()"><b>Simular resultados</b></button>
             <div id="txtResultado"  class="resultado-content">
-                <div class="divTxt"></div>
+                <img src="assets/xmark-solid.svg" alt="" width="20px" height="20px" onclick="fechar()">
+                <div id="divTxt"></div>
                 <button><a href="cadastro.html"><b>Faça parte!</b></a></button>
             </div>
         <div class="yellow-align">
@@ -159,7 +159,6 @@
         var valorSemesLux = valorLuxMes * 6;
         var valorAnoBase = valorBaseMes * 12;
         var valorAnoLux = valorLuxMes * 12;
-        txt
         divTxt.innerHTML = '';
 
         if (qntd == '' || valor == 'e' || valor == '' || valor === 'e') {
@@ -180,6 +179,9 @@
         }
     }
 
+    function fechar(){
+        alertaCustomizado.style.display = "none";
+    }
 </script>
 
 </html>
