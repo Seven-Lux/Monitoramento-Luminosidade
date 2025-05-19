@@ -259,7 +259,6 @@ order by e.nomeFantasia, c.nome, d.dtHora;
 select 
 e.nomeFantasia as Empresa,
 f.email as Email,
-f.telefone as Telefone,
 c.nome as NomeCorredor,
 d.luminancia as Luminancia
 from empresa e
@@ -272,7 +271,6 @@ order by d.luminancia;
 select  
 e.nomeFantasia as Empresa,
 f.email as Email,
-f.telefone as Telefone,
 c.nome as NomeCorredor,
 s.nome as Sensor,
 d.luminancia as Luminancia
@@ -286,7 +284,6 @@ where e.nomeFantasia like '%Paulista%';
 select  
 e.nomeFantasia as Empresa,
 f.email as Email,
-f.telefone as Telefone,
 c.nome as NomeCorredor,
 d.luminancia as Luminancia
 from empresa e
@@ -299,7 +296,6 @@ where e.nomeFantasia LIKE '%rossi%';
 select 
 e.nomeFantasia as Empresa,
 f.email as Email,
-f.telefone as Telefone,
 c.nome as NomeCorredor,
 d.luminancia as Luminancia
 from empresa e
