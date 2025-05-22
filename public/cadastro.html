@@ -7,14 +7,12 @@
   <link rel="stylesheet" href="css/cadastroLogin.css">
 </head>
 
-<body class="container-row">
+<body class="container-row" onload="listar()">
   <div class="container-left">
     <img src="assets/sevenluxLogo.png" alt="" width="350px" height="350px">
   </div>
 
   <div class="container-column">
-
-
     <br>
     <div class="container-row-cadastro">
 
@@ -22,30 +20,29 @@
       
       <br>
 
-      
       <div class="ipt-container first">
         <p>Token de Acesso</p>
-        <input class="user-ipt"> <br>
+        <input class="user-ipt" id="iptCodigo"> <br>
       </div>
 
       <div class="ipt-container first">
         <p>Nome de Usuário</p>
-        <input class="user-ipt"> <br>
+        <input class="user-ipt" id="iptNome"> <br>
       </div>
 
       <div class="ipt-container first">
         <p>Email</p>
-        <input class="email-ipt"> <br>
+        <input class="email-ipt" id="iptEmail"> <br>
       </div>
 
       <div class="ipt-container first">
         <p>Senha</p>
-        <input class="pwd-ipt" type="password">
+        <input class="pwd-ipt" type="password" id="iptSenha">
       </div>
 
       <div class="ipt-container first">
         <p>Confirmar senha</p>
-        <input class="pwd-ipt" type="password"> <br>
+        <input class="pwd-ipt" type="password" id="iptConfSenha"> <br>
       </div>
 
     </div>
@@ -73,19 +70,20 @@
 
     //Recupere o valor da nova input pelo nome do id
     // Agora vá para o método fetch logo abaixo
-    var nomeUsu = user - ipt.value;
-    var emailUsu = email - ipt.value;
-    var senhaUsu = pwd - ipt.value;
-    var confirmacaoSenhaUsu = confirmacao_senha_input.value;
-    var codigoVar = pwd - ipt - confirmar.value;
-    // var idEmpresaVincular =  
+    var nomeVar = iptNome.value;
+    var emailVar = iptEmail.value;
+    var senhaVar = iptSenha.value;
+    var confirmacaoSenhaVar = iptConfSenha.value;
+    var codigoVar = iptCodigo.value;
+    var idEmpresaVincular;
+    var idEnderecoVincular;
 
     // Verificando se há algum campo em branco
     if (
-      nomeUsu == "" ||
-      emailUsu == "" ||
-      senhaUsu == "" ||
-      confirmacaoSenhaUsu == "" ||
+      nomeVar == "" ||
+      emailVar == "" ||
+      senhaVar == "" ||
+      confirmacaoSenhaVar == "" ||
       codigoVar == ""
     ) {
       alert('Preencha todos os campos corretamente!');
@@ -102,14 +100,14 @@
 
     // Verificando se o código de ativação é de alguma empresa cadastrada
     for (let i = 0; i < listaEmpresasCadastradas.length; i++) {
-      if (listaEmpresasCadastradas[i].codigo_ativacao == codigoVar) {
-        idEmpresaVincular = listaEmpresasCadastradas[i].id
+      if (listaEmpresasCadastradas[i].tokenAcesso == codigoVar) {
+        idEmpresaVincular = listaEmpresasCadastradas[i].idEmpresa
+        idEnderecoVincular =  listaEmpresasCadastradas[i].fkEndereco
         console.log("Código de ativação válido.");
         break;
       } else {
-        cardErro.style.display = "block";
-        mensagem_erro.innerHTML = "(Mensagem de erro para código inválido)";
-        finalizarAguardar();
+        /*cardErro.style.display = "block";
+        mensagem_erro.innerHTML = "(Mensagem de erro para código inválido)";*/
       }
     }
 
@@ -122,10 +120,11 @@
       body: JSON.stringify({
         // crie um atributo que recebe o valor recuperado aqui
         // Agora vá para o arquivo routes/usuario.js
-        nomeServer: nomeUsu,
-        emailServer: emailUsu,
-        senhaServer: senhaUsu,
-        idEmpresaVincularServer: idEmpresaVincular
+        nomeServer: nomeVar,
+        emailServer: emailVar,
+        senhaServer: senhaVar,
+        idEmpresaVincularServer: idEmpresaVincular,
+        idEnderecoVincularServer: idEnderecoVincular
       }),
     })
       .then(function (resposta) {
@@ -149,7 +148,7 @@
       })
       .catch(function (resposta) {
         console.log(`#ERRO: ${resposta}`);
-        finalizarAguardar();
+        //finalizarAguardar();
       });
 
     return false;
@@ -166,7 +165,7 @@
             listaEmpresasCadastradas.push(empresa);
 
             console.log("listaEmpresasCadastradas")
-            console.log(listaEmpresasCadastradas[0].codigo_ativacao)
+            console.log(listaEmpresasCadastradas[0].tokenAcesso)
           });
         });
       })
@@ -175,7 +174,7 @@
       });
   }
 
-  function sumirMensagem() {
+  /*function sumirMensagem() {
     cardErro.style.display = "none";
-  }
+  }*/
 </script>
