@@ -58,7 +58,6 @@ function cadastrar(req, res) {
     var senha = req.body.senhaServer;
     var fkEmpresa = req.body.idEmpresaVincularServer;
     var fkEndereco = req.body.idEnderecoVincularServer;
-    // var fkEndereco = req.body.fkEnderecoServer;
 
     // Faça as validações dos valores
     if (nome == undefined) {
