@@ -30,7 +30,7 @@
 
         <div class="container-column container-center">
             <button>
-                <h3><a class="txt-button" onclick="entrar()" href="login.html"> Entrar </a></h3>
+                <h3><a class="txt-button" onclick="entrar()"> Entrar </a></h3>
             </button> <br>
             <i>Não Possui uma conta?</i>
             <a class="txt-a" href="cadastro.html"><i> <u>Fazer Cadastro</u></i></a>
@@ -42,34 +42,67 @@
 
 </html>
 <script>
-    var permCadastro = true
 
 
     function entrar() {
-        var pwd = iptPwd.value;
-        var email = iptEmail.value;
 
-        if (pwd == '' || email == '') {
-            alert('Preencha corretamente os campos abaixo!')
-        } else {
-            if (pwd != "seven8910" && email != "sevenLux@gmail.com") {
-                alert('Email e Senha são invalidos!')
-            } else {
-                if (pwd != "seven8910") {
-                    alert("Senha inválida");
-                }
-                if (email != "sevenLux@gmail.com") {
-                    alert('Email de login invalido!');
-                }
-                if (email == 'sevenLux@gmail.com' && pwd == 'seven8910') {
-                    alert("login feito com sucesso!");
-                    console.log('mudar tela')
-                    window.location.href = "dashboard.html";
-                }
-            }
+        var emailVar = iptEmail.value;
+        var senhaVar = iptPwd.value;
+
+        if (emailVar == "" || senhaVar == "") {
+            return false;
+            console.log("Entradas inválidas")
         }
-        iptPwd.value = '';
-        iptEmail.value = '';
+        else {
+        }
+
+        console.log("FORM LOGIN: ", emailVar);
+        console.log("FORM SENHA: ", senhaVar);
+
+        fetch("/usuarios/autenticar", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                emailServer: emailVar,
+                senhaServer: senhaVar
+            })
+        }).then(function (resposta) {
+            console.log("ESTOU NO THEN DO entrar()!")
+
+            if (resposta.ok) {
+                console.log(resposta);
+
+                resposta.json().then(json => {
+                    console.log(json);
+                    console.log(JSON.stringify(json));
+                    sessionStorage.EMAIL_USUARIO = json.email;
+                    sessionStorage.NOME_USUARIO = json.nome;
+                    sessionStorage.ID_USUARIO = json.id;
+                    sessionStorage.AQUARIOS = JSON.stringify(json.aquarios)
+
+                    setTimeout(function () {
+                        window.location = "./dashboard/dashboard.html";
+                    }, 1000); // apenas para exibir o loading
+
+                });
+
+            } else {
+
+                console.log("Houve um erro ao tentar realizar o login!");
+
+                resposta.text().then(texto => {
+                    console.error(texto);
+                    finalizarAguardar(texto);
+                });
+            }
+
+        }).catch(function (erro) {
+            console.log(erro);
+        })
+
+        return false;
     }
 
 </script>

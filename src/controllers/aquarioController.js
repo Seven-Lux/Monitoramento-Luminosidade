@@ -1,9 +1,11 @@
 var aquarioModel = require("../models/aquarioModel");
 
 function buscarAquariosPorEmpresa(req, res) {
-  var idUsuario = req.params.idUsuario;
+  var idEmpresa = req.params.fkEmpresa;
+  var idEndereco = req.params.fkEndereco;
 
-  aquarioModel.buscarAquariosPorEmpresa(idUsuario).then((resultado) => {
+
+  aquarioModel.buscarAquariosPorEmpresa(idUsuario, fkEndereco).then((resultado) => {
     if (resultado.length > 0) {
       res.status(200).json(resultado);
     } else {
