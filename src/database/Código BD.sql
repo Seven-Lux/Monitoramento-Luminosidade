@@ -7,7 +7,7 @@ cep char (8) not null,
 logradouro varchar (45) not null,
 numero int not null,
 cidade varchar (45) not null,
-estado char (2) not null
+uf char(2)
 );
 
 create table if not exists empresa(
@@ -18,6 +18,7 @@ constraint fkEndereco foreign key(fkEndereco)
 constraint pkComposta
 	primary key (idEmpresa, fkEndereco),
 nomeFantasia varchar(45) not null,
+razaoSocial varchar(45) not null,
 CNPJ char(14) not null,
 tokenAcesso char(6) not null unique
 );
@@ -71,7 +72,7 @@ constraint fkSensor foreign key (fkSensor)
  );
 
 
- insert into endereco(cep,logradouro, numero,cidade, estado) values
+ insert into endereco(cep,logradouro, numero,cidade, uf) values
  ('08451000','Estrada do Lageado Velho', 1013, 'São Paulo','SP'),
  ('02701000', 'Avenida Otaviano Alves de Lima', 1824,  'São Paulo','SP'),
  ('01310300', 'Avenida Paulista', 2300, 'São Paulo','SP'),
@@ -79,21 +80,22 @@ constraint fkSensor foreign key (fkSensor)
  ('40070200', 'Rua do Salete', 30, 'Salvador', 'BA'),
  ('07024170', 'Av. Pres. Humberto de Alencar Castelo Branco', 3413, 'Guarulhos', 'SP' );
 
- insert into empresa(nomeFantasia, CNPJ, tokenAcesso, fkEndereco)values
- ('Supermercado Rossi', '09525900000712', 'B19100', 1),
- ('Extra Mercado','47508411000163', 'L2609G',  2),
- ('Carrefour Express Paulista', '45543915023041', 'I1206B', 3),
- ('Carrefour Hipermercado', '45543915000181', 'J2608H', 4),
- ('Assaí Atacadista', '06057223000171', 'HI983R', 5),
- ('Supermercado Nagumo Anel Viário','07705530000184', 'BR14N7', 6);
+ insert into empresa(nomeFantasia, CNPJ, razaoSocial, tokenAcesso, fkEndereco) values
+ ('Supermercado Rossi', '09525900000712', 'Supermercado Rossi LTDA', 'B19100', 1),
+ ('Extra Mercado', '47508411000163', 'Companhia Brasileira de Distribuição', 'L2609G', 2),
+ ('Carrefour Express Paulista', '45543915023041', 'Carrefour Comércio e Indústria LTDA', 'I1206B', 3),
+ ('Carrefour Hipermercado', '45543915000181', 'Carrefour Comércio e Indústria LTDA', 'J2608H', 4),
+ ('Assaí Atacadista', '06057223000171', 'Sendas Distribuidora S.A.', 'HI983R', 5),
+ ('Supermercado Nagumo Anel Viário', '07705530000184', 'Nagumo Supermercados LTDA', 'BR14N7', 6);
+
  
- insert into funcionario(nome, cargo, email, senha, fkEndereco, fkEmpresa)values
- ('Kleber Mendonça', 'Analista financeiro', 'Kleber.mendonca@gmail.com', 'Abc#123', 1,1),
- ('João Silva', 'Recursos Humanos', 'joao.silva@gmail.com','batatinha', 2, 2),
- ('Renata de Souza', 'Analista financeiro', 'renata.souza@gmail.com','uburu@100', 3, 3),
- ('Melissa Angelical', 'Recursos Humanos', 'melissa.angelical@gmail.com','sprint02', 4,4),
- ('Alexandre Costa', 'Analista de t.i.', 'alexandre.costa@gmail.com', 'beterraba', 5,5),
- ('Richard Gomes', 'Analista de t.i.', 'richard.gomes@gmail.com','senha', 6, 6);
+ insert into funcionario(nome, email, senha, fkEndereco, fkEmpresa)values
+ ('Kleber Mendonça', 'Kleber.mendonca@gmail.com', 'Abc#123', 1,1),
+ ('João Silva', 'joao.silva@gmail.com','batatinha', 2, 2),
+ ('Renata de Souza', 'renata.souza@gmail.com','uburu@100', 3, 3),
+ ('Melissa Angelical', 'melissa.angelical@gmail.com','sprint02', 4,4),
+ ('Alexandre Costa', 'alexandre.costa@gmail.com', 'beterraba', 5,5),
+ ('Richard Gomes', 'richard.gomes@gmail.com','senha', 6, 6);
  
  insert into corredor(nome, numero, fkEndereco, fkEmpresa) values
 ('Alimentos Não Perecíveis', 'A1', 1, 1),
