@@ -9,7 +9,7 @@
     <title>Dashboards</title>
 </head>
 
-<body>
+<body onload="exibirCorredoresDoUsuario()">
     <div class="container-geral">
         <div class="usuario">
             <div class="user-box">
@@ -102,39 +102,18 @@
                 </div>
                 <div class="box-sensor">
                     <h3 class="box-title">Selecionar área</h3>
-                    <div class="msg-column-area">
-                        <div class="opt-row-area">
-                            <span class="area color1"></span>
-                            <h5>Mercado Geral</h5>
-                        </div>
-                        <div class="opt-row-area">
-                            <span class="area color2"></span>
-                            <h5>Sensor 00123 Hortifruti A5</h5>
-                        </div>
+                    <div class="msg-column-area" id="area">
+                        
 
-                        <div class="opt-row-area">
-                            <span class="area color3"></span>
-                            <h5>Sensor 00456 Mercearia B2 </h5>
-                        </div>
-
-                        <div class="opt-row-area">
-                            <span class="area color4"></span>
-                            <h5 class="setor-icon">Sensor 00789 Açougue C1</h5>
-                        </div>
-                        <div class="opt-row-area">
-                            <span class="area color5"></span>
-                            <h5>Sensor 00234 Padaria D3</h5>
-                        </div>
-
+                    
+                    </div>
                         <div class="box-kpii ">
 
-                            <h1 class="kpi-title" style="font-size: medium;">Faixa ideal de iliminação (Lux)</h1>
+                           <h1 class="kpi-title" style="font-size: medium;">Faixa ideal de iliminação (Lux)</h1>
                             <p style="font-size: 15px;">Manter a iluminação dentro desse intervalo. </p>
                             <h3>Mínimo: 400 Máximo: 700</h3>
 
-
                         </div>
-                    </div>
                 </div>
 
             </div>
@@ -245,53 +224,39 @@
         }
     });
 
-     b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
-
     let proximaAtualizacao;
 
-    window.onload = exibirAquariosDoUsuario();
+    window.onload = exibirCorredoresDoUsuario();
 
-    function exibirAquariosDoUsuario() {
-        var aquarios = JSON.parse(sessionStorage.AQUARIOS);
-        aquarios.forEach(item => {
-            document.getElementById("btnAquario").innerHTML += `
-            <button class="btn-chart" onclick="exibirAquario(${item.id})" id="btnAquario${item.id}">${item.descricao}</button>
-            `
-
-            document.getElementById("graficos").innerHTML += `
-                <div id="grafico${item.id}" class="display-none">
-                    <h3 class="tituloGraficos">
-                        <span id="tituloAquario${item.id}">${item.descricao}</span>
-                    </h3>
-                    <div class="graph">
-                        <canvas id="myChartCanvas${item.id}"></canvas>
-                    </div>
-                    <div class="label-captura">
-                        <p id="avisoCaptura${item.id}" style="color: white"></p>
-                    </div>
-                </div>
-            `
-
-            obterDadosGrafico(item.id)
+    function exibirCorredoresDoUsuario() {
+        var corredores = JSON.parse(sessionStorage.CORREDORES);
+        corredores.forEach(item => {
+             console.log(item)
+             area.innerHTML += `<div class="opt-row-area">
+                            <span class="area color1"></span>
+                            <h5>${item.nome}</h5>
+                        </div>`
+            
+            obterDadosGrafico(item.idCorredor)
         });
 
-        if (aquarios.length > 0) {
-            exibirAquario(aquarios[0].id)
+        if (corredores.length > 0) {
+            exibirAquario(corredores[0].idCorredor)
         }
     }
 
-    function alterarTitulo(idAquario) {
+   /* function alterarTitulo(idAquario) {
         var tituloAquario = document.getElementById(`tituloAquario${idAquario}`)
-        var descricao = JSON.parse(sessionStorage.AQUARIOS).find(item => item.id == idAquario).descricao;
+        var descricao = JSON.parse(sessionStorage.CORREDORES).find(item => item.id == idAquario).descricao;
         tituloAquario.innerHTML = "Últimas medidas de Temperatura e Umidade do <span style='color: #e6005a'>" + descricao + "</span>"
-    }
+    }*/
 
     function exibirAquario(idAquario) {
-        let todosOsGraficos = JSON.parse(sessionStorage.AQUARIOS);
+        let todosOsGraficos = JSON.parse(sessionStorage.CORREDORES);
 
         for (i = 0; i < todosOsGraficos.length; i++) {
             // exibindo - ou não - o gráfico
-            if (todosOsGraficos[i].id != idAquario) {
+            if (todosOsGraficos[i].id != idCorredor) {
                 let elementoAtual = document.getElementById(`grafico${todosOsGraficos[i].id}`)
                 if (elementoAtual.classList.contains("display-block")) {
                     elementoAtual.classList.remove("display-block")
@@ -331,7 +296,7 @@
     //     Para ajustar o "select", ajuste o comando sql em src/models
     function obterDadosGrafico(idAquario) {
 
-        alterarTitulo(idAquario)
+        //alterarTitulo(idAquario)
 
         if (proximaAtualizacao != undefined) {
             clearTimeout(proximaAtualizacao);
