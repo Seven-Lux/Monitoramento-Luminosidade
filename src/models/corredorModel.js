@@ -1,8 +1,9 @@
 var database = require("../database/config");
 
-function buscarAquariosPorEmpresa(empresaId, enderecoId) {
+function buscarCorredoresPorEmpresa(empresaId, enderecoId) {
+  console.log(empresaId, enderecoId)
 
-  var instrucaoSql = `SELECT * FROM corredor a WHERE fkEmpresa = ${empresaId} and fkEndereco = ${enderecoId} `;
+  var instrucaoSql = `SELECT * FROM corredor WHERE fkEmpresa = ${empresaId} and fkEndereco = ${enderecoId} `;
 
   console.log("Executando a instrução SQL: \n" + instrucaoSql);
   return database.executar(instrucaoSql);
@@ -18,6 +19,6 @@ function cadastrar(empresaId, descricao) {
 
 
 module.exports = {
-  buscarAquariosPorEmpresa,
+  buscarCorredoresPorEmpresa,
   cadastrar
 }

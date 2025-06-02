@@ -1,19 +1,17 @@
-var aquarioModel = require("../models/aquarioModel");
+var corredorModel = require("../models/corredorModel");
 
-function buscarAquariosPorEmpresa(req, res) {
-  var idEmpresa = req.params.fkEmpresa;
-  var idEndereco = req.params.fkEndereco;
+function buscarCorredoresPorEmpresa(req, res) {
 
 
-  aquarioModel.buscarAquariosPorEmpresa(idUsuario, fkEndereco).then((resultado) => {
+  corredorModel.buscarCorredoresPorEmpresa(fkEmpresa, fkEndereco).then((resultado) => {
     if (resultado.length > 0) {
-      res.status(200).json(resultado);
+      console.log(res.status(200).json(resultado));
     } else {
-      res.status(204).json([]);
+      res.status(204).json({corredores: []});
     }
   }).catch(function (erro) {
     console.log(erro);
-    console.log("Houve um erro ao buscar os aquarios: ", erro.sqlMessage);
+    console.log("Houve um erro ao buscar os corredores: ", erro.sqlMessage);
     res.status(500).json(erro.sqlMessage);
   });
 }
@@ -30,7 +28,7 @@ function cadastrar(req, res) {
   } else {
 
 
-    aquarioModel.cadastrar(descricao, idUsuario)
+    corredorModel.cadastrar(descricao, idUsuario)
       .then((resultado) => {
         res.status(201).json(resultado);
       }
@@ -46,6 +44,6 @@ function cadastrar(req, res) {
 }
 
 module.exports = {
-  buscarAquariosPorEmpresa,
+  buscarCorredoresPorEmpresa,
   cadastrar
 }
