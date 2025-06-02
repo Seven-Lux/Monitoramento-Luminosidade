@@ -15,7 +15,7 @@
             <div class="user-box">
                 <img class="img-user" src="../assets/user.svg" alt="">
 
-                <h6 class="name" style="font-size: large;">Nome do usuário</h6>
+                <h6 class="name" style="font-size: large;" id="nome"></h6>
                 <div class="opt-row">
                     <img class="opt-img" src="../assets/bars.svg" alt="">
                     <a href="" class="but-usuario">
@@ -56,7 +56,7 @@
         </div>
 
         <div class="container-column">
-            <h1 class="title" style="font-size: bold;">Mercado Geral</h1>
+            <h1 class="title" style="font-size: bold;" id="tituloCorredor"></h1>
             <div class="container-kpi">
                 <div class="box-kpi">
                     <h5 class="kpi-title" style="font-size: medium;">Tempo na faixa ideal durante o dia (%)</h5>
@@ -125,7 +125,7 @@
 <script>
     const ctx = document.getElementById('myChart');
     const ctx2 = document.getElementById('myChart2');
-
+    nome.innerHTML = sessionStorage.NOME_USUARIO
     new Chart(ctx, {
         type: 'line',
         data: {
@@ -225,14 +225,14 @@
     });
 
     let proximaAtualizacao;
-
+    alterarTitulo(1);
     window.onload = exibirCorredoresDoUsuario();
 
     function exibirCorredoresDoUsuario() {
         var corredores = JSON.parse(sessionStorage.CORREDORES);
         corredores.forEach(item => {
              console.log(item)
-             area.innerHTML += `<div class="opt-row-area">
+             area.innerHTML += `<div class="opt-row-area" onclick=alterarTitulo(${item.idCorredor})>
                             <span class="area color1"></span>
                             <h5>${item.nome}</h5>
                         </div>`
@@ -245,18 +245,18 @@
         }
     }
 
-   /* function alterarTitulo(idAquario) {
-        var tituloAquario = document.getElementById(`tituloAquario${idAquario}`)
-        var descricao = JSON.parse(sessionStorage.CORREDORES).find(item => item.id == idAquario).descricao;
-        tituloAquario.innerHTML = "Últimas medidas de Temperatura e Umidade do <span style='color: #e6005a'>" + descricao + "</span>"
-    }*/
+    function alterarTitulo(idCorredor) {
+        var descricao = JSON.parse(sessionStorage.CORREDORES).find(item => item.idCorredor == idCorredor).nome;
+        console.log(descricao)
+        tituloCorredor.innerHTML = descricao
+    }
 
-    function exibirAquario(idAquario) {
+    function exibirAquario(idCorredor) {
         let todosOsGraficos = JSON.parse(sessionStorage.CORREDORES);
 
         for (i = 0; i < todosOsGraficos.length; i++) {
             // exibindo - ou não - o gráfico
-            if (todosOsGraficos[i].id != idCorredor) {
+            /*if (todosOsGraficos[i].idCorredor != idCorredor) {
                 let elementoAtual = document.getElementById(`grafico${todosOsGraficos[i].id}`)
                 if (elementoAtual.classList.contains("display-block")) {
                     elementoAtual.classList.remove("display-block")
@@ -269,7 +269,7 @@
                     btnAtual.classList.remove("btn-pink")
                 }
                 btnAtual.classList.add("btn-white")
-            }
+            }*/
         }
 
         // exibindo - ou não - o gráfico
@@ -294,21 +294,19 @@
 
     //     Se quiser alterar a busca, ajuste as regras de negócio em src/controllers
     //     Para ajustar o "select", ajuste o comando sql em src/models
-    function obterDadosGrafico(idAquario) {
-
-        //alterarTitulo(idAquario)
+    function obterDadosGrafico(idCorredor) {
 
         if (proximaAtualizacao != undefined) {
             clearTimeout(proximaAtualizacao);
         }
 
-        fetch(`/medidas/ultimas/${idAquario}`, { cache: 'no-store' }).then(function (response) {
+        fetch(`/medidas/ultimas/${idCorredor}`, { cache: 'no-store' }).then(function (response) {
             if (response.ok) {
                 response.json().then(function (resposta) {
                     console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
                     resposta.reverse();
 
-                    plotarGrafico(resposta, idAquario);
+                    plotarGrafico(resposta, idCorredor);
 
                 });
             } else {
@@ -381,7 +379,7 @@
             config
         );
 
-        setTimeout(() => atualizarGrafico(idAquario, dados, myChart), 2000);
+        // setTimeout(() => atualizarGrafico(idAquario, dados, myChart), 2000);
     }
 
 
@@ -391,8 +389,6 @@
     //     Se quiser alterar a busca, ajuste as regras de negócio em src/controllers
     //     Para ajustar o "select", ajuste o comando sql em src/models
     function atualizarGrafico(idAquario, dados, myChart) {
-
-
 
         fetch(`/medidas/tempo-real/${idAquario}`, { cache: 'no-store' }).then(function (response) {
             if (response.ok) {
