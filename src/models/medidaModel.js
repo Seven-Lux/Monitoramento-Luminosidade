@@ -11,12 +11,37 @@ function buscarUltimasMedidasDia(idCorredor, limite_linhas) {
     return database.executar(instrucaoSql)
     .then(
         resposta => {
-            console.group(resposta)
+            console.log(resposta)
             var instrucaoSql2 = `select round(avg(luminancia),2) as mediaLuxDia
                                 from dados
                                 where fkSensor = ${resposta[0].idSensor}
                                 group by day(dtHora)
                                 order by day(dtHora) limit ${limite_linhas} `
+            console.log("Executando a instrução SQL: \n" + instrucaoSql2);
+            return database.executar(instrucaoSql2)
+
+        }
+    );
+}
+
+
+function buscarUltimasMedidasHoras(idCorredor, limite_linhas) {
+
+    var instrucaoSql = `SELECT 
+                        idSensor
+                    FROM sensor
+                    where fkCorredor = ${idCorredor}`;
+
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql)
+    .then(
+        resposta => {
+            console.log(resposta)
+            var instrucaoSql2 = `select round(avg(luminancia),2) as mediaLuxDia
+                                from dados
+                                where fkSensor = ${resposta[0].idSensor}
+                                group by day(dtHora)
+                                order by hour(dtHora) limit ${limite_linhas} `
             console.log("Executando a instrução SQL: \n" + instrucaoSql2);
             return database.executar(instrucaoSql2)
 
@@ -50,5 +75,6 @@ function buscarMedidasEmTempoReal(idCorredor) {
 
 module.exports = {
     buscarUltimasMedidasDia,
-    buscarMedidasEmTempoReal
+    buscarMedidasEmTempoReal,
+    buscarUltimasMedidasHoras
 }

@@ -65,6 +65,6 @@ function buscarMedidasEmTempoReal(req, res) {
 
 module.exports = {
     buscarUltimasMedidasDia,
-    buscarMedidasEmTempoReal
-
+    buscarMedidasEmTempoReal,
+    buscarUltimasMedidasHoras
 }

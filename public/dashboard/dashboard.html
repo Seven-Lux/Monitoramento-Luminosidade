@@ -142,9 +142,6 @@
                         </div>`
         });
 
-        /*if (corredores.length > 0) {
-            exibir(corredores[0].idCorredor)
-        }*/
     }
 
     function alterarTitulo(idCorredor) {
@@ -156,49 +153,6 @@
         obterDadosGraficosHora(idCorredor)
     }
 
-    /*function exibirCorredor(idCorredor) {
-        let todosOsGraficos = JSON.parse(sessionStorage.CORREDORES);
-
-        for (i = 0; i < todosOsGraficos.length; i++) {
-            // exibindo - ou não - o gráfico
-            if (todosOsGraficos[i].idCorredor != idCorredor) {
-                let elementoAtual = document.getElementById(`grafico${todosOsGraficos[i].id}`)
-                if (elementoAtual.classList.contains("display-block")) {
-                    elementoAtual.classList.remove("display-block")
-                }
-                elementoAtual.classList.add("display-none")
-
-                // alterando estilo do botão
-                let btnAtual = document.getElementById(`btnAquario${todosOsGraficos[i].id}`)
-                if (btnAtual.classList.contains("btn-pink")) {
-                    btnAtual.classList.remove("btn-pink")
-                }
-                btnAtual.classList.add("btn-white")
-            }
-        }
-
-        // exibindo - ou não - o gráfico
-        let graficoExibir = document.getElementById(`grafico${idAquario}`)
-        graficoExibir.classList.remove("display-none")
-        graficoExibir.classList.add("display-block")
-
-        // alterando estilo do botão
-        let btnExibir = document.getElementById(`btnAquario${idAquario}`)
-        btnExibir.classList.remove("btn-white")
-        btnExibir.classList.add("btn-pink")
-    }*/
-
-    // O gráfico é construído com três funções:
-    // 1. obterDadosGraficosDia -> Traz dados do Banco de Dados para montar o gráfico da primeira vez
-    // 2. plotarGrafico -> Monta o gráfico com os dados trazidos e exibe em tela
-    // 3. atualizarGrafico -> Atualiza o gráfico, trazendo novamente dados do Banco
-
-    // Esta função *obterDadosGraficosDia* busca os últimos dados inseridos em tabela de medidas.
-    // para, quando carregar o gráfico da primeira vez, já trazer com vários dados.
-    // A função *obterDadosGraficosDia* também invoca a função *plotarGrafico*
-
-    //     Se quiser alterar a busca, ajuste as regras de negócio em src/controllers
-    //     Para ajustar o "select", ajuste o comando sql em src/models aaa
     function obterDadosGraficosDia(idCorredor) {
 
         if (proximaAtualizacao != undefined) {
@@ -209,7 +163,7 @@
             if (response.ok) {
                 response.json().then(function (resposta) {
                     console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
-                    plotarGrafico(resposta, idCorredor);
+                    plotarGraficoDia(resposta, idCorredor);
 
                 });
             } else {
@@ -221,7 +175,7 @@
             });
     }
 
-    function obterDadosGraficosHoras(idCorredor) {
+    function obterDadosGraficosHora(idCorredor) {
 
         if (proximaAtualizacao != undefined) {
             clearTimeout(proximaAtualizacao);
@@ -231,8 +185,7 @@
             if (response.ok) {
                 response.json().then(function (resposta) {
                     console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
-                    plotarGrafico(resposta, idCorredor);
-
+                    plotarGraficoHora(resposta, idCorredor);
                 });
             } else {
                 console.error('Nenhum dado encontrado ou erro na API');
@@ -242,13 +195,10 @@
                 console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
             });
     }
-    // Esta função *plotarGrafico* usa os dados capturados na função anterior para criar o gráfico
-    // Configura o gráfico (cores, tipo, etc), materializa-o na página e, 
-    // A função *plotarGrafico* também invoca a função *atualizarGrafico*
-    function plotarGrafico(resposta, idCorredor) {
+
+    function plotarGraficoDia(resposta, idCorredor) {
         if(chartId != idCorredor){
             chartId = idCorredor
-            myChart.destroy()
             myChart2.destroy()
         }
         
@@ -269,16 +219,6 @@
             }]
         };
 
-        let dados2 = {
-            labels: labels,
-            datasets: [{
-                label: 'Luminosidade',
-                data: [],
-                borderColor: '#efb135',
-                backgroundColor: '#efb135',
-                borderWidth: 1
-            }]
-        };
         console.log('----------------------------------------------')
         console.log('Estes dados foram recebidos pela funcao "obterDadosGraficosDia" e passados para "plotarGrafico":')
         console.log(resposta)
@@ -337,9 +277,62 @@
             }
         };
 
-        const config2 = {
+
+        // Adicionando gráfico criado em div na tela
+        myChart = new Chart(
+            ctx2,
+            config
+        );
+
+         setTimeout(() => atualizarGrafico(idCorredor, dados, myChart), 2000);
+    }
+
+    function plotarGraficoHora(resposta, idCorredor) {
+        if(chartId != idCorredor){
+            chartId = idCorredor
+            myChart.destroy()
+        }
+        
+        console.log('iniciando plotagem do gráfico...');
+
+        // Criando estrutura para plotar gráfico - labels
+        let labels = ['00:00', '01:00', '02:00', '03:00', '04:00', '05:00', '06:00'];
+
+        // Criando estrutura para plotar gráfico - dados
+
+        let dados = {
+            labels: labels,
+            datasets: [{
+                label: 'Luminosidade',
+                data: [],
+                borderColor: '#efb135',
+                backgroundColor: '#efb135',
+                borderWidth: 1
+            }]
+        };
+        console.log('----------------------------------------------')
+        console.log('Estes dados foram recebidos pela funcao "obterDadosGraficosDia" e passados para "plotarGrafico":')
+        console.log(resposta)
+
+        // Inserindo valores recebidos em estrutura para plotar o gráfico
+        for (var i = 0; i < resposta.length; i++) {
+            var registro = resposta[i];
+            dados.datasets[0].data.push(registro.mediaLuxDia);
+            // dados2.datasets[0].data.push(registro.mediaLuxDia);
+        }
+
+        console.log('----------------------------------------------')
+        console.log('O gráfico será plotado com os respectivos valores:')
+        console.log('Labels:')
+        console.log(labels)
+        console.log('Dados:')
+        console.log(dados.datasets)
+        console.log('----------------------------------------------')
+
+        // Criando estrutura para plotar gráfico - config
+        const config = {
             type: 'line',
-            data: dados2,
+            data: dados,
             options: {
                 responsive: true,
                 maintainAspectRatio: false,
@@ -376,17 +369,11 @@
         };
 
         // Adicionando gráfico criado em div na tela
-        myChart = new Chart(
-            ctx2,
-            config
-        );
-
         myChart2 = new Chart(
             ctx,
-            config2
+            config
         );
-
-         setTimeout(() => atualizarGrafico(idCorredor, dados, myChart), 2000);
+         // setTimeout(() => atualizarGrafico(idCorredor, dados, myChart), 2000);
     }
 
 
