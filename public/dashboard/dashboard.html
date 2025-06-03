@@ -126,105 +126,6 @@
     const ctx = document.getElementById('myChart');
     const ctx2 = document.getElementById('myChart2');
     nome.innerHTML = sessionStorage.NOME_USUARIO
-    /*
-    new Chart(ctx, {
-        type: 'line',
-        data: {
-            labels: ['6 horas', '7 horas', '8 horas', '9 horas', '10 horas'],
-            datasets: [{
-                label: 'Luminosidade',
-
-                data: [400, 420, 600, 800, 1000, 1200],
-                borderColor: '#efb135',
-                backgroundColor: '#efb135',
-                borderWidth: 1
-            }]
-        },
-        options: {
-            responsive: true,
-            maintainAspectRatio: false,
-            plugins: {
-                title: {
-                    display: true,
-                    text: 'Valores de luminância ao longo das horas do dia',
-                    padding: {
-                        top: 5,
-                        bottom: 5
-                    },
-                    font: {
-                        size: 16,
-                        weight: 1000,
-                        family: "'Arial','Helvetica', sans-serif"
-                    }
-                }
-            },
-            scales: {
-                y: {
-                    title: {
-                        display: true,
-                        text: 'Luminância (Lux)',
-                        font: {
-                            size: 12
-                        }
-                    },
-                    ticks: {
-                        autoSkip: true,
-                        maxTicksLimit: 10,
-                        stepSize: 10
-                    },
-                    beginAtZero: true
-                }
-            }
-        }
-    });
-
-    new Chart(ctx2, {
-        type: 'bar',
-        data: {
-            labels: ['Domingo', 'Segunda-Feira', 'Terça-Feira', 'Quarta-Feira', 'Quinta-Feira', 'Sexta-Feira', 'Sábado'],
-            datasets: [{
-                label: 'Luminosidade',
-
-                data: [450, 820, 400, 450, 800, 1100, 780],
-                borderColor: '#efb135',
-                backgroundColor: '#efb135',
-                borderWidth: 1
-            }]
-        },
-        options: {
-            responsive: true,
-            maintainAspectRatio: false,
-            plugins: {
-                title: {
-                    display: true,
-                    text: 'Valores de luminância ao longo dos dias da semana',
-                    padding: {
-                        top: 5,
-                        bottom: 5
-                    },
-                    font: {
-                        size: 16,
-                        weight: 1000,
-                        family: "'Arial','Helvetica', sans-serif"
-
-                    }
-                }
-            },
-            scales: {
-                y: {
-                    title: {
-                        display: true,
-                        text: 'Luminância (Lux)',
-                        font: {
-                            size: 12
-                        }
-                    },
-                    beginAtZero: true
-                }
-            }
-        }
-    });
-    */
 
     let proximaAtualizacao;
     alterarTitulo(1);
@@ -306,7 +207,6 @@
             if (response.ok) {
                 response.json().then(function (resposta) {
                     console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
-                    resposta.reverse();
 
                     plotarGrafico(resposta, idCorredor);
 
@@ -323,7 +223,7 @@
     // Esta função *plotarGrafico* usa os dados capturados na função anterior para criar o gráfico
     // Configura o gráfico (cores, tipo, etc), materializa-o na página e, 
     // A função *plotarGrafico* também invoca a função *atualizarGrafico*
-    function plotarGrafico(resposta, idAquario) {
+    function plotarGrafico(resposta, idCorredor) {
 
         console.log('iniciando plotagem do gráfico...');
 
@@ -335,7 +235,7 @@
             labels: labels,
             datasets: [{
                 label: 'Luminosidade',
-                data: [400, 420, 600, 800, 1000, 1200, 800],
+                data: [],
                 borderColor: '#efb135',
                 backgroundColor: '#efb135',
                 borderWidth: 1
@@ -346,7 +246,7 @@
             labels: labels,
             datasets: [{
                 label: 'Luminosidade',
-                data: [700, 420, 650, 80, 1000, 1200, 800],
+                data: [],
                 borderColor: '#efb135',
                 backgroundColor: '#efb135',
                 borderWidth: 1
@@ -357,12 +257,11 @@
         console.log(resposta)
 
         // Inserindo valores recebidos em estrutura para plotar o gráfico
-        /*for (i = 0; i < resposta.length; i++) {
+        for (var i = 0; i < resposta.length; i++) {
             var registro = resposta[i];
-            labels.push(registro.momento_grafico);
-            dados.datasets[0].data.push(registro.umidade);
-            dados.datasets[1].data.push(registro.temperatura);
-        }*/
+            dados.datasets[0].data.push(registro.luminancia);
+            dados2.datasets[0].data.push(registro.luminancia);
+        }
 
         console.log('----------------------------------------------')
         console.log('O gráfico será plotado com os respectivos valores:')
