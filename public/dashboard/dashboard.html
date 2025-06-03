@@ -284,7 +284,7 @@
             config
         );
 
-         setTimeout(() => atualizarGrafico(idCorredor, dados, myChart), 2000);
+         setTimeout(() => atualizarGraficoDia(idCorredor, dados, myChart), 2000);
     }
 
     function plotarGraficoHora(resposta, idCorredor) {
@@ -373,7 +373,7 @@
             ctx,
             config
         );
-         // setTimeout(() => atualizarGrafico(idCorredor, dados, myChart), 2000);
+         setTimeout(() => atualizarGraficoHora(idCorredor, dados, myChart2), 2000);
     }
 
 
@@ -384,8 +384,8 @@
     //     Se quiser alterar a busca, ajuste as regras de negócio em src/controllers
     //     Para ajustar o "select", ajuste o comando sql em src/models
 
-    function obterdados(idCorredor) {
-    fetch(`/medidas/tempo-real/${idCorredor}`)
+    function obterDadosDia(idCorredor) {
+    fetch(`/medidas/tempo-real-dia/${idCorredor}`)
         .then(resposta => {
             if (resposta.status == 200) {
                 resposta.json().then(resposta => {
@@ -394,7 +394,7 @@
 
                 });
             } else {
-                console.error(`Nenhum dado encontrado para o id ${idAquario} ou erro na API`);
+                console.error(`Nenhum dado encontrado para o id ${idCorredor} ou erro na API`);
             }
         })
         .catch(function (error) {
@@ -403,13 +403,32 @@
 
 }
 
-    function atualizarGrafico(idCorredor, dados, myChart) {
+    function obterDadosHora(idCorredor) {
+    fetch(`/medidas/tempo-real-hora/${idCorredor}`)
+        .then(resposta => {
+            if (resposta.status == 200) {
+                resposta.json().then(resposta => {
 
-        fetch(`/medidas/tempo-real/${idCorredor}`, { cache: 'no-store' }).then(function (response) {
+                    console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+
+                });
+            } else {
+                console.error(`Nenhum dado encontrado para o id ${idCorredor} ou erro na API`);
+            }
+        })
+        .catch(function (error) {
+            console.error(`Erro na obtenção dos dados do aquario p/ gráfico: ${error.message}`);
+        });
+
+}
+
+    function atualizarGraficoDia(idCorredor, dados, myChart) {
+
+        fetch(`/medidas/tempo-real-dia/${idCorredor}`, { cache: 'no-store' }).then(function (response) {
             if (response.ok) {
                 response.json().then(function (novoRegistro) {
 
-                    obterdados(idCorredor);
+                    obterDadosDia(idCorredor);
 
                     console.log(`Dados recebidos: ${JSON.stringify(novoRegistro)}`);
                     console.log(`Dados atuais do gráfico:`);
@@ -438,12 +457,61 @@
                     }
 
                     // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
-                    proximaAtualizacao = setTimeout(() => atualizarGrafico(idCorredor, dados, myChart), 2000);
+                    proximaAtualizacao = setTimeout(() => atualizarGraficoDia(idCorredor, dados, myChart), 2000);
                 });
             } else {
                 console.error('Nenhum dado encontrado ou erro na API');
                 // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
-                proximaAtualizacao = setTimeout(() => atualizarGrafico(idCorredor, dados, myChart), 2000);
+                proximaAtualizacao = setTimeout(() => atualizarGraficoDia(idCorredor, dados, myChart), 2000);
+            }
+        })
+            .catch(function (error) {
+                console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+            });
+
+    }
+
+     function atualizarGraficoHora(idCorredor, dados, myChart) {
+
+        fetch(`/medidas/tempo-real-hora/${idCorredor}`, { cache: 'no-store' }).then(function (response) {
+            if (response.ok) {
+                response.json().then(function (novoRegistro) {
+
+                    obterDadosHora(idCorredor);
+
+                    console.log(`Dados recebidos: ${JSON.stringify(novoRegistro)}`);
+                    console.log(`Dados atuais do gráfico:`);
+                    console.log(dados);
+
+    
+
+
+                    if (novoRegistro[0].mediaLuxDia == dados.datasets[0].data[dados.datasets[0].data.length - 1]) {
+                        console.log("---------------------------------------------------------------")
+                        console.log("Como não há dados novos para captura, o gráfico não atualizará.")
+                        console.log("Horário do novo dado capturado:")
+                        console.log(novoRegistro[0].momento_grafico)
+                        console.log("Horário do último dado capturado:")
+                        console.log(dados.labels[dados.labels.length - 1])
+                        console.log("---------------------------------------------------------------")
+                    } else {
+                        // tirando e colocando valores no gráfico
+                        var labelEliminado = dados.labels.shift(); // apagar o primeiro
+                        dados.labels.push(labelEliminado); // incluir um novo momento
+
+                        dados.datasets[0].data.shift();  // apagar o primeiro de umidade
+                        dados.datasets[0].data.push(novoRegistro[0].mediaLuxDia); // incluir uma nova medida de umidade
+
+                        myChart.update();
+                    }
+
+                    // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
+                    proximaAtualizacao = setTimeout(() => atualizarGraficoDia(idCorredor, dados, myChart), 2000);
+                });
+            } else {
+                console.error('Nenhum dado encontrado ou erro na API');
+                // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
+                proximaAtualizacao = setTimeout(() => atualizarGraficoDia(idCorredor, dados, myChart), 2000);
             }
         })
             .catch(function (error) {

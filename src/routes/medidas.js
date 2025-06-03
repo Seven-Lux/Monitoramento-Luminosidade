@@ -12,8 +12,12 @@ router.get("/horas/:idCorredor", function (req, res) {
 });
 
 
-router.get("/tempo-real/:idCorredor", function (req, res) {
-    medidaController.buscarMedidasEmTempoReal(req, res);
+router.get("/tempo-real-dia/:idCorredor", function (req, res) {
+    medidaController.buscarMedidasEmTempoRealDia(req, res);
+})
+
+router.get("/tempo-real-hora/:idCorredor", function (req, res) {
+    medidaController.buscarMedidasEmTempoRealHora(req, res);
 })
 
 module.exports = router;

@@ -44,13 +44,13 @@ function buscarUltimasMedidasHoras(req, res) {
 }
 
 
-function buscarMedidasEmTempoReal(req, res) {
+function buscarMedidasEmTempoRealDia(req, res) {
 
     var idCorredor = req.params.idCorredor;
 
     console.log(`Recuperando medidas em tempo real`);
 
-    medidaModel.buscarMedidasEmTempoReal(idCorredor).then(function (resultado) {
+    medidaModel.buscarMedidasEmTempoRealDia(idCorredor).then(function (resultado) {
         if (resultado.length > 0) {
             res.status(200).json(resultado);
         } else {
@@ -63,8 +63,29 @@ function buscarMedidasEmTempoReal(req, res) {
     });
 }
 
+function buscarMedidasEmTempoRealHora(req, res) {
+
+    var idCorredor = req.params.idCorredor;
+
+    console.log(`Recuperando medidas em tempo real`);
+
+    medidaModel.buscarMedidasEmTempoRealHora(idCorredor).then(function (resultado) {
+        if (resultado.length > 0) {
+            res.status(200).json(resultado);
+        } else {
+            res.status(204).send("Nenhum resultado encontrado!")
+        }
+    }).catch(function (erro) {
+        console.log(erro);
+        console.log("Houve um erro ao buscar as ultimas medidas.", erro.sqlMessage);
+        res.status(500).json(erro.sqlMessage);
+    });
+}
+
+
 module.exports = {
     buscarUltimasMedidasDia,
-    buscarMedidasEmTempoReal,
-    buscarUltimasMedidasHoras
+    buscarMedidasEmTempoRealDia,
+    buscarUltimasMedidasHoras,
+    buscarMedidasEmTempoRealHora
 }
