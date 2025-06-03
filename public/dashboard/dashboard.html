@@ -335,31 +335,34 @@
             labels: labels,
             datasets: [{
                 label: 'Luminosidade',
-                data: [400, 420, 600, 800, 1000, 1200],
-                borderColor: '#efb135',
-                backgroundColor: '#efb135',
-                borderWidth: 1
-            },
-            {
-                label: 'Luminosidade',
-                data: [450, 820, 400, 450, 800, 1100, 780],
+                data: [400, 420, 600, 800, 1000, 1200, 800],
                 borderColor: '#efb135',
                 backgroundColor: '#efb135',
                 borderWidth: 1
             }]
         };
 
+         let dados2 = {
+            labels: labels,
+            datasets: [{
+                label: 'Luminosidade',
+                data: [700, 420, 650, 80, 1000, 1200, 800],
+                borderColor: '#efb135',
+                backgroundColor: '#efb135',
+                borderWidth: 1
+            }]
+        };
         console.log('----------------------------------------------')
         console.log('Estes dados foram recebidos pela funcao "obterDadosGrafico" e passados para "plotarGrafico":')
         console.log(resposta)
 
         // Inserindo valores recebidos em estrutura para plotar o gráfico
-        for (i = 0; i < resposta.length; i++) {
+        /*for (i = 0; i < resposta.length; i++) {
             var registro = resposta[i];
             labels.push(registro.momento_grafico);
             dados.datasets[0].data.push(registro.umidade);
             dados.datasets[1].data.push(registro.temperatura);
-        }
+        }*/
 
         console.log('----------------------------------------------')
         console.log('O gráfico será plotado com os respectivos valores:')
@@ -377,17 +380,17 @@
 
         const config2 = {
             type: 'line',
-            data: dados,
+            data: dados2,
         };
 
         // Adicionando gráfico criado em div na tela
         let myChart = new Chart(
-            ctx,
+            ctx2,
             config
         );
 
         let myChart2 = new Chart(
-            ctx2,
+            ctx,
             config2
         );
 
