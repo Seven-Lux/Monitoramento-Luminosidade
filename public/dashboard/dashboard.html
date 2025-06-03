@@ -103,17 +103,17 @@
                 <div class="box-sensor">
                     <h3 class="box-title">Selecionar área</h3>
                     <div class="msg-column-area" id="area">
-                        
 
-                    
+
+
                     </div>
-                        <div class="box-kpii ">
+                    <div class="box-kpii ">
 
-                           <h1 class="kpi-title" style="font-size: medium;">Faixa ideal de iliminação (Lux)</h1>
-                            <p style="font-size: 15px;">Manter a iluminação dentro desse intervalo. </p>
-                            <h3>Mínimo: 400 Máximo: 700</h3>
+                        <h1 class="kpi-title" style="font-size: medium;">Faixa ideal de iliminação (Lux)</h1>
+                        <p style="font-size: 15px;">Manter a iluminação dentro desse intervalo. </p>
+                        <h3>Mínimo: 400 Máximo: 700</h3>
 
-                        </div>
+                    </div>
                 </div>
 
             </div>
@@ -233,12 +233,12 @@
     function exibirCorredoresDoUsuario() {
         var corredores = JSON.parse(sessionStorage.CORREDORES);
         corredores.forEach(item => {
-             console.log(item)
-             area.innerHTML += `<div class="opt-row-area" onclick=alterarTitulo(${item.idCorredor})>
+            console.log(item)
+            area.innerHTML += `<div class="opt-row-area" onclick=alterarTitulo(${item.idCorredor})>
                             <span class="area color1"></span>
                             <h5>${item.nome}</h5>
                         </div>`
-            
+
             obterDadosGrafico(item.idCorredor)
         });
 
@@ -342,7 +342,7 @@
             }]
         };
 
-         let dados2 = {
+        let dados2 = {
             labels: labels,
             datasets: [{
                 label: 'Luminosidade',
@@ -376,11 +376,77 @@
         const config = {
             type: 'bar',
             data: dados,
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'Valores de luminância ao longo dos dias da semana',
+                        padding: {
+                            top: 5,
+                            bottom: 5
+                        },
+                        font: {
+                            size: 16,
+                            weight: 1000,
+                            family: "'Arial','Helvetica', sans-serif"
+
+                        },
+                        scales: {
+                            y: {
+                                title: {
+                                    display: true,
+                                    text: 'Luminância (Lux)',
+                                    font: {
+                                        size: 12
+                                    }
+                                },
+                                beginAtZero: true
+                            }
+                        }
+                    }
+                }
+                // pointLabels
+            }
         };
 
         const config2 = {
             type: 'line',
             data: dados2,
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'Valores de luminância ao longo dos dias da semana',
+                        padding: {
+                            top: 5,
+                            bottom: 5
+                        },
+                        font: {
+                            size: 16,
+                            weight: 1000,
+                            family: "'Arial','Helvetica', sans-serif"
+
+                        },
+                        scales: {
+                            y: {
+                                title: {
+                                    display: true,
+                                    text: 'Luminância (Lux)',
+                                    font: {
+                                        size: 12
+                                    }
+                                },
+                                beginAtZero: true
+                            }
+                        }
+                    }
+                }
+                // pointLabels
+            }
         };
 
         // Adicionando gráfico criado em div na tela
@@ -396,6 +462,7 @@
 
         // setTimeout(() => atualizarGrafico(idAquario, dados, myChart), 2000);
     }
+
 
 
     // Esta função *atualizarGrafico* atualiza o gráfico que foi renderizado na página,
