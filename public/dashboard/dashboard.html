@@ -126,6 +126,7 @@
     const ctx = document.getElementById('myChart');
     const ctx2 = document.getElementById('myChart2');
     nome.innerHTML = sessionStorage.NOME_USUARIO
+    /*
     new Chart(ctx, {
         type: 'line',
         data: {
@@ -223,6 +224,7 @@
             }
         }
     });
+    */
 
     let proximaAtualizacao;
     alterarTitulo(1);
@@ -326,24 +328,24 @@
         console.log('iniciando plotagem do gráfico...');
 
         // Criando estrutura para plotar gráfico - labels
-        let labels = [];
+        let labels = ['Domingo', 'Segunda-Feira', 'Terça-Feira', 'Quarta-Feira', 'Quinta-Feira', 'Sexta-Feira', 'Sábado'];
 
         // Criando estrutura para plotar gráfico - dados
         let dados = {
             labels: labels,
             datasets: [{
-                label: 'Umidade',
-                data: [],
-                fill: false,
-                borderColor: 'rgb(75, 192, 192)',
-                tension: 0.1
+                label: 'Luminosidade',
+                data: [400, 420, 600, 800, 1000, 1200],
+                borderColor: '#efb135',
+                backgroundColor: '#efb135',
+                borderWidth: 1
             },
             {
-                label: 'Temperatura',
-                data: [],
-                fill: false,
-                borderColor: 'rgb(199, 52, 52)',
-                tension: 0.1
+                label: 'Luminosidade',
+                data: [450, 820, 400, 450, 800, 1100, 780],
+                borderColor: '#efb135',
+                backgroundColor: '#efb135',
+                borderWidth: 1
             }]
         };
 
@@ -369,14 +371,24 @@
 
         // Criando estrutura para plotar gráfico - config
         const config = {
+            type: 'bar',
+            data: dados,
+        };
+
+        const config2 = {
             type: 'line',
             data: dados,
         };
 
         // Adicionando gráfico criado em div na tela
         let myChart = new Chart(
-            document.getElementById(`myChartCanvas${idAquario}`),
+            ctx,
             config
+        );
+
+        let myChart2 = new Chart(
+            ctx2,
+            config2
         );
 
         // setTimeout(() => atualizarGrafico(idAquario, dados, myChart), 2000);
