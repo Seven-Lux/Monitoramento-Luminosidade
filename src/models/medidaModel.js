@@ -1,6 +1,6 @@
 var database = require("../database/config");
 
-function buscarUltimasMedidas(idCorredor, limite_linhas) {
+function buscarUltimasMedidasDia(idCorredor, limite_linhas) {
 
     var instrucaoSql = `SELECT 
                         idSensor
@@ -49,6 +49,6 @@ function buscarMedidasEmTempoReal(idCorredor) {
 }
 
 module.exports = {
-    buscarUltimasMedidas,
+    buscarUltimasMedidasDia,
     buscarMedidasEmTempoReal
 }

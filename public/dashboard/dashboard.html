@@ -153,6 +153,7 @@
         tituloCorredor.innerHTML = descricao
         console.log(idCorredor)
         obterDadosGraficosDia(idCorredor)
+        obterDadosGraficosHora(idCorredor)
     }
 
     /*function exibirCorredor(idCorredor) {
@@ -204,7 +205,7 @@
             clearTimeout(proximaAtualizacao);
         }
 
-        fetch(`/medidas/ultimas/${idCorredor}`, { cache: 'no-store' }).then(function (response) {
+        fetch(`/medidas/dias/${idCorredor}`, { cache: 'no-store' }).then(function (response) {
             if (response.ok) {
                 response.json().then(function (resposta) {
                     console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
@@ -220,6 +221,27 @@
             });
     }
 
+    function obterDadosGraficosHoras(idCorredor) {
+
+        if (proximaAtualizacao != undefined) {
+            clearTimeout(proximaAtualizacao);
+        }
+
+        fetch(`/medidas/horas/${idCorredor}`, { cache: 'no-store' }).then(function (response) {
+            if (response.ok) {
+                response.json().then(function (resposta) {
+                    console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+                    plotarGrafico(resposta, idCorredor);
+
+                });
+            } else {
+                console.error('Nenhum dado encontrado ou erro na API');
+            }
+        })
+            .catch(function (error) {
+                console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+            });
+    }
     // Esta função *plotarGrafico* usa os dados capturados na função anterior para criar o gráfico
     // Configura o gráfico (cores, tipo, etc), materializa-o na página e, 
     // A função *plotarGrafico* também invoca a função *atualizarGrafico*
