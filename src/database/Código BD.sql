@@ -235,10 +235,30 @@ insert into sensor(nome, statusSensor, fkCorredor, dtInstalacao) values
 ('LDR', 'Ativo', 66, '2025-03-07');
 
 -- insert feito para a visualização de dados das tabelas
-insert into dados (luminancia, fkSensor) values
-(850.75, 1),
-(620.33, 2),
-(430.10, 3);
+-- Dia 1 (2025-06-01)
+INSERT INTO dados (luminancia, dtHora, fkSensor) VALUES (320.50, '2025-06-01 08:15:00', 1);
+INSERT INTO dados (luminancia, dtHora, fkSensor) VALUES (310.75, '2025-06-01 10:30:00', 1);
+
+-- Dia 2 (2025-06-02)
+INSERT INTO dados (luminancia, dtHora, fkSensor) VALUES (305.10, '2025-06-02 09:00:00', 1);
+INSERT INTO dados (luminancia, dtHora, fkSensor) VALUES (295.80, '2025-06-02 15:20:00', 1);
+
+-- Dia 3 (2025-06-03)
+INSERT INTO dados (luminancia, dtHora, fkSensor) VALUES (312.60, '2025-06-03 11:45:00', 1);
+INSERT INTO dados (luminancia, dtHora, fkSensor) VALUES (330.20, '2025-06-03 16:00:00', 1);
+
+-- Dia 4 (2025-06-04)
+INSERT INTO dados (luminancia, dtHora, fkSensor) VALUES (340.00, '2025-06-04 12:10:00', 1);
+
+-- Dia 5 (2025-06-05)
+INSERT INTO dados (luminancia, dtHora, fkSensor) VALUES (325.90, '2025-06-05 14:50:00', 1);
+
+-- Dia 6 (2025-06-06)
+INSERT INTO dados (luminancia, dtHora, fkSensor) VALUES (310.00, '2025-06-06 17:30:00', 1);
+
+-- Dia 7 (2025-06-07)
+INSERT INTO dados (luminancia, dtHora, fkSensor) VALUES (300.45, '2025-06-07 13:00:00', 1);
+
 
 select 
 e.nomeFantasia as Empresa,
@@ -306,3 +326,33 @@ join sensor s on s.fkCorredor = c.idCorredor
 join dados d on d.fkSensor = s.idSensor
 where d.luminancia > 800
 order by d.luminancia;
+
+-- Dia 1 (2025-06-01)
+INSERT INTO dados (luminancia, dtHora, fkSensor) VALUES (850.75, '2025-06-01 09:10:00', 2);
+INSERT INTO dados (luminancia, dtHora, fkSensor) VALUES (870.20, '2025-06-01 14:45:00', 2);
+
+-- Dia 2 (2025-06-02)
+INSERT INTO dados (luminancia, dtHora, fkSensor) VALUES (890.00, '2025-06-02 08:30:00', 2);
+INSERT INTO dados (luminancia, dtHora, fkSensor) VALUES (865.90, '2025-06-02 17:20:00', 2);
+
+-- Dia 3 (2025-06-03)
+INSERT INTO dados (luminancia, dtHora, fkSensor) VALUES (900.60, '2025-06-03 11:00:00', 2);
+INSERT INTO dados (luminancia, dtHora, fkSensor) VALUES (910.80, '2025-06-03 15:40:00', 2);
+
+-- Dia 4 (2025-06-04)
+INSERT INTO dados (luminancia, dtHora, fkSensor) VALUES (880.10, '2025-06-04 10:25:00', 2);
+
+-- Dia 5 (2025-06-05)
+INSERT INTO dados (luminancia, dtHora, fkSensor) VALUES (895.45, '2025-06-05 13:15:00', 2);
+
+-- Dia 6 (2025-06-06)
+INSERT INTO dados (luminancia, dtHora, fkSensor) VALUES (905.90, '2025-06-06 16:05:00', 2);
+
+-- Dia 7 (2025-06-07)
+INSERT INTO dados (luminancia, dtHora, fkSensor) VALUES (920.30, '2025-06-07 12:00:00', 2);
+
+select * from dados;	
+INSERT INTO dados (luminancia, dtHora, fkSensor) VALUES (320.50, '2025-06-08 08:15:00', 1);
+INSERT INTO dados (luminancia, dtHora, fkSensor) VALUES (310.75, '2025-06-08 10:30:00', 1);
+INSERT INTO dados (luminancia, dtHora, fkSensor) VALUES (990.75, '2025-06-09 10:30:00', 1);
+
