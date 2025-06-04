@@ -125,6 +125,8 @@
 <script>
     const ctx = document.getElementById('myChart');
     const ctx2 = document.getElementById('myChart2');
+    let myChart, myChart2;
+    var chartId = 1;
     nome.innerHTML = sessionStorage.NOME_USUARIO
 
     let proximaAtualizacao;
@@ -134,7 +136,6 @@
     function exibirCorredoresDoUsuario() {
         var corredores = JSON.parse(sessionStorage.CORREDORES);
         corredores.forEach(item => {
-            console.log(item)
             area.innerHTML += `<div class="opt-row-area" onclick=alterarTitulo(${item.idCorredor})>
                             <span class="area color1"></span>
                             <h5>${item.nome}</h5>
@@ -150,6 +151,7 @@
         var descricao = JSON.parse(sessionStorage.CORREDORES).find(item => item.idCorredor == idCorredor).nome;
         console.log(descricao)
         tituloCorredor.innerHTML = descricao
+        console.log(idCorredor)
         obterDadosGrafico(idCorredor)
     }
 
@@ -223,7 +225,11 @@
     // Configura o gráfico (cores, tipo, etc), materializa-o na página e, 
     // A função *plotarGrafico* também invoca a função *atualizarGrafico*
     function plotarGrafico(resposta, idCorredor) {
-
+        if(chartId != idCorredor){
+            chartId = idCorredor
+            myChart.destroy()
+            myChart2.destroy()
+        }
         console.log('iniciando plotagem do gráfico...');
 
         // Criando estrutura para plotar gráfico - labels
@@ -258,8 +264,8 @@
         // Inserindo valores recebidos em estrutura para plotar o gráfico
         for (var i = 0; i < resposta.length; i++) {
             var registro = resposta[i];
-            dados.datasets[0].data.push(registro.luminancia);
-            dados2.datasets[0].data.push(registro.luminancia);
+            dados.datasets[0].data.push(registro.mediaLuxDia);
+            // dados2.datasets[0].data.push(registro.mediaLuxDia);
         }
 
         console.log('----------------------------------------------')
@@ -318,7 +324,7 @@
                 plugins: {
                     title: {
                         display: true,
-                        text: 'Valores de luminância ao longo dos dias da semana',
+                        text: 'Valores de luminância ao longo das horas do dia',
                         padding: {
                             top: 5,
                             bottom: 5
@@ -348,12 +354,12 @@
         };
 
         // Adicionando gráfico criado em div na tela
-        let myChart = new Chart(
+        myChart = new Chart(
             ctx2,
             config
         );
 
-        let myChart2 = new Chart(
+        myChart2 = new Chart(
             ctx,
             config2
         );

@@ -1,14 +1,27 @@
 var database = require("../database/config");
 
-function buscarUltimasMedidas(idAquario, limite_linhas) {
+function buscarUltimasMedidas(idCorredor, limite_linhas) {
 
     var instrucaoSql = `SELECT 
-                        luminancia
-                    FROM dados
-                    ORDER BY idDados DESC LIMIT ${limite_linhas}`;
+                        idSensor
+                    FROM sensor
+                    where fkCorredor = ${idCorredor}`;
 
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
-    return database.executar(instrucaoSql);
+    return database.executar(instrucaoSql)
+    .then(
+        resposta => {
+            console.group(resposta)
+            var instrucaoSql2 = `select round(avg(luminancia),2) as mediaLuxDia
+                                from dados
+                                where fkSensor = ${resposta[0].idSensor}
+                                group by day(dtHora)
+                                order by day(dtHora) desc limit ${limite_linhas} `
+            console.log("Executando a instrução SQL: \n" + instrucaoSql2);
+            return database.executar(instrucaoSql2)
+
+        }
+    );
 }
 
 function buscarMedidasEmTempoReal(idAquario) {
