@@ -10,34 +10,28 @@
     <title>Dashboards</title>
 </head>
 
-<body onload="exibirCorredoresDoUsuario()">
-    <div class="container-geral">
+<body>
+    <div class="container-geral" >
         <div class="usuario">
             <div class="user-box">
                 <img class="img-user" src="../assets/user.svg" alt="">
 
                 <h6 class="name" style="font-size: large;" id="nome"></h6>
-                <div class="opt-row">
+                <div class="opt-row" onclick="exibirCorredoresDoUsuario()">
                     <img class="opt-img" src="../assets/bars.svg" alt="">
                     <a href="" class="but-usuario">
                         <h6 style="font-size: small;">Dashboards</h6>
                 </div></a>
-                <div class="opt-row"><img class="opt-img" src="../assets/store.png" alt="">
+                <div class="opt-row" onclick="exibirAlertas()"><img class="opt-img" src="../assets/store.png" alt="">
                     <a href="" class="but-usuario">
-                        <h6 class="setor-icon" style="font-size: small;">Setores</h6>
-                    </a>
-                </div>
-                <div class="opt-row">
-                    <img class="opt-img" src="../assets/config.svg" alt="">
-                    <a href="" class="but-usuario">
-                        <h6 style="font-size: small;">Configuracoes</h6>
+                        <h6 class="setor-icon" style="font-size: small;">Alertas</h6>
                     </a>
                 </div>
                 <!-- colocar link para ferramenta help-desk abaixo -->
                 <div class="opt-row">
                     <img class="opt-img" src="../assets/config.svg" alt="">
                     <a href="" class="but-usuario">
-                        <h6 style="font-size: small;"> Suporte? </h6>
+                        <h6 style="font-size: small;">Suporte</h6>
                     </a>
                 </div>
 
@@ -56,7 +50,7 @@
 
         </div>
 
-        <div class="container-column">
+        <div id="containerColumn">
             <h1 class="title" style="font-size: bold;" id="tituloCorredor"></h1>
             <div class="container-kpi">
                 <div class="box-kpi">
@@ -105,6 +99,10 @@
 
         </div>
 
+        <div id="containerAlertas">
+            <h1>Lista de alertas</h1>
+        </div>
+    </div>
 </body>
 
 <script>
@@ -123,6 +121,11 @@
     window.onload = exibirCorredoresDoUsuario();
 
     plotarAlerta(countAlerta)
+
+    function exibirAlertas() {
+        document.getElementById("containerColumn").style.display = "none";
+        document.getElementById("containerAlertas").style.display = "flex";
+    }
 
     function exibirCorredoresDoUsuario() {
         var corredores = JSON.parse(sessionStorage.CORREDORES);
