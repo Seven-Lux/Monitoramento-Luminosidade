@@ -205,7 +205,7 @@
     function plotarGraficoDia(resposta, idCorredor) {
         if (chartId != idCorredor) {
             chartId = idCorredor
-            myChart2.destroy()
+            myChart.destroy()
         }
 
 
@@ -330,7 +330,7 @@
     function plotarGraficoHora(resposta, idCorredor) {
         if (chartId != idCorredor) {
             chartId = idCorredor
-            myChart.destroy()
+            myChart2.destroy()
         }
 
         console.log('iniciando plotagem do gráfico...');
