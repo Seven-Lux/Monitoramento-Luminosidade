@@ -75,14 +75,7 @@
             </div>
             <div class="box-alert">
                 <h3 class="box-title">Alertas Recentes</h3>
-                <div class="msg-alert">
-                    <img src="../assets/warning.png" alt="" class="img-alert" width="30px" height="30px">
-                    <div class="msg-column">
-                        <h4>Sensor Padaria 1B Pico de luminosidade </h4>
-                        <h4>Data: 27/04/2025 <br>Pico Registrado 900 lux</h4>
-
-
-                    </div>
+                <div class="msg-alert" id="msg-alert">
                     <img src="../assets//warning.png" alt="" class="img-alert" width="30px" height="30px">
                     <div class="msg-column">
                         <h4>Sensor Hortifruti 2D</h4>
@@ -126,8 +119,8 @@
     const ctx = document.getElementById('myChart');
     const ctx2 = document.getElementById('myChart2');
     let myChart, myChart2;
-    var charfIdDia= 1;
-    var charfIdHora= 1;
+    var charfIdDia = 1;
+    var charfIdHora = 1;
     nome.innerHTML = sessionStorage.NOME_USUARIO
     var maxLux;
     var minLux;
@@ -206,8 +199,8 @@
     function plotarGraficoDia(resposta, idCorredor) {
         console.log(idCorredor)
         console.log(idCorredor)
-        if (charfIdDia!= idCorredor) {
-            charfIdDia= idCorredor
+        if (charfIdDia != idCorredor) {
+            charfIdDia = idCorredor
             myChart.destroy()
         }
         console.log(idCorredor)
@@ -332,8 +325,8 @@
     }
 
     function plotarGraficoHora(resposta, idCorredor) {
-        if (charfIdHora!= idCorredor) {
-            charfIdHora= idCorredor
+        if (charfIdHora != idCorredor) {
+            charfIdHora = idCorredor
             myChart2.destroy()
         }
 
@@ -341,7 +334,7 @@
 
         // Criando estrutura para plotar gráfico - labels
         let labels = ['00:00', '01:00', '02:00', '03:00', '04:00', '05:00', '06:00'];
-    var countConformidade = resposta.length;
+        var countConformidade = resposta.length;
         // Criando estrutura para plotar gráfico - dados
 
         let dados = {
@@ -367,9 +360,9 @@
         // Inserindo valores recebidos em estrutura para plotar o gráfico
         for (var i = 0; i < resposta.length; i++) {
             var registro = resposta[i];
-               if (registro.mediaLuxDia > maxLux || registro.mediaLuxDia < minLux) {
-                    countConformidade--
-                }
+            if (registro.mediaLuxDia > maxLux || registro.mediaLuxDia < minLux) {
+                countConformidade--
+            }
             dados.datasets[0].data.push(registro.mediaLuxDia);
             // dados2.datasets[0].data.push(registro.mediaLuxDia);
         }
@@ -431,7 +424,7 @@
     }
 
 
-  function plotarKpiHora(respostaLength, countConformidade) {
+    function plotarKpiHora(respostaLength, countConformidade) {
         var conformidade = countConformidade / respostaLength * 100
         kpiHora.innerHTML = conformidade.toFixed(2) + "%"
     }
@@ -492,6 +485,8 @@
                     console.log(dados);
 
 
+                    var minLux = JSON.parse(sessionStorage.CORREDORES).find(item => item.idCorredor == idCorredor).minLuxIdeal;
+                    var maxLux = JSON.parse(sessionStorage.CORREDORES).find(item => item.idCorredor == idCorredor).maxLuxIdeal;
 
 
                     if (novoRegistro[0].mediaLuxDia == dados.datasets[0].data[dados.datasets[0].data.length - 1]) {
@@ -504,6 +499,15 @@
                         console.log("---------------------------------------------------------------")
                     } else {
                         // tirando e colocando valores no gráfico
+                        if (novoRegistro.mediaLuxDia > maxLux) {
+                           msgAlert.innerHTML += `<img src="../assets/warning.png" alt="" class="img-alert" width="30px" height="30px">
+                    <div class="msg-column">
+                        <h4>Sensor Padaria 1B Pico de luminosidade </h4>
+                        <h4>Data: 27/04/2025 <br>Pico Registrado ${novoRegistro.mediaLuxDia}lux</h4>
+                    </div>`
+                        }
+                        if (novoRegistro.mediaLuxDia < minLux) {
+                        }
                         var labelEliminado = dados.labels.shift(); // apagar o primeiro
                         dados.labels.push(labelEliminado); // incluir um novo momento
 
