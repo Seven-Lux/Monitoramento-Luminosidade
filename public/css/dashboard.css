@@ -37,7 +37,7 @@ body{
     margin-bottom: 40px;
     padding-bottom: 10px;
     height: 38vh;
-    width: 50vw;
+    width: 55vw;
   }
   
 
@@ -71,7 +71,7 @@ body{
     display: flex;
     
     justify-content: space-around;
-    width: 65%;
+    width: 100%;
     box-sizing: border-box;
     padding: 10px;
   
@@ -159,15 +159,11 @@ body{
    
 }
 .box-alert{
-    display: flex;
-    flex-direction:column ;
-    position: fixed;
-    top: 20px;
-    right: 45px;
-
-    z-index: 10;
     width: 350px;
-    height: 140px;
+    height: 60px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
     background-color: white;
     border-radius: 20px;
     padding: 10px;
@@ -180,12 +176,10 @@ body{
 
 .box-sensor{
 
-    height: 250px;
-    width: 350px;
+    height: 70vh;
+    width: 25vw;
     background-color: white;
     border-radius: 20px;
-    margin-top: 9vh;
-    margin-left: 50px;
     padding: 2vh;
     
 }
@@ -193,6 +187,7 @@ body{
 .msg-alert{
     display: flex;
     flex-direction: row;
+    overflow: hidden;
 }
 
 .msg-column{
@@ -279,3 +274,7 @@ body{
      background-color: red;
  }
 
+.opt-row:hover, .opt-row-area:hover{
+  transform: scale(1.02);
+  transition-duration: 250ms;
+}
