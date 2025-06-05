@@ -318,7 +318,7 @@
         plotarKpiDia(resposta.length, countConformidade)
         plotarKpiDesvio(countDesvio, totalDesvio)
         console.log("Total de coisas fora da conformidade:" + countConformidade)
-        // setTimeout(() => atualizarGraficoDia(idCorredor, dados, myChart), 2000);
+        setTimeout(() => atualizarGraficoDia(idCorredor, dados, myChart), 2000);
     }
 
     function plotarKpiDesvio(countDesvio, totalDesvio) {
@@ -427,7 +427,7 @@
             config
         );
         plotarKpiHora(resposta.length, countConformidade)
-        // setTimeout(() => atualizarGraficoHora(idCorredor, dados, myChart2), 2000);
+        setTimeout(() => atualizarGraficoHora(idCorredor, dados, myChart2), 2000);
     }
 
 
