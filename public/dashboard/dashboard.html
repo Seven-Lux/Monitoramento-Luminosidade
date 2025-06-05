@@ -69,7 +69,7 @@
                 <div class="box-kpi">
 
                     <h5 class="kpi-title" style="font-size: medium;">Desvio padrão da luminância </h5>
-                    <h2>60 Lux</h2>
+                    <h2 id="mediaKpi"></h2>
 
                 </div>
             </div>
@@ -210,7 +210,8 @@
 
 
         console.log('iniciando plotagem do gráfico...');
-
+        var totalDesvio = 0;
+        var countDesvio = 0;
         // Criando estrutura para plotar gráfico - labels
         let labels = ['Domingo', 'Segunda-Feira', 'Terça-Feira', 'Quarta-Feira', 'Quinta-Feira', 'Sexta-Feira', 'Sábado'];
         var countConformidade = resposta.length;
@@ -242,8 +243,15 @@
         else {
             for (var i = 0; i < resposta.length; i++) {
                 var registro = resposta[i];
-                if (registro.mediaLuxDia > maxLux || registro.mediaLuxDia < minLux) {
+                if (registro.mediaLuxDia > maxLux) {
                     countConformidade--
+                    totalDesvio += (registro.mediaLuxDia - maxLux)
+                    countDesvio++
+                }
+                if (registro.mediaLuxDia < minLux) {
+                    countConformidade--
+                    totalDesvio += (minLux - registro.mediaLuxDia)
+                    countDesvio++
                 }
                 dados.datasets[0].data.push(registro.mediaLuxDia);
                 // dados2.datasets[0].data.push(registro.mediaLuxDia);
@@ -304,8 +312,14 @@
             config
         );
         plotarKpiDia(resposta.length, countConformidade)
+        plotarKpiDesvio(countDesvio, totalDesvio)
         console.log("Total de coisas fora da conformidade:" + countConformidade)
         setTimeout(() => atualizarGraficoDia(idCorredor, dados, myChart), 2000);
+    }
+
+    function plotarKpiDesvio(countDesvio, totalDesvio) {
+        var mediaDesvio = totalDesvio / countDesvio
+        mediaKpi.innerHTML = mediaDesvio.toFixed(2) + " Lux"
     }
 
     function plotarKpiDia(respostaLength, countConformidade) {
