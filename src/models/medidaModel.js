@@ -40,7 +40,7 @@ function buscarUltimasMedidasHoras(idCorredor, limite_linhas) {
                 var instrucaoSql2 = `select round(avg(luminancia),2) as mediaLuxDia
                                 from dados
                                 where fkSensor = ${resposta[0].idSensor}
-                                group by day(dtHora)
+                                group by hour(dtHora)   
                                 order by hour(dtHora) limit ${limite_linhas} `
                 console.log("Executando a instrução SQL: \n" + instrucaoSql2);
                 return database.executar(instrucaoSql2)
