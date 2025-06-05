@@ -84,7 +84,6 @@ function buscarMedidasEmTempoRealHora(idCorredor) {
     return database.executar(instrucaoSql)
         .then(
             resposta => {
-                console.group(resposta)
                 var instrucaoSql2 = `select round(avg(luminancia),2) as mediaLuxDia
                                 from dados
                                 where fkSensor = ${resposta[0].idSensor}
