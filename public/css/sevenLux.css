@@ -67,7 +67,7 @@ h2{
     margin-bottom: 35px;
 }
 
-.menu {
+.menu { 
     display: flex;
     justify-content: center;
     gap: 40px;
