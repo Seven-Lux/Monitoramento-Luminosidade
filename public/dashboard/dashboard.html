@@ -126,13 +126,14 @@
     const ctx = document.getElementById('myChart');
     const ctx2 = document.getElementById('myChart2');
     let myChart, myChart2;
-    var chartId = 1;
+    var charfIdDia= 1;
+    var charfIdHora= 1;
     nome.innerHTML = sessionStorage.NOME_USUARIO
     var maxLux;
     var minLux;
 
     let proximaAtualizacao;
-    alterarTitulo(chartId);
+    alterarTitulo(1);
     window.onload = exibirCorredoresDoUsuario();
 
     function exibirCorredoresDoUsuario() {
@@ -203,10 +204,13 @@
     }
 
     function plotarGraficoDia(resposta, idCorredor) {
-        if (chartId != idCorredor) {
-            chartId = idCorredor
+        console.log(idCorredor)
+        console.log(idCorredor)
+        if (charfIdDia!= idCorredor) {
+            charfIdDia= idCorredor
             myChart.destroy()
         }
+        console.log(idCorredor)
 
 
         console.log('iniciando plotagem do gráfico...');
@@ -314,7 +318,7 @@
         plotarKpiDia(resposta.length, countConformidade)
         plotarKpiDesvio(countDesvio, totalDesvio)
         console.log("Total de coisas fora da conformidade:" + countConformidade)
-        setTimeout(() => atualizarGraficoDia(idCorredor, dados, myChart), 2000);
+        // setTimeout(() => atualizarGraficoDia(idCorredor, dados, myChart), 2000);
     }
 
     function plotarKpiDesvio(countDesvio, totalDesvio) {
@@ -328,8 +332,8 @@
     }
 
     function plotarGraficoHora(resposta, idCorredor) {
-        if (chartId != idCorredor) {
-            chartId = idCorredor
+        if (charfIdHora!= idCorredor) {
+            charfIdHora= idCorredor
             myChart2.destroy()
         }
 
@@ -423,7 +427,7 @@
             config
         );
         plotarKpiHora(resposta.length, countConformidade)
-        setTimeout(() => atualizarGraficoHora(idCorredor, dados, myChart2), 2000);
+        // setTimeout(() => atualizarGraficoHora(idCorredor, dados, myChart2), 2000);
     }
 
 
