@@ -111,7 +111,7 @@
 
                         <h1 class="kpi-title" style="font-size: medium;">Faixa ideal de iliminação (Lux)</h1>
                         <p style="font-size: 15px;">Manter a iluminação dentro desse intervalo. </p>
-                        <h3>Mínimo: 400 Máximo: 700</h3>
+                        <h3>Mínimo: <span id="minIdeal"></span> Máximo: <span id="maxIdeal"></span></h3>
 
                     </div>
                 </div>
@@ -146,11 +146,16 @@
 
     function alterarTitulo(idCorredor) {
         var descricao = JSON.parse(sessionStorage.CORREDORES).find(item => item.idCorredor == idCorredor).nome;
+        var minLux = JSON.parse(sessionStorage.CORREDORES).find(item => item.idCorredor == idCorredor).minLuxIdeal;
+        var maxLux = JSON.parse(sessionStorage.CORREDORES).find(item => item.idCorredor == idCorredor).maxLuxIdeal;
         console.log(descricao)
         tituloCorredor.innerHTML = descricao
+        minIdeal.innerHTML = minLux
+        maxIdeal.innerHTML = maxLux
         console.log(idCorredor)
         obterDadosGraficosDia(idCorredor)
         obterDadosGraficosHora(idCorredor)
+        plotarKpi(idCorredor)
     }
 
     function obterDadosGraficosDia(idCorredor) {
