@@ -16,7 +16,7 @@ function buscarUltimasMedidasDia(idCorredor, limite_linhas) {
                                 from dados
                                 where fkSensor = ${resposta[0].idSensor}
                                 group by day(dtHora)
-                                order by day(dtHora) limit ${limite_linhas} `
+                                order by day(dtHora) desc limit ${limite_linhas} `
                 console.log("Executando a instrução SQL: \n" + instrucaoSql2);
                 return database.executar(instrucaoSql2)
 
@@ -41,7 +41,7 @@ function buscarUltimasMedidasHoras(idCorredor, limite_linhas) {
                                 from dados
                                 where fkSensor = ${resposta[0].idSensor}
                                 group by hour(dtHora)   
-                                order by hour(dtHora) limit ${limite_linhas} `
+                                order by hour(dtHora) desc limit ${limite_linhas} `
                 console.log("Executando a instrução SQL: \n" + instrucaoSql2);
                 return database.executar(instrucaoSql2)
 

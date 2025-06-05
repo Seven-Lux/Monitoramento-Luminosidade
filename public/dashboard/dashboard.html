@@ -162,6 +162,7 @@
             if (response.ok) {
                 response.json().then(function (resposta) {
                     console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+                    resposta.reverse()
                     plotarGraficoDia(resposta, idCorredor);
 
                 });
@@ -184,6 +185,7 @@
             if (response.ok) {
                 response.json().then(function (resposta) {
                     console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+                    resposta.reverse()
                     plotarGraficoHora(resposta, idCorredor);
                 });
             } else {
