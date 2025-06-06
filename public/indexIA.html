@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BobIA</title>
+    <link rel="stylesheet" href="./css/styleIA.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cascadia+Mono:ital,wght@0,200..700;1,200..700&family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Rubik+Doodle+Shadow&family=Special+Gothic+Expanded+One&family=Titan+One&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+
+    <div id="container">
+        <h3> Ferramente de apoio: </h3>
+        <img src="../assets/logo BobIA.png" alt="">
+        <h1>BobIA</h1>
+
+        <textarea id="pergunta" type="text" placeholder="Digite a pergunta..."></textarea>
+
+        <br><br>
+
+        <button onclick="gerarResposta()">Gerar Resposta</button>
+
+        <h3>Resposta da IA:</h3>
+
+        <div id="resposta"></div>
+    </div>
+
+    <script>
+
+        Swal.fire({
+            // icon: "info",
+            imageUrl: "../assets/logo BobIA.png",
+            title: "Ferramenta de Suporte.",
+            text: 'Seja Bem Vindo(a) a sua IA de suporte, N3!',
+            // showConfirmButton: false,
+            timer: 5000,
+            timerProgressBar: true,
+        })
+
+
+        async function gerarResposta() {
+            const pergunta = document.getElementById('pergunta').value;
+
+            const response = await fetch('/perguntar', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ pergunta })
+            });
+
+            const data = await response.json();
+
+            resposta.style.display = 'block';
+            document.getElementById('resposta').innerText = data.resultado;
+        }
+
+    </script>
+
+</body>
+
+</html>
