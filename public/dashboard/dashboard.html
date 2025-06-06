@@ -116,12 +116,13 @@
     var maxLux;
     var minLux;
     var countAlerta = 0;
+    var ultAlerta = 0;
 
     let proximaAtualizacao;
     alterarTitulo(1);
     window.onload = exibirCorredoresDoUsuario();
 
-    plotarAlerta(countAlerta)
+    obterDadosDia(1)
 
     function exibirAlertas() {
         document.getElementById("containerColumn").style.display = "none";
@@ -209,7 +210,6 @@
             myChart.destroy()
         }
         console.log(idCorredor)
-        exibirAlerta(resposta, idCorredor);
 
 
         console.log('iniciando plotagem do gráfico...');
@@ -444,27 +444,31 @@
         console.log(novoRegistro[0].mediaLuxDia)
         var minLux = JSON.parse(sessionStorage.CORREDORES).find(item => item.idCorredor == idCorredor).minLuxIdeal;
         var maxLux = JSON.parse(sessionStorage.CORREDORES).find(item => item.idCorredor == idCorredor).maxLuxIdeal;
+        var nome = JSON.parse(sessionStorage.CORREDORES).find(item => item.idCorredor == idCorredor).nome;
 
-        if (novoRegistro[0].mediaLuxDia > maxLux) {
+        if ((novoRegistro[0].mediaLuxDia > maxLux) && novoRegistro[0].mediaLuxDia != ultAlerta ) {
             containerAlertas.innerHTML += `  <div class="opt-row-area">
                 <img src="../assets/warning.png" alt="" width="20px" height="20px" style="margin-left: 20px">
-                <h3>Padaria</h3>
-                <h3 style="color: red;">Pico de lux registrado</h3>
-                <h3 style="color: red;">${novoRegistro[0].mediaLuxDia} Lux</h3>
-                <h3>Data do registro: ${novoRegistro[0].dtHora}</h3>
+                <h4>${nome}</h4>
+                <h4 style="color: red;">Pico de lux registrado</h4>
+                <h4 style="color: red;">${novoRegistro[0].mediaLuxDia} Lux</h4>
+                <h4>Data do registro: ${novoRegistro[0].dtHora}</h4>
             </div>`
             countAlerta += 1;
+            ultAlerta = novoRegistro[0].mediaLuxDia;
+            console.log()
             plotarAlerta(countAlerta)
         }
-        if (novoRegistro[0].mediaLuxDia < minLux) {
+        if ((novoRegistro[0].mediaLuxDia < minLux) && novoRegistro[0].mediaLuxDia != ultAlerta ) {
             containerAlertas.innerHTML += `  <div class="opt-row-area">
                 <img src="../assets/warning.png" alt="" width="20px" height="20px" style="margin-left: 20px">
-                <h3>Padaria</h3>
-                <h3 style="color: red;">Lux abaixo da faixa ideal</h3>
-                <h3 style="color: red;">${novoRegistro[0].mediaLuxDia} Lux</h3>
-                <h3>Data do registro: ${novoRegistro[0].dtHora}</h3>
+                <h4>${nome}</h4>
+                <h4 style="color: red;">Lux abaixo da faixa ideal</h4>
+                <h4 style="color: red;">${novoRegistro[0].mediaLuxDia} Lux</h4>
+                <h4>Data do registro: ${novoRegistro[0].dtHora}</h4>
             </div>`
             countAlerta += 1;
+            ultAlerta = novoRegistro[0].mediaLuxDia;
             plotarAlerta(countAlerta)
         }
     }

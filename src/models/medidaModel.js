@@ -60,7 +60,8 @@ function buscarMedidasEmTempoRealDia(idCorredor) {
         .then(
             resposta => {
                 console.group(resposta)
-                var instrucaoSql2 = `select round(avg(luminancia),2) as mediaLuxDia
+                var instrucaoSql2 = `select round(avg(luminancia),2) as mediaLuxDia,
+                dtHora
                                 from dados
                                 where fkSensor = ${resposta[0].idSensor}
                                 group by day(dtHora)
