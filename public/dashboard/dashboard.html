@@ -451,7 +451,32 @@
 
     //     Se quiser alterar a busca, ajuste as regras de negócio em src/controllers
     //     Para ajustar o "select", ajuste o comando sql em src/models
+    function alerta() {
+        return
+    }
 
+    function exibirAlerta(novoRegistro) {
+        console.log(novoRegistro[0].mediaLuxDia)
+           var minLux = JSON.parse(sessionStorage.CORREDORES).find(item => item.idCorredor == idCorredor).minLuxIdeal;
+                    var maxLux = JSON.parse(sessionStorage.CORREDORES).find(item => item.idCorredor == idCorredor).maxLuxIdeal;
+
+        if (novoRegistro[0].mediaLuxDia > maxLux) {
+                           containerAlertas.innerHTML += `  <div class="opt-row-area">
+                <img src="../assets/warning.png" alt="" width="20px" height="20px" style="margin-left: 20px">
+                            <h3></h3>
+            </div>>`
+                     countAlerta += 1;
+                    plotarAlerta(countAlerta)
+                        }
+                        if (novoRegistro[0].mediaLuxDia < minLux) {
+                         containerAlertas.innerHTML += `  <div class="opt-row-area">
+                <img src="../assets/warning.png" alt="" width="20px" height="20px" style="margin-left: 20px">
+                            <h3></h3>
+            </div>>`
+                    countAlerta += 1;
+                    plotarAlerta(countAlerta)
+                        }
+    }
     function obterDadosDia(idCorredor) {
         fetch(`/medidas/tempo-real-dia/${idCorredor}`)
             .then(resposta => {
@@ -459,7 +484,7 @@
                     resposta.json().then(resposta => {
 
                         console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
-
+                        
                     });
                 } else {
                     console.error(`Nenhum dado encontrado para o id ${idCorredor} ou erro na API`);
@@ -478,7 +503,7 @@
                     resposta.json().then(resposta => {
 
                         console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
-
+                        exibirAlerta(resposta, idCorredor);
                     });
                 } else {
                     console.error(`Nenhum dado encontrado para o id ${idCorredor} ou erro na API`);
@@ -549,10 +574,7 @@
                     console.log(`Dados atuais do gráfico:`);
                     console.log(dados);
 
-                    
-                    var minLux = JSON.parse(sessionStorage.CORREDORES).find(item => item.idCorredor == idCorredor).minLuxIdeal;
-                    var maxLux = JSON.parse(sessionStorage.CORREDORES).find(item => item.idCorredor == idCorredor).maxLuxIdeal;
-
+                
                     if (novoRegistro[0].mediaLuxDia == dados.datasets[0].data[dados.datasets[0].data.length - 1]) {
                         console.log("---------------------------------------------------------------")
                         console.log("Como não há dados novos para captura, o gráfico não atualizará.")
@@ -566,22 +588,7 @@
                         console.log(novoRegistro[0].mediaLuxDia)
                         console.log("Lux máxima:" + maxLux)
                         console.log("Lux nova:" + novoRegistro[0].mediaLuxDia)
-                         if (novoRegistro[0].mediaLuxDia > maxLux) {
-                           containerAlertas.innerHTML += `  <div class="opt-row-area">
-                <img src="../assets/warning.png" alt="" width="20px" height="20px" style="margin-left: 20px">
-                            <h3></h3>
-            </div>>`
-                     countAlerta += 1;
-                    plotarAlerta(countAlerta)
-                        }
-                        if (novoRegistro[0].mediaLuxDia < minLux) {
-                         containerAlertas.innerHTML += `  <div class="opt-row-area">
-                <img src="../assets/warning.png" alt="" width="20px" height="20px" style="margin-left: 20px">
-                            <h3></h3>
-            </div>>`
-                    countAlerta += 1;
-                    plotarAlerta(countAlerta)
-                        }
+                         
                         var labelEliminado = dados.labels.shift(); // apagar o primeiro
                         dados.labels.push(labelEliminado); // incluir um novo momento
                         dados.datasets[0].data.shift();  // apagar o primeiro de umidade
