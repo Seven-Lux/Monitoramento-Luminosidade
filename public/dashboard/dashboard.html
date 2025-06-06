@@ -5,13 +5,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../CSS/dashboard.css">
-    <link rel="shortcut icon" type ="image/x-icon" href="../assets/sevenluxLogo.png">
+    <link rel="shortcut icon" type="image/x-icon" href="../assets/sevenluxLogo.png">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <title>Dashboards</title>
 </head>
 
 <body>
-    <div class="container-geral" >
+    <div class="container-geral">
         <div class="usuario">
             <div class="user-box">
                 <img class="img-user" src="../assets/user.svg" alt="">
@@ -66,7 +66,7 @@
                     <h5 class="kpi-title" style="font-size: medium;">Desvio padrão da luminância </h5>
                     <h2 id="mediaKpi"></h2>
 
-            </div>
+                </div>
                 <div class="box-alert">
                     <h3 class="box-title">Alertas dos ultimos 30 dias</h3>
                     <div class="msg-alert" id="msgAlert"></div>
@@ -101,7 +101,7 @@
 
         <div id="containerAlertas">
             <h1>Lista de alertas</h1>
-              
+
         </div>
     </div>
 </body>
@@ -139,7 +139,7 @@
 
     }
 
-    function plotarAlerta(countAlerta){
+    function plotarAlerta(countAlerta) {
         msgAlert.innerHTML = `<h2><span style="color: red ">${countAlerta}</span> Alerta(s)</h2> <img src="../assets/warning.png" alt="" width="30px" height="30px" style="margin-left: 20px">`
     }
 
@@ -209,13 +209,14 @@
             myChart.destroy()
         }
         console.log(idCorredor)
+        exibirAlerta(resposta, idCorredor);
 
 
         console.log('iniciando plotagem do gráfico...');
         var totalDesvio = 0;
         var countDesvio = 0;
         // Criando estrutura para plotar gráfico - labels
-        let labels = ['Domingo', 'Segunda-Feira', 'Terça-Feira', 'Quarta-Feira', 'Quinta-Feira', 'Sexta-Feira', 'Sábado'];
+        let labels = ['Segunda-Feira', 'Terça-Feira', 'Quarta-Feira', 'Quinta-Feira', 'Sexta-Feira', 'Sábado', 'Domingo'];
         var countConformidade = resposta.length;
         // Criando estrutura para plotar gráfico - dados
         let dados = {
@@ -316,7 +317,7 @@
         plotarKpiDia(resposta.length, countConformidade)
         plotarKpiDesvio(countDesvio, totalDesvio)
         console.log("Total de coisas fora da conformidade:" + countConformidade)
-        setTimeout(() => atualizarGraficoDia(idCorredor, dados, myChart), 2000);
+        setTimeout(() => atualizarGraficoDia(idCorredor, dados, myChart), 24 * 60 * 60 * 1000);
     }
 
     function plotarKpiDesvio(countDesvio, totalDesvio) {
@@ -338,7 +339,7 @@
         console.log('iniciando plotagem do gráfico...');
 
         // Criando estrutura para plotar gráfico - labels
-        let labels = ['01:00 Hrs', '02:00 Hrs', '03:00 Hrs', '04:00 Hrs', '05:00 Hrs', '6:00 Hrs','7:00 Hrs' ];
+        let labels = ["Registro 1", 'Registro 2', 'Registro 3', 'Registro 4', 'Registro 5', 'Registro 6', 'Registro 7'];
         var countConformidade = resposta.length;
         // Criando estrutura para plotar gráfico - dados
 
@@ -390,7 +391,7 @@
                 plugins: {
                     title: {
                         display: true,
-                        text: 'Valores de luminância ao longo de 7 horas',
+                        text: 'Valores de luminância em tempo real',
                         padding: {
                             top: 5,
                             bottom: 5
@@ -425,7 +426,7 @@
             config
         );
         plotarKpiHora(resposta.length, countConformidade)
-        setTimeout(() => atualizarGraficoHora(idCorredor, dados, myChart2), 2000);
+        setTimeout(() => atualizarGraficoHora(idCorredor, dados, myChart2), 10000);
     }
 
 
@@ -441,31 +442,31 @@
 
     function exibirAlerta(novoRegistro, idCorredor) {
         console.log(novoRegistro[0].mediaLuxDia)
-           var minLux = JSON.parse(sessionStorage.CORREDORES).find(item => item.idCorredor == idCorredor).minLuxIdeal;
-            var maxLux = JSON.parse(sessionStorage.CORREDORES).find(item => item.idCorredor == idCorredor).maxLuxIdeal;
+        var minLux = JSON.parse(sessionStorage.CORREDORES).find(item => item.idCorredor == idCorredor).minLuxIdeal;
+        var maxLux = JSON.parse(sessionStorage.CORREDORES).find(item => item.idCorredor == idCorredor).maxLuxIdeal;
 
         if (novoRegistro[0].mediaLuxDia > maxLux) {
-                           containerAlertas.innerHTML += `  <div class="opt-row-area">
+            containerAlertas.innerHTML += `  <div class="opt-row-area">
                 <img src="../assets/warning.png" alt="" width="20px" height="20px" style="margin-left: 20px">
                 <h3>Padaria</h3>
                 <h3 style="color: red;">Pico de lux registrado</h3>
                 <h3 style="color: red;">${novoRegistro[0].mediaLuxDia} Lux</h3>
                 <h3>Data do registro: ${novoRegistro[0].dtHora}</h3>
             </div>`
-                     countAlerta += 1;
-                    plotarAlerta(countAlerta)
-                        }
-                        if (novoRegistro[0].mediaLuxDia < minLux) {
-                         containerAlertas.innerHTML += `  <div class="opt-row-area">
+            countAlerta += 1;
+            plotarAlerta(countAlerta)
+        }
+        if (novoRegistro[0].mediaLuxDia < minLux) {
+            containerAlertas.innerHTML += `  <div class="opt-row-area">
                 <img src="../assets/warning.png" alt="" width="20px" height="20px" style="margin-left: 20px">
                 <h3>Padaria</h3>
                 <h3 style="color: red;">Lux abaixo da faixa ideal</h3>
                 <h3 style="color: red;">${novoRegistro[0].mediaLuxDia} Lux</h3>
                 <h3>Data do registro: ${novoRegistro[0].dtHora}</h3>
             </div>`
-                    countAlerta += 1;
-                    plotarAlerta(countAlerta)
-                        }
+            countAlerta += 1;
+            plotarAlerta(countAlerta)
+        }
     }
     function obterDadosDia(idCorredor) {
         fetch(`/medidas/tempo-real-dia/${idCorredor}`)
@@ -474,7 +475,7 @@
                     resposta.json().then(resposta => {
 
                         console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
-                        
+                        exibirAlerta(resposta, idCorredor);
                     });
                 } else {
                     console.error(`Nenhum dado encontrado para o id ${idCorredor} ou erro na API`);
@@ -493,7 +494,6 @@
                     resposta.json().then(resposta => {
 
                         console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
-                        exibirAlerta(resposta, idCorredor);
                     });
                 } else {
                     console.error(`Nenhum dado encontrado para o id ${idCorredor} ou erro na API`);
@@ -564,7 +564,7 @@
                     console.log(`Dados atuais do gráfico:`);
                     console.log(dados);
 
-                
+
                     if (novoRegistro[0].mediaLuxDia == dados.datasets[0].data[dados.datasets[0].data.length - 1]) {
                         console.log("---------------------------------------------------------------")
                         console.log("Como não há dados novos para captura, o gráfico não atualizará.")
@@ -578,7 +578,7 @@
                         console.log(novoRegistro[0].mediaLuxDia)
                         console.log("Lux máxima:" + maxLux)
                         console.log("Lux nova:" + novoRegistro[0].mediaLuxDia)
-                         
+
                         var labelEliminado = dados.labels.shift(); // apagar o primeiro
                         dados.labels.push(labelEliminado); // incluir um novo momento
                         dados.datasets[0].data.shift();  // apagar o primeiro de umidade
