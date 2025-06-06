@@ -3,7 +3,7 @@
   flex-direction: row;
 }
 
-.container-row-cadastro{
+.container-row-cadastro {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -58,7 +58,7 @@
   text-align: center;
 }
 
-.botao-cadastro{
+.botao-cadastro {
   margin-left: 165px;
 }
 
@@ -190,4 +190,6 @@ button {
 .txt-button {
   color: black;
   text-decoration: inherit;
+  border: 1px solid black;
+  cursor: pointer;
 }
