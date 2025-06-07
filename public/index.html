@@ -31,9 +31,7 @@
                 <h3>Login</h3>
             </a>
 
-            <a href="indexIA.html">
-                <h3>BOBIA TESTE</h3>
-            </a>
+          
 
              <div class="box-yellow" style="align-self: flex-end; margin-left: -40px;"></div>
         </div>
@@ -126,6 +124,7 @@
         </div>
         <br>
         <br>
+        <div id="divTxt_alerta"></div>
         <button onclick="simular()"><b>Simular resultados</b></button>
             <div id="txtResultado"  class="resultado-content">
                 <img src="assets/xmark-solid.svg" alt="" width="20px" height="20px" onclick="fechar()">
@@ -140,14 +139,12 @@
 
     </div>
     <div class="roda-pe-contato" id="footer">
-        <img src="../public/assets/ChatGPT Image 25 de abr. de 2025, 19_04_10.png" class="icone">
+        <img src="assets/ChatGPT Image 25 de abr. de 2025, 19_04_10.png" class="icone">
         <p> <b> Contate - nos: 5557-8877</b></p>
 
-        <img src="../public/assets/ChatGPT Image 25 de abr. de 2025, 19_11_10.png" class="icone">
-        <p> <b> Email: sevenlux@gmil.com</b></p>
-        <div class="colaboradores">
-            <h3>colaboradores</h3>
-        </div>
+        <img src="assets/ChatGPT Image 25 de abr. de 2025, 19_11_10.png" class="icone">
+        <p> <b> Email: sevenlux@gmail.com</b></p>
+      
     </div>
 </body>
 <script>
@@ -155,7 +152,7 @@
     function simular() {
         var qntd = Number(iptQntd.value);
         var valor = Number(iptValor.value);
-        alertaCustomizado.style.display = "flex";
+        
         // Variaveis para calculos 
         var valorBaseMes = valor * qntd
         var valorLuxMes = valorBaseMes * 1.06;
@@ -167,9 +164,9 @@
         divTxt.innerHTML = '';
 
         if (qntd == '' || valor == 'e' || valor == '' || valor === 'e') {
-            divTxt.innerHTML = 'Preencha os campos corretamente! ⚠️';
+            divTxt_alerta.innerHTML = 'Preencha os campos corretamente! ⚠️';
         } else {
-
+            alertaCustomizado.style.display = "flex";
             divTxt.innerHTML = `Olá!<br><br>
         Estudos apontam que mercados com uma melhor luminosidade tem 6% de vendas a mais por setor. <br> <br>
 
