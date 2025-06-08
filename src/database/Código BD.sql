@@ -1,6 +1,8 @@
 create database if not exists sevenLux;
 use sevenLux;
 
+
+
 create table if not exists endereco(
 idEndereco int primary key auto_increment,
 cep char (8) not null,
@@ -34,14 +36,15 @@ references empresa(idEmpresa),
 constraint pkComposta
 	primary key (idFuncionario, fkEndereco, fkEmpresa),
 nome varchar(45) not null,
-email varchar(45) not null,
+email varchar(45) not null unique,
 senha varchar(45) not null
 );
+
+
 
 create table if not exists corredor (
 idCorredor int primary key  auto_increment,
 nome varchar(45) not null,
-numero varchar(45) not null,
 minLuxIdeal int not null,
 maxLuxIdeal int not null,
 fkEmpresa int not null,
@@ -90,6 +93,8 @@ constraint fkSensor foreign key (fkSensor)
  ('Assaí Atacadista', '06057223000171', 'Sendas Distribuidora S.A.', 'HI983R', 5),
  ('Supermercado Nagumo Anel Viário', '07705530000184', 'Nagumo Supermercados LTDA', 'BR14N7', 6);
 
+
+
  
  insert into funcionario(nome, email, senha, fkEndereco, fkEmpresa)values
  ('Kleber Mendonça', 'Kleber.mendonca@gmail.com', 'Abc#123', 1,1),
@@ -99,73 +104,74 @@ constraint fkSensor foreign key (fkSensor)
  ('Alexandre Costa', 'alexandre.costa@gmail.com', 'beterraba', 5,5),
  ('Richard Gomes', 'richard.gomes@gmail.com','senha', 6, 6);
  
-INSERT INTO corredor(nome, numero, minLuxIdeal, maxLuxIdeal, fkEndereco, fkEmpresa) VALUES
-('Alimentos Não Perecíveis', 'A1', 500, 750, 1, 1),
-('Bebidas', 'B1', 500, 750, 1, 1),
-('Laticínios', 'C1', 500, 750, 1, 1),
-('Carnes e Frios', 'D1', 750, 1000, 1, 1),
-('Padaria', 'E1', 500, 750, 1, 1),
-('Pet Shop', 'F1', 250, 400, 2, 2),
-('Hortifrúti', 'G1', 300, 500, 1, 1),
-('Produtos de Limpeza', 'H1', 200, 400, 1, 1),
-('Alimentos Enlatados', 'I1', 220, 370, 1, 1),
-('Cereais e Grãos', 'J1', 230, 380, 1, 1),
-('Congelados', 'K1', 150, 250, 1, 1),
-('Alimentos Não Perecíveis', 'A2', 250, 400, 2, 2),
-('Bebidas', 'B2', 300, 450, 2, 2),
-('Laticínios', 'C2', 200, 350, 2, 2),
-('Carnes e Frios', 'D2', 150, 300, 2, 2),
-('Padaria', 'E2', 280, 420, 2, 2),
-('Pet Shop', 'F2', 250, 400, 2, 2),
-('Hortifrúti', 'G2', 300, 500, 2, 2),
-('Produtos de Limpeza', 'H2', 200, 400, 2, 2),
-('Alimentos Enlatados', 'I2', 220, 370, 2, 2),
-('Cereais e Grãos', 'J2', 230, 380, 2, 2),
-('Congelados', 'K2', 150, 250, 2, 2),
-('Alimentos Não Perecíveis', 'A3', 250, 400, 3, 3),
-('Bebidas', 'B3', 300, 450, 3, 3),
-('Laticínios', 'C3', 200, 350, 3, 3),
-('Carnes e Frios', 'D3', 150, 300, 3, 3),
-('Padaria', 'E3', 280, 420, 3, 3),
-('Pet Shop', 'F3', 250, 400, 3, 3),
-('Hortifrúti', 'G3', 300, 500, 3, 3),
-('Produtos de Limpeza', 'H3', 200, 400, 3, 3),
-('Alimentos Enlatados', 'I3', 220, 370, 3, 3),
-('Cereais e Grãos', 'J3', 230, 380, 3, 3),
-('Congelados', 'K3', 150, 250, 3, 3),
-('Alimentos Não Perecíveis', 'A4', 250, 400, 4, 4),
-('Bebidas', 'B4', 300, 450, 4, 4),
-('Laticínios', 'C4', 200, 350, 4, 4),
-('Carnes e Frios', 'D4', 150, 300, 4, 4),
-('Padaria', 'E4', 280, 420, 4, 4),
-('Pet Shop', 'F4', 250, 400, 4, 4),
-('Hortifrúti', 'G4', 300, 500, 4, 4),
-('Produtos de Limpeza', 'H4', 200, 400, 4, 4),
-('Alimentos Enlatados', 'I4', 220, 370, 4, 4),
-('Cereais e Grãos', 'J4', 230, 380, 4, 4),
-('Congelados', 'K4', 150, 250, 4, 4),
-('Alimentos Não Perecíveis', 'A5', 250, 400, 5, 5),
-('Bebidas', 'B5', 300, 450, 5, 5),
-('Laticínios', 'C5', 200, 350, 5, 5),
-('Carnes e Frios', 'D5', 150, 300, 5, 5),
-('Padaria', 'E5', 280, 420, 5, 5),
-('Pet Shop', 'F5', 250, 400, 5, 5),
-('Hortifrúti', 'G5', 300, 500, 5, 5),
-('Produtos de Limpeza', 'H5', 200, 400, 5, 5),
-('Alimentos Enlatados', 'I5', 220, 370, 5, 5),
-('Cereais e Grãos', 'J5', 230, 380, 5, 5),
-('Congelados', 'K5', 150, 250, 5, 5),
-('Alimentos Não Perecíveis', 'A6', 250, 400, 6, 6),
-('Bebidas', 'B6', 300, 450, 6, 6),
-('Laticínios', 'C6', 200, 350, 6, 6),
-('Carnes e Frios', 'D6', 150, 300, 6, 6),
-('Padaria', 'E6', 280, 420, 6, 6),
-('Pet Shop', 'F6', 250, 400, 6, 6),
-('Hortifrúti', 'G6', 300, 500, 6, 6),
-('Produtos de Limpeza', 'H6', 200, 400, 6, 6),
-('Alimentos Enlatados', 'I6', 220, 370, 6, 6),
-('Cereais e Grãos', 'J6', 230, 380, 6, 6),
-('Congelados', 'K6', 150, 250, 6, 6);
+INSERT INTO corredor(nome, minLuxIdeal, maxLuxIdeal, fkEndereco, fkEmpresa) VALUES
+('Alimentos Não Perecíveis', 500, 750, 1, 1),
+('Bebidas', 500, 750, 1, 1),
+('Laticínios', 500, 750, 1, 1),
+('Carnes e Frios', 750, 1000, 1, 1),
+('Padaria', 500, 750, 1, 1),
+('Pet Shop', 250, 400, 2, 2),
+('Hortifrúti', 300, 500, 1, 1),
+('Produtos de Limpeza', 200, 400, 1, 1),
+('Alimentos Enlatados', 220, 370, 1, 1),
+('Cereais e Grãos', 230, 380, 1, 1),
+('Congelados', 150, 250, 1, 1),
+('Alimentos Não Perecíveis', 250, 400, 2, 2),
+('Bebidas', 300, 450, 2, 2),
+('Laticínios', 200, 350, 2, 2),
+('Carnes e Frios', 150, 300, 2, 2),
+('Padaria', 280, 420, 2, 2),
+('Pet Shop', 250, 400, 2, 2),
+('Hortifrúti', 300, 500, 2, 2),
+('Produtos de Limpeza', 200, 400, 2, 2),
+('Alimentos Enlatados', 220, 370, 2, 2),
+('Cereais e Grãos', 230, 380, 2, 2),
+('Congelados', 150, 250, 2, 2),
+('Alimentos Não Perecíveis', 250, 400, 3, 3),
+('Bebidas', 300, 450, 3, 3),
+('Laticínios', 200, 350, 3, 3),
+('Carnes e Frios', 150, 300, 3, 3),
+('Padaria', 280, 420, 3, 3),
+('Pet Shop', 250, 400, 3, 3),
+('Hortifrúti', 300, 500, 3, 3),
+('Produtos de Limpeza', 200, 400, 3, 3),
+('Alimentos Enlatados', 220, 370, 3, 3),
+('Cereais e Grãos', 230, 380, 3, 3),
+('Congelados', 150, 250, 3, 3),
+('Alimentos Não Perecíveis', 250, 400, 4, 4),
+('Bebidas', 300, 450, 4, 4),
+('Laticínios', 200, 350, 4, 4),
+('Carnes e Frios', 150, 300, 4, 4),
+('Padaria', 280, 420, 4, 4),
+('Pet Shop', 250, 400, 4, 4),
+('Hortifrúti', 300, 500, 4, 4),
+('Produtos de Limpeza', 200, 400, 4, 4),
+('Alimentos Enlatados', 220, 370, 4, 4),
+('Cereais e Grãos', 230, 380, 4, 4),
+('Congelados', 150, 250, 4, 4),
+('Alimentos Não Perecíveis', 250, 400, 5, 5),
+('Bebidas', 300, 450, 5, 5),
+('Laticínios', 200, 350, 5, 5),
+('Carnes e Frios', 150, 300, 5, 5),
+('Padaria', 280, 420, 5, 5),
+('Pet Shop', 250, 400, 5, 5),
+('Hortifrúti', 300, 500, 5, 5),
+('Produtos de Limpeza', 200, 400, 5, 5),
+('Alimentos Enlatados', 220, 370, 5, 5),
+('Cereais e Grãos', 230, 380, 5, 5),
+('Congelados', 150, 250, 5, 5),
+('Alimentos Não Perecíveis', 250, 400, 6, 6),
+('Bebidas', 300, 450, 6, 6),
+('Laticínios', 200, 350, 6, 6),
+('Carnes e Frios', 150, 300, 6, 6),
+('Padaria', 280, 420, 6, 6),
+('Pet Shop', 250, 400, 6, 6),
+('Hortifrúti', 300, 500, 6, 6),
+('Produtos de Limpeza', 200, 400, 6, 6),
+('Alimentos Enlatados', 220, 370, 6, 6),
+('Cereais e Grãos', 230, 380, 6, 6),
+('Congelados', 150, 250, 6, 6);
+
 
 
 insert into sensor(nome, statusSensor, fkCorredor, dtInstalacao) values
@@ -261,6 +267,8 @@ INSERT INTO dados (luminancia, dtHora, fkSensor) VALUES (310.00, '2025-06-06 17:
 -- Dia 7 (2025-06-07)
 INSERT INTO dados (luminancia, dtHora, fkSensor) VALUES (300.45, '2025-06-07 13:00:00', 1);
 
+insert into funcionario (email, senha, fkEndereco, fkEmpresa,nome) values
+('sevenlux_suporte@gmail.com', 'suporte2025', 3,3, 'Renata de Souza');
 
 select 
 e.nomeFantasia as Empresa,
